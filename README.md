@@ -25,7 +25,7 @@ To retrive the "ITUNES COUNTRY ISO CODE" you can use:
 
 - a country picker in iTunesPicker (user choice)
 - current locale (the iTunes account could be in a different country)
-- the best way is use an in-app purchase pruduct identifier:
+- use in-app purchase pruduct identifier (probably the best way):
 
 ```objc
 [ACKITunesQuery getITunesStoreCountryUserAccountByProductId:@"AN IN-APP PURCHASE PRODUCT ID" completionBlock:^(NSString *country, NSError *err) {
@@ -33,11 +33,13 @@ To retrive the "ITUNES COUNTRY ISO CODE" you can use:
 }];
 ```
 
+iTunesPicker requires iOS 7 and ARC and has been tested on iPhone 5S.
 
 **Author**: Denis Berton [@DenisBerton](https://twitter.com/DenisBerton)
 
-![Alt text](preview/preview.png "Preview picker") 
-![Alt text](preview/previewDetail.png "Preview detail") 
+![Alt text](preview/list.png "Preview picker list") 
+![Alt text](preview/detail.png "Preview picker detail") 
+![Alt text](preview/comparison.png "Preview ranking positions") 
 
 
 #### Project Status
