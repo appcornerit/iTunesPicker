@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ITPViewController">
+            <connections>
+                <outlet property="countryButton" destination="8tQ-lB-mmc" id="oQb-3l-tOZ"/>
+                <outlet property="filterDxButton" destination="t9N-fq-0iO" id="1iz-xM-HqJ"/>
+                <outlet property="filterSxButton" destination="1Ju-M6-shf" id="gpA-DT-25A"/>
+                <outlet property="filterView" destination="1Bm-vl-keM" id="QoA-gi-wBH"/>
+                <outlet property="swipeView" destination="G6Z-lY-ubw" id="tHi-lf-4lE"/>
+                <outlet property="view" destination="1" id="YCU-tU-Fbk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-lY-ubw" customClass="SwipeView">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="AR4-Ik-0FY"/>
+                        <outlet property="delegate" destination="-1" id="9aT-ll-U9u"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bm-vl-keM" userLabel="Filter View">
+                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1Ju-M6-shf" userLabel="button sx">
+                            <rect key="frame" x="0.0" y="0.0" width="130" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="filterSxAction:" destination="-1" eventType="touchUpInside" id="t68-L7-Rxb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tQ-lB-mmc" userLabel="button country">
+                            <rect key="frame" x="130" y="0.0" width="60" height="44"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="10"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="countryAction:" destination="-1" eventType="touchUpInside" id="Z1d-Yz-FfN"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="t9N-fq-0iO" userLabel="button dx">
+                            <rect key="frame" x="190" y="0.0" width="130" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="filterDxAction:" destination="-1" eventType="touchUpInside" id="Q8h-dI-Bev"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIz-Eo-e7a">
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="cMY-cy-cES">
+                            <barButtonItem key="leftBarButtonItem" title="Item" id="D8c-Gz-12Y"/>
+                            <barButtonItem key="rightBarButtonItem" title="Item" id="Gxd-wo-X6a"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="G6Z-lY-ubw" firstAttribute="top" secondItem="1" secondAttribute="top" constant="64" id="3KI-WC-b6R"/>
+                <constraint firstItem="G6Z-lY-ubw" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="GaY-d8-dNr"/>
+                <constraint firstAttribute="trailing" secondItem="G6Z-lY-ubw" secondAttribute="trailing" id="M8X-XG-3BH"/>
+                <constraint firstAttribute="bottom" secondItem="G6Z-lY-ubw" secondAttribute="bottom" id="o7o-gf-7Vf"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

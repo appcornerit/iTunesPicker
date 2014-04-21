@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  iTunesPicker
+
+  Created by Denis Berton on 20/03/14.
+  Copyright (c) 2014 appcorner.it. All rights reserved.
+*/
+
+"itppicker.table.noratings"="No ratings for current version";
+"itppicker.table.noratings.allversions"="No ratings for all versions";
+"itppicker.table.label.allVersions"="all versions";
+"itppicker.table.button.detail"=">";
+
+"topfreeapplications"="Top Free Apps";
+"toppaidapplications"="Top Paid Apps";
+"topgrossingapplications"="Top Grossing Apps";
+"newapplications"="New Apps";
+"newfreeapplications"="New Free Applications";
+"newpaidapplications"="New Paid Applications";
+
+"0"="All Genres";
+"6018"="Books";
+"6000"="Business";
+"6022"="Catalogs";
+"6017"="Education";
+"6016"="Entertainment";
+"6015"="Finance";
+"6023"="Food & Drink";
+"6014"="Games";
+"6013"="Health & Fitness";
+"6012"="Lifestyle";
+"6020"="Medical";
+"6011"="Music";
+"6010"="Navigation";
+"6009"="News";
+"6021"="Newsstand";
+"6008"="Photo & Video";
+"6007"="Productivity";
+"6006"="Reference";
+"6005"="Social Networking";
+"6004"="Sports";
+"6003"="Travel";
+"6002"="Utilities";
+"6001"="Weather";
+
+"itppickerdetail.button.purchase"="App Store";
+"itppickerdetail.label.developer"="Developer";
+"itppickerdetail.label.seller"="Seller";
+"itppickerdetail.label.update"="Update at";
+"itppickerdetail.label.version"="Version";
+"itppickerdetail.label.size"="Size";
+"itppickerdetail.label.rating"="Rating";
+"itppickerdetail.label.languages"="Languages codes";

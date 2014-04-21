@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF2E269418B2AA4000270C57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2E269318B2AA4000270C57 /* Foundation.framework */; };
+		FF2E269618B2AA4000270C57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2E269518B2AA4000270C57 /* CoreGraphics.framework */; };
+		FF2E269818B2AA4000270C57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2E269718B2AA4000270C57 /* UIKit.framework */; };
+		FF2E269E18B2AA4000270C57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF2E269C18B2AA4000270C57 /* InfoPlist.strings */; };
+		FF2E26A018B2AA4000270C57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2E269F18B2AA4000270C57 /* main.m */; };
+		FF2E26A418B2AA4000270C57 /* ITPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2E26A318B2AA4000270C57 /* ITPAppDelegate.m */; };
+		FF2E26A718B2AA4000270C57 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF2E26A518B2AA4000270C57 /* Main_iPhone.storyboard */; };
+		FF2E26AD18B2AA4000270C57 /* ITPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2E26AC18B2AA4000270C57 /* ITPViewController.m */; };
+		FF2E26AF18B2AA4000270C57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2E26AE18B2AA4000270C57 /* Images.xcassets */; };
+		FF2E26DA18B2B3BE00270C57 /* ITPPickerTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2E26D918B2B3BE00270C57 /* ITPPickerTableViewController.xib */; };
+		FF2E26DE18B2B3F900270C57 /* ITPPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2E26DD18B2B3F900270C57 /* ITPPickerTableViewController.m */; };
+		FF2E26E218B2C39000270C57 /* ITPPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2E26E118B2C39000270C57 /* ITPPickerTableViewCell.m */; };
+		FF2E26E518B2C3A200270C57 /* ITPPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2E26E418B2C3A200270C57 /* ITPPickerTableViewCell.xib */; };
+		FF3A6481190538F200003669 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3A6480190538F200003669 /* libz.dylib */; };
+		FF3A64831905391600003669 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3A64821905391600003669 /* AdSupport.framework */; };
+		FF3A648519053A1700003669 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3A648419053A1700003669 /* libsqlite3.0.dylib */; };
+		FF3A94AE18CFC03D00479E98 /* ITPCountryItemChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3A94AD18CFC03D00479E98 /* ITPCountryItemChartsViewController.m */; };
+		FF3A94B118CFC20000479E98 /* CountriesFlags36px.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94B018CFC20000479E98 /* CountriesFlags36px.xcassets */; };
+		FF3A94B618D261D900479E98 /* IPTMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3A94B418D261D900479E98 /* IPTMenuTableViewController.m */; };
+		FF3A94B818D261D900479E98 /* IPTMenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94B518D261D900479E98 /* IPTMenuTableViewController.xib */; };
+		FF3A94BF18D6631E00479E98 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94BC18D6631E00479E98 /* SVProgressHUD.bundle */; };
+		FF3A94C118D6631E00479E98 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3A94BE18D6631E00479E98 /* SVProgressHUD.m */; };
+		FF3A94CA18DBA52E00479E98 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94CD18DBA52E00479E98 /* Localizable.strings */; };
+		FF477E1A1905887E00747A31 /* AppCornerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF477E181905887E00747A31 /* AppCornerKit.framework */; };
+		FF477E1B1905887E00747A31 /* AppCornerKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF477E191905887E00747A31 /* AppCornerKitResources.bundle */; };
+		FF477E1E190588BC00747A31 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF477E1D190588BC00747A31 /* SwipeView.m */; };
+		FF6FEEFB18E0E8D900C6ED5D /* ITPPickerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6FEEF918E0E8D900C6ED5D /* ITPPickerDetailViewController.m */; };
+		FF6FEEFC18E0E8D900C6ED5D /* ITPPickerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6FEEFA18E0E8D900C6ED5D /* ITPPickerDetailViewController.xib */; };
+		FFEE4D7D18B40D61001C7D54 /* ITPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFEE4D7C18B40D61001C7D54 /* ITPViewController.xib */; };
+		FFEE4D8018B41BBE001C7D54 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4D7F18B41BBE001C7D54 /* CoreData.framework */; };
+		FFEE4D8218B41BD4001C7D54 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4D8118B41BD4001C7D54 /* CFNetwork.framework */; };
+		FFEE4D8418B41BF4001C7D54 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4D8318B41BF4001C7D54 /* Security.framework */; };
+		FFEE4D8618B41BFB001C7D54 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4D8518B41BFB001C7D54 /* MobileCoreServices.framework */; };
+		FFEE4D8818B565AB001C7D54 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4D8718B565AB001C7D54 /* SystemConfiguration.framework */; };
+		FFEE4DCD18B6CB4E001C7D54 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4DCC18B6CB4E001C7D54 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FF2E269018B2AA4000270C57 /* iTunesPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF2E269318B2AA4000270C57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FF2E269518B2AA4000270C57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FF2E269718B2AA4000270C57 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FF2E269B18B2AA4000270C57 /* iTunesPicker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTunesPicker-Info.plist"; sourceTree = "<group>"; };
+		FF2E269D18B2AA4000270C57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FF2E269F18B2AA4000270C57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FF2E26A118B2AA4000270C57 /* iTunesPicker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTunesPicker-Prefix.pch"; sourceTree = "<group>"; };
+		FF2E26A218B2AA4000270C57 /* ITPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITPAppDelegate.h; sourceTree = "<group>"; };
+		FF2E26A318B2AA4000270C57 /* ITPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ITPAppDelegate.m; sourceTree = "<group>"; };
+		FF2E26A618B2AA4000270C57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		FF2E26AB18B2AA4000270C57 /* ITPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITPViewController.h; sourceTree = "<group>"; };
+		FF2E26AC18B2AA4000270C57 /* ITPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ITPViewController.m; sourceTree = "<group>"; };
+		FF2E26AE18B2AA4000270C57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FF2E26B518B2AA4000270C57 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FF2E26D918B2B3BE00270C57 /* ITPPickerTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPPickerTableViewController.xib; sourceTree = "<group>"; };
+		FF2E26DC18B2B3F900270C57 /* ITPPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPickerTableViewController.h; sourceTree = "<group>"; };
+		FF2E26DD18B2B3F900270C57 /* ITPPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPickerTableViewController.m; sourceTree = "<group>"; };
+		FF2E26E018B2C39000270C57 /* ITPPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPickerTableViewCell.h; sourceTree = "<group>"; };
+		FF2E26E118B2C39000270C57 /* ITPPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPickerTableViewCell.m; sourceTree = "<group>"; };
+		FF2E26E418B2C3A200270C57 /* ITPPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPPickerTableViewCell.xib; sourceTree = "<group>"; };
+		FF3A6480190538F200003669 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		FF3A64821905391600003669 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		FF3A648419053A1700003669 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		FF3A94AC18CFC03D00479E98 /* ITPCountryItemChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPCountryItemChartsViewController.h; sourceTree = "<group>"; };
+		FF3A94AD18CFC03D00479E98 /* ITPCountryItemChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPCountryItemChartsViewController.m; sourceTree = "<group>"; };
+		FF3A94B018CFC20000479E98 /* CountriesFlags36px.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CountriesFlags36px.xcassets; sourceTree = "<group>"; };
+		FF3A94B318D261D900479E98 /* IPTMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPTMenuTableViewController.h; sourceTree = "<group>"; };
+		FF3A94B418D261D900479E98 /* IPTMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPTMenuTableViewController.m; sourceTree = "<group>"; };
+		FF3A94B518D261D900479E98 /* IPTMenuTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPTMenuTableViewController.xib; sourceTree = "<group>"; };
+		FF3A94BB18D6631E00479E98 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		FF3A94BC18D6631E00479E98 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		FF3A94BD18D6631E00479E98 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		FF3A94BE18D6631E00479E98 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		FF3A94C318DBA2D000479E98 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		FF3A94C518DBA2D100479E98 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FF3A94CE18DBA53000479E98 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF3A94CF18DBA53100479E98 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF477E181905887E00747A31 /* AppCornerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCornerKit.framework; path = External/AppCornerKit.framework; sourceTree = "<group>"; };
+		FF477E191905887E00747A31 /* AppCornerKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AppCornerKitResources.bundle; path = External/AppCornerKitResources.bundle; sourceTree = "<group>"; };
+		FF477E1C190588BC00747A31 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeView.h; path = External/SwipeView/SwipeView.h; sourceTree = SOURCE_ROOT; };
+		FF477E1D190588BC00747A31 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwipeView.m; path = External/SwipeView/SwipeView.m; sourceTree = SOURCE_ROOT; };
+		FF6FEEF818E0E8D900C6ED5D /* ITPPickerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPickerDetailViewController.h; sourceTree = "<group>"; };
+		FF6FEEF918E0E8D900C6ED5D /* ITPPickerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPickerDetailViewController.m; sourceTree = "<group>"; };
+		FF6FEEFA18E0E8D900C6ED5D /* ITPPickerDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPPickerDetailViewController.xib; sourceTree = "<group>"; };
+		FFEE4D7C18B40D61001C7D54 /* ITPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPViewController.xib; sourceTree = "<group>"; };
+		FFEE4D7F18B41BBE001C7D54 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FFEE4D8118B41BD4001C7D54 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FFEE4D8318B41BF4001C7D54 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FFEE4D8518B41BFB001C7D54 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FFEE4D8718B565AB001C7D54 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FFEE4DCC18B6CB4E001C7D54 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF2E268D18B2AA4000270C57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3A648519053A1700003669 /* libsqlite3.0.dylib in Frameworks */,
+				FF3A64831905391600003669 /* AdSupport.framework in Frameworks */,
+				FF3A6481190538F200003669 /* libz.dylib in Frameworks */,
+				FFEE4DCD18B6CB4E001C7D54 /* QuartzCore.framework in Frameworks */,
+				FF477E1A1905887E00747A31 /* AppCornerKit.framework in Frameworks */,
+				FFEE4D8818B565AB001C7D54 /* SystemConfiguration.framework in Frameworks */,
+				FFEE4D8618B41BFB001C7D54 /* MobileCoreServices.framework in Frameworks */,
+				FFEE4D8418B41BF4001C7D54 /* Security.framework in Frameworks */,
+				FFEE4D8218B41BD4001C7D54 /* CFNetwork.framework in Frameworks */,
+				FFEE4D8018B41BBE001C7D54 /* CoreData.framework in Frameworks */,
+				FF2E269618B2AA4000270C57 /* CoreGraphics.framework in Frameworks */,
+				FF2E269818B2AA4000270C57 /* UIKit.framework in Frameworks */,
+				FF2E269418B2AA4000270C57 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF2E268718B2AA4000270C57 = {
+			isa = PBXGroup;
+			children = (
+				FF2E269918B2AA4000270C57 /* iTunesPicker */,
+				FF2E269218B2AA4000270C57 /* Frameworks */,
+				FF2E269118B2AA4000270C57 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF2E269118B2AA4000270C57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E269018B2AA4000270C57 /* iTunesPicker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF2E269218B2AA4000270C57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF477E181905887E00747A31 /* AppCornerKit.framework */,
+				FF477E191905887E00747A31 /* AppCornerKitResources.bundle */,
+				FF3A648419053A1700003669 /* libsqlite3.0.dylib */,
+				FF3A6480190538F200003669 /* libz.dylib */,
+				FFEE4DCC18B6CB4E001C7D54 /* QuartzCore.framework */,
+				FFEE4D8718B565AB001C7D54 /* SystemConfiguration.framework */,
+				FFEE4D8518B41BFB001C7D54 /* MobileCoreServices.framework */,
+				FF3A64821905391600003669 /* AdSupport.framework */,
+				FFEE4D8318B41BF4001C7D54 /* Security.framework */,
+				FFEE4D8118B41BD4001C7D54 /* CFNetwork.framework */,
+				FFEE4D7F18B41BBE001C7D54 /* CoreData.framework */,
+				FF2E269318B2AA4000270C57 /* Foundation.framework */,
+				FF2E269518B2AA4000270C57 /* CoreGraphics.framework */,
+				FF2E269718B2AA4000270C57 /* UIKit.framework */,
+				FF2E26B518B2AA4000270C57 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF2E269918B2AA4000270C57 /* iTunesPicker */ = {
+			isa = PBXGroup;
+			children = (
+				FF3A64651902DF0100003669 /* MainViewController */,
+				FF3A64661902DF1600003669 /* ItemsTableViewController */,
+				FF3A64671902DF4000003669 /* ItemDetailViewController */,
+				FF3A64681902DF5600003669 /* SupportViewController */,
+				FF2E26A218B2AA4000270C57 /* ITPAppDelegate.h */,
+				FF2E26A318B2AA4000270C57 /* ITPAppDelegate.m */,
+				FF2E26A518B2AA4000270C57 /* Main_iPhone.storyboard */,
+				FF3A94B018CFC20000479E98 /* CountriesFlags36px.xcassets */,
+				FF2E26AE18B2AA4000270C57 /* Images.xcassets */,
+				FFEE4DB118B6CB2D001C7D54 /* External */,
+				FF2E269A18B2AA4000270C57 /* Supporting Files */,
+			);
+			path = iTunesPicker;
+			sourceTree = "<group>";
+		};
+		FF2E269A18B2AA4000270C57 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E269B18B2AA4000270C57 /* iTunesPicker-Info.plist */,
+				FF2E269C18B2AA4000270C57 /* InfoPlist.strings */,
+				FF2E269F18B2AA4000270C57 /* main.m */,
+				FF2E26A118B2AA4000270C57 /* iTunesPicker-Prefix.pch */,
+				FF3A94CD18DBA52E00479E98 /* Localizable.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FF3A64651902DF0100003669 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E26AB18B2AA4000270C57 /* ITPViewController.h */,
+				FF2E26AC18B2AA4000270C57 /* ITPViewController.m */,
+				FFEE4D7C18B40D61001C7D54 /* ITPViewController.xib */,
+			);
+			name = MainViewController;
+			sourceTree = "<group>";
+		};
+		FF3A64661902DF1600003669 /* ItemsTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E26DC18B2B3F900270C57 /* ITPPickerTableViewController.h */,
+				FF2E26DD18B2B3F900270C57 /* ITPPickerTableViewController.m */,
+				FF2E26D918B2B3BE00270C57 /* ITPPickerTableViewController.xib */,
+				FF2E26E018B2C39000270C57 /* ITPPickerTableViewCell.h */,
+				FF2E26E118B2C39000270C57 /* ITPPickerTableViewCell.m */,
+				FF2E26E418B2C3A200270C57 /* ITPPickerTableViewCell.xib */,
+			);
+			name = ItemsTableViewController;
+			sourceTree = "<group>";
+		};
+		FF3A64671902DF4000003669 /* ItemDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF6FEEF818E0E8D900C6ED5D /* ITPPickerDetailViewController.h */,
+				FF6FEEF918E0E8D900C6ED5D /* ITPPickerDetailViewController.m */,
+				FF6FEEFA18E0E8D900C6ED5D /* ITPPickerDetailViewController.xib */,
+			);
+			name = ItemDetailViewController;
+			sourceTree = "<group>";
+		};
+		FF3A64681902DF5600003669 /* SupportViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF3A94AC18CFC03D00479E98 /* ITPCountryItemChartsViewController.h */,
+				FF3A94AD18CFC03D00479E98 /* ITPCountryItemChartsViewController.m */,
+				FF3A94B318D261D900479E98 /* IPTMenuTableViewController.h */,
+				FF3A94B418D261D900479E98 /* IPTMenuTableViewController.m */,
+				FF3A94B518D261D900479E98 /* IPTMenuTableViewController.xib */,
+			);
+			name = SupportViewController;
+			sourceTree = "<group>";
+		};
+		FF3A94BA18D6631E00479E98 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				FF3A94BB18D6631E00479E98 /* SVProgressHUD-Prefix.pch */,
+				FF3A94BC18D6631E00479E98 /* SVProgressHUD.bundle */,
+				FF3A94BD18D6631E00479E98 /* SVProgressHUD.h */,
+				FF3A94BE18D6631E00479E98 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		FFEE4DB118B6CB2D001C7D54 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				FF3A94BA18D6631E00479E98 /* SVProgressHUD */,
+				FFEE4E1518BFF1E9001C7D54 /* SwipeView */,
+			);
+			path = External;
+			sourceTree = SOURCE_ROOT;
+		};
+		FFEE4E1518BFF1E9001C7D54 /* SwipeView */ = {
+			isa = PBXGroup;
+			children = (
+				FF477E1C190588BC00747A31 /* SwipeView.h */,
+				FF477E1D190588BC00747A31 /* SwipeView.m */,
+			);
+			name = SwipeView;
+			path = "../../../../../Downloads/SwipeView-master/SwipeView";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF2E268F18B2AA4000270C57 /* iTunesPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF2E26C518B2AA4000270C57 /* Build configuration list for PBXNativeTarget "iTunesPicker" */;
+			buildPhases = (
+				FF2E268C18B2AA4000270C57 /* Sources */,
+				FF2E268D18B2AA4000270C57 /* Frameworks */,
+				FF2E268E18B2AA4000270C57 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iTunesPicker;
+			productName = iTunesPicker;
+			productReference = FF2E269018B2AA4000270C57 /* iTunesPicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF2E268818B2AA4000270C57 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ITP;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = appcorner.it;
+				TargetAttributes = {
+					FF2E268F18B2AA4000270C57 = {
+						DevelopmentTeam = NK6NL95596;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = FF2E268B18B2AA4000270C57 /* Build configuration list for PBXProject "iTunesPicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				it,
+			);
+			mainGroup = FF2E268718B2AA4000270C57;
+			productRefGroup = FF2E269118B2AA4000270C57 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF2E268F18B2AA4000270C57 /* iTunesPicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF2E268E18B2AA4000270C57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3A94B118CFC20000479E98 /* CountriesFlags36px.xcassets in Resources */,
+				FF2E26DA18B2B3BE00270C57 /* ITPPickerTableViewController.xib in Resources */,
+				FF2E26E518B2C3A200270C57 /* ITPPickerTableViewCell.xib in Resources */,
+				FF6FEEFC18E0E8D900C6ED5D /* ITPPickerDetailViewController.xib in Resources */,
+				FF2E26AF18B2AA4000270C57 /* Images.xcassets in Resources */,
+				FF477E1B1905887E00747A31 /* AppCornerKitResources.bundle in Resources */,
+				FF3A94BF18D6631E00479E98 /* SVProgressHUD.bundle in Resources */,
+				FF3A94B818D261D900479E98 /* IPTMenuTableViewController.xib in Resources */,
+				FF2E26A718B2AA4000270C57 /* Main_iPhone.storyboard in Resources */,
+				FF3A94CA18DBA52E00479E98 /* Localizable.strings in Resources */,
+				FF2E269E18B2AA4000270C57 /* InfoPlist.strings in Resources */,
+				FFEE4D7D18B40D61001C7D54 /* ITPViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF2E268C18B2AA4000270C57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3A94B618D261D900479E98 /* IPTMenuTableViewController.m in Sources */,
+				FF3A94C118D6631E00479E98 /* SVProgressHUD.m in Sources */,
+				FF2E26AD18B2AA4000270C57 /* ITPViewController.m in Sources */,
+				FF2E26DE18B2B3F900270C57 /* ITPPickerTableViewController.m in Sources */,
+				FF6FEEFB18E0E8D900C6ED5D /* ITPPickerDetailViewController.m in Sources */,
+				FF477E1E190588BC00747A31 /* SwipeView.m in Sources */,
+				FF2E26E218B2C39000270C57 /* ITPPickerTableViewCell.m in Sources */,
+				FF2E26A418B2AA4000270C57 /* ITPAppDelegate.m in Sources */,
+				FF3A94AE18CFC03D00479E98 /* ITPCountryItemChartsViewController.m in Sources */,
+				FF2E26A018B2AA4000270C57 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FF2E269C18B2AA4000270C57 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF2E269D18B2AA4000270C57 /* en */,
+				FF3A94C518DBA2D100479E98 /* it */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FF2E26A518B2AA4000270C57 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF2E26A618B2AA4000270C57 /* Base */,
+				FF3A94C318DBA2D000479E98 /* it */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		FF3A94CD18DBA52E00479E98 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF3A94CE18DBA53000479E98 /* en */,
+				FF3A94CF18DBA53100479E98 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FF2E26C318B2AA4000270C57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		FF2E26C418B2AA4000270C57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		FF2E26C618B2AA4000270C57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AppCornerKit-fatcygajermzuwcrnxijnypxxkfe/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)/External",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTunesPicker/iTunesPicker-Prefix.pch";
+				INFOPLIST_FILE = "iTunesPicker/iTunesPicker-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AppCornerKit-fatcygajermzuwcrnxijnypxxkfe/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AppCornerKit-fatcygajermzuwcrnxijnypxxkfe/Build/Products/Debug-iphonesimulator",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FF2E26C718B2AA4000270C57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AppCornerKit-fatcygajermzuwcrnxijnypxxkfe/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)/External",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iTunesPicker/iTunesPicker-Prefix.pch";
+				INFOPLIST_FILE = "iTunesPicker/iTunesPicker-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AppCornerKit-fatcygajermzuwcrnxijnypxxkfe/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AppCornerKit-fatcygajermzuwcrnxijnypxxkfe/Build/Products/Debug-iphonesimulator",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF2E268B18B2AA4000270C57 /* Build configuration list for PBXProject "iTunesPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF2E26C318B2AA4000270C57 /* Debug */,
+				FF2E26C418B2AA4000270C57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF2E26C518B2AA4000270C57 /* Build configuration list for PBXNativeTarget "iTunesPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF2E26C618B2AA4000270C57 /* Debug */,
+				FF2E26C718B2AA4000270C57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF2E268818B2AA4000270C57 /* Project object */;
+}

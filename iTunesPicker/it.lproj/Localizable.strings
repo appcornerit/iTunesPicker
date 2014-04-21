@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  iTunesPicker
+
+  Created by Denis Berton on 20/03/14.
+  Copyright (c) 2014 appcorner.it. All rights reserved.
+*/
+"itppicker.table.noratings"="Nessun voto per la versione corrente";
+"itppicker.table.noratings.allversions"="Nessun voto per tutte le versioni";
+"itppicker.table.label.allVersions"="tutte le versioni";
+"itppicker.table.button.detail"=">";
+
+"topfreeapplications"="Top Gratuite";
+"toppaidapplications"="Top Acquistate";
+"topgrossingapplications"="Top Redditizie";
+"newapplications"="Nuove";
+"newfreeapplications"="Nuove Gratuite";
+"newpaidapplications"="Nuove Acquistate";
+
+"0"="Tutti i generi";
+"6018"="Libri";
+"6000"="Economia";
+"6022"="Cataloghi";
+"6017"="Istruzione";
+"6016"="Intrattenimento";
+"6015"="Finanza";
+"6023"="Cibo e Bevande";
+"6014"="Giochi";
+"6013"="Salute e Benessere";
+"6012"="Mode e Tendenze";
+"6020"="Medicina";
+"6011"="Musica";
+"6010"="Navigazione";
+"6009"="Notizie";
+"6021"="Edicola";
+"6008"="Foto e Video";
+"6007"="Produttività";
+"6006"="Riferimento";
+"6005"="Social Network";
+"6004"="Sport";
+"6003"="Viaggi";
+"6002"="Utilità";
+"6001"="Previsioni del tempo";
+
+"itppickerdetail.button.purchase"="App Store";
+"itppickerdetail.label.developer"="Sviluppatore";
+"itppickerdetail.label.seller"="Rivenditore";
+"itppickerdetail.label.update"="Aggiornato al";
+"itppickerdetail.label.version"="Versione";
+"itppickerdetail.label.size"="Dimensione";
+"itppickerdetail.label.rating"="Classifica";
+"itppickerdetail.label.languages"="Linguaggi (codici ISO)";
+
