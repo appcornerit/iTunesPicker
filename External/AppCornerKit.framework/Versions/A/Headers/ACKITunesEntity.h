@@ -13,6 +13,8 @@
 @property (nonatomic,readonly) tITunesEntityType iTunesEntityType;
 @property (nonatomic,readonly) NSString* country;
 
+@property (nonatomic,strong) id userData; //user data to passing custom data in ACKITunesEntity
+
 -(BOOL) isEqualToEntity:(ACKITunesEntity*)entity;
 
 @end
