@@ -33,7 +33,7 @@ To retrive the "ITUNES COUNTRY ISO CODE" you can use:
 }];
 ```
 
-iTunesPicker requires iOS 7 and ARC and has been tested on iPhone 5S.
+iTunesPicker requires iOS 7, ARC, AppCornerKit framework (included in the external folder) and has been tested on iPhone 5S.
 
 **Author**: Denis Berton [@DenisBerton](https://twitter.com/DenisBerton)
 
