@@ -16,7 +16,7 @@ self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:iTun
 //ITPPickerTableViewController is controller to show your apps
 ITPPickerTableViewController* pickerTableView = [[ITPPickerTableViewController alloc]initWithNibName:nil bundle:nil];
 pickerTableView.delegate = self;
-[pickerTableView loadEntitiesForArtistId:@"YOUR ARTIST ID HERE" inAppStoreCountry:iTunesUserCountry withType:kITunesEntityTypeSoftware completionBlock:^(NSArray *array, NSError *err) {
+[pickerTableView loadEntitiesForArtistId:@"YOUR ARTIST ID HERE" inITunesCountry:iTunesUserCountry withType:kITunesEntityTypeSoftware completionBlock:^(NSArray *array, NSError *err) {
         [self.navigationController pushViewController:pickerTableView animated:YES];
 }];
 ```
@@ -40,11 +40,12 @@ iTunesPicker requires iOS 7 and ARC and has been tested on iPhone 5S.
 ![Alt text](preview/list.png "Preview picker list") 
 ![Alt text](preview/detail.png "Preview picker detail") 
 ![Alt text](preview/comparison.png "Preview ranking positions") 
+During development the layout could be changed.
 
 
 #### Project Status
-iTunesPicker works with **apps only**, I'm developing the missing iTunes items: books, movies and music.
-In the next step I will add rankings's trends (up/down arrows) for each item.
+iTunesPicker works with **apps**, songs and albums partially , I'm developing the missing iTunes items: books, movies and music.
+In the next step I will add rankings's trends (up/down arrows) for each item, and add this repo to the cocoapods repo list.
 
 I'd love to have your contribution to iTunesPicker. There are several ways to contribute:
 
