@@ -7,7 +7,17 @@
 //
 
 #import "ITPAppDelegate.h"
+#import "ITPViewController.h"
+#import "ITPSideMenuViewController.h"
+
+#import "JASidePanelController.h"
 //#import "DCIntrospect.h"
+
+@interface ITPAppDelegate()
+
+@end
+
+
 
 @implementation ITPAppDelegate
 

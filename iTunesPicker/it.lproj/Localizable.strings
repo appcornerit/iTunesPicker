@@ -5,11 +5,11 @@
   Created by Denis Berton on 20/03/14.
   Copyright (c) 2014 appcorner.it. All rights reserved.
 */
-"itppicker.table.noratings"="Nessun voto per la versione corrente";
-"itppicker.table.noratings.allversions"="Nessun voto per tutte le versioni";
-"itppicker.table.label.allVersions"="tutte le versioni";
-"itppicker.table.button.detail"=">";
 
+//preview fullscreen
+"viewer.button.close"="Chiudi";
+
+//App
 "topfreeapplications"="Top Gratuite";
 "toppaidapplications"="Top Acquistate";
 "topgrossingapplications"="Top Redditizie";
@@ -42,12 +42,69 @@
 "6002"="Utilità";
 "6001"="Previsioni del tempo";
 
-"itppickerdetail.button.purchase"="App Store";
-"itppickerdetail.label.developer"="Sviluppatore";
-"itppickerdetail.label.seller"="Rivenditore";
-"itppickerdetail.label.update"="Aggiornato al";
-"itppickerdetail.label.version"="Versione";
-"itppickerdetail.label.size"="Dimensione";
-"itppickerdetail.label.rating"="Classifica";
-"itppickerdetail.label.languages"="Linguaggi (codici ISO)";
+"itppicker.tablecell.app.noratings"="Nessun voto per la versione corrente";
+"itppicker.tablecell.app.noratings.allversions"="Nessun voto per tutte le versioni";
+"itppicker.tablecell.app.label.allVersions"="tutte le versioni";
+"itppicker.tablecell.app.button.detail"=">";
+
+"itppicker.detail.app.button.purchase"="App Store";
+"itppicker.detail.app.label.developer"="Sviluppatore";
+"itppicker.detail.app.label.seller"="Rivenditore";
+"itppicker.detail.app.label.update"="Aggiornato al";
+"itppicker.detail.app.label.version"="Versione";
+"itppicker.detail.app.label.size"="Dimensione";
+"itppicker.detail.app.label.rating"="Classifica";
+"itppicker.detail.app.label.languages"="Linguaggi (codici ISO)";
+
+
+//Music
+"topalbums"="Top Albums";
+"topimixes"="Top iMixes";
+"topsongs"="Top Singoli";
+
+"00"="Tutti";
+"20"="Alternativa";
+"29"="Cartoni";
+"2"="Blues";
+"1122"="Brasiliana";
+"4"="Musica per bambini";
+"1232"="Cinese";
+"22"="Cristiana & Gospel";
+"5"="Classica";
+"3"="Comedy";
+"6"="Country";
+"17"="Dance";
+"50000063"="Disney";
+"25"="Easy Listening";
+"7"="Elettronica";
+"28"="Enka";
+"50"="Fitness & Workout";
+"50000064"="Pop francese";
+"50000068"="Folk tedesco";
+"50000066"="Pop tedesco";
+"18"="Hip-Hop/Rap";
+"8"="Holiday";
+"1262"="Indiana";
+"53"="Strumentale";
+"27"="J-Pop";
+"11"="Jazz";
+"51"="K-Pop";
+"52"="Karaoke";
+"30"="Kayokyoku";
+"1243"="Coreana";
+"12"="Latino";
+"13"="New Age";
+"9"="Opera";
+"14"="Pop";
+"15"="R&B/Soul";
+"24"="Reggae";
+"21"="Rock";
+"10"="Singer/Songwriter";
+"16"="Colonne Sonore";
+"50000061"="Spoken Word";
+"23"="Vocal";
+"19"="World music";
+
+"trackExplicit" = "E";
+
 

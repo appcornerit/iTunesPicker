@@ -274,6 +274,13 @@ static NSString *CellIdentifier = @"CountryCell";
     if(!chartMode)
     {
         if (thisCell.accessoryType == UITableViewCellAccessoryNone) {
+            
+#if !TARGET_IPHONE_SIMULATOR
+            if(multiSelect && self.countriesSelectionLimit == internalSelectedCountries.count)
+            {
+                return;
+            }
+#endif
             thisCell.accessoryType = UITableViewCellAccessoryCheckmark;
             [internalSelectedCountries addObject:cd[@"code"]];
         }else{

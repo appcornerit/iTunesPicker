@@ -6,16 +6,9 @@
 //  Copyright (c) 2014 appcorner.it. All rights reserved.
 //
 
-@protocol ITPViewControllerDelegate <NSObject>
--(ACKEntitiesContainer*)entitiesDatasources;
-@optional
--(void)showLoadingHUD:(BOOL)loading;
--(void)selectEntity:(ACKITunesEntity*)entity;
--(void)showPickerAtIndex:(NSInteger)index;
--(void)openITunesEntityDetail:(ACKITunesEntity*)entity pickerCountry:(NSString*)pickerCountry;
-@end
+#import "ITPPickerTableViewControllerDelegate.h"
 
-@interface ITPViewController : UIViewController <ITPViewControllerDelegate>
+@interface ITPViewController : UIViewController <ITPPickerTableViewControllerDelegate>
 
 @property (nonatomic,strong) ACKEntitiesContainer* entitiesDatasources;
 @property (nonatomic,strong) NSMutableArray* pickerViews;
@@ -26,9 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *filterDxButton;
 
 - (IBAction)openUserCountryPicker:(id)sender;
-- (IBAction)filterAction:(id)sender;
+- (IBAction)toggleFilter:(id)sender;
 - (IBAction)countryAction:(id)sender;
 - (IBAction)filterSxAction:(id)sender;
 - (IBAction)filterDxAction:(id)sender;
+
+- (void)reloadWithEntityType:(tITunesEntityType)entityType;
 
 @end

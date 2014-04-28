@@ -6,11 +6,10 @@
   Copyright (c) 2014 appcorner.it. All rights reserved.
 */
 
-"itppicker.table.noratings"="No ratings for current version";
-"itppicker.table.noratings.allversions"="No ratings for all versions";
-"itppicker.table.label.allVersions"="all versions";
-"itppicker.table.button.detail"=">";
+//preview fullscreen
+"viewer.button.close"="Close";
 
+//App
 "topfreeapplications"="Top Free Apps";
 "toppaidapplications"="Top Paid Apps";
 "topgrossingapplications"="Top Grossing Apps";
@@ -43,11 +42,67 @@
 "6002"="Utilities";
 "6001"="Weather";
 
-"itppickerdetail.button.purchase"="App Store";
-"itppickerdetail.label.developer"="Developer";
-"itppickerdetail.label.seller"="Seller";
-"itppickerdetail.label.update"="Update at";
-"itppickerdetail.label.version"="Version";
-"itppickerdetail.label.size"="Size";
-"itppickerdetail.label.rating"="Rating";
-"itppickerdetail.label.languages"="Languages codes";
+"itppicker.tablecell.app.noratings"="No ratings for current version";
+"itppicker.tablecell.app.noratings.allversions"="No ratings for all versions";
+"itppicker.tablecell.app.label.allVersions"="all versions";
+"itppicker.tablecell.app.button.detail"=">";
+
+"itppicker.detail.app.button.purchase"="App Store";
+"itppicker.detail.app.label.developer"="Developer";
+"itppicker.detail.app.label.seller"="Seller";
+"itppicker.detail.app.label.update"="Update at";
+"itppicker.detail.app.label.version"="Version";
+"itppicker.detail.app.label.size"="Size";
+"itppicker.detail.app.label.rating"="Rating";
+"itppicker.detail.app.label.languages"="Languages codes";
+
+
+//Music
+"topalbums"="Top Albums";
+"topimixes"="Top iMixes";
+"topsongs"="Top Songs";
+
+"00"="All";
+"20"="Alternative";
+"29"="Anime";
+"2"="Blues";
+"1122"="Brazilian";
+"4"="Children's Music";
+"1232"="Chinese";
+"22"="Christian & Gospel";
+"5"="Classical";
+"3"="Comedy";
+"6"="Country";
+"17"="Dance";
+"50000063"="Disney";
+"25"="Easy Listening";
+"7"="Electronic";
+"28"="Enka";
+"50"="Fitness & Workout";
+"50000064"="French Pop";
+"50000068"="German Folk";
+"50000066"="German Pop";
+"18"="Hip-Hop/Rap";
+"8"="Holiday";
+"1262"="Indian";
+"53"="Instrumental";
+"27"="J-Pop";
+"11"="Jazz";
+"51"="K-Pop";
+"52"="Karaoke";
+"30"="Kayokyoku";
+"1243"="Korean";
+"12"="Latino";
+"13"="New Age";
+"9"="Opera";
+"14"="Pop";
+"15"="R&B/Soul";
+"24"="Reggae";
+"21"="Rock";
+"10"="Singer/Songwriter";
+"16"="Soundtrack";
+"50000061"="Spoken Word";
+"23"="Vocal";
+"19"="World";
+
+"trackExplicit" = "E";

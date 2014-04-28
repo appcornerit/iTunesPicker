@@ -8,57 +8,47 @@
 
 #import "ITPViewController.h"
 #import "ITPPickerTableViewController.h"
+#import "ITPCountryItemChartsViewController.h"
+#import "ITPMenuTableViewController.h"
+#import "ITPAppPickerDetailViewController.h"
+#import "ITPSideMenuViewController.h"
 
 #import "SwipeView.h"
-#import "ITPCountryItemChartsViewController.h"
-#import "IPTMenuTableViewController.h"
-#import "ITPPickerDetailViewController.h"
 #import "SVProgressHUD.h"
 
-@interface ITPViewController () <SwipeViewDataSource, SwipeViewDelegate, IPTMenuTableViewDelegate>
+#define firstLoadDefaultEntityType kITunesEntityTypeSoftware; //default type on first open
+#define maxOpenedPickers 20; //limit to max countries loaded on device, high value are network expensive and cause memory crash (not applied on simulator)
+
+@interface ITPViewController () <SwipeViewDataSource, SwipeViewDelegate, ITPMenuTableViewDelegate>
 {
     CGRect filterCloseFrame,filterOpenFrame;
     tITunesAppChartType rankingSelectedIndex;
     tITunesAppGenreType genreSelectedIndex;
     BOOL pickersLoading;
     BOOL firstLoad;
+    NSUInteger maxRecordToLoadForCountry;
 }
 
 @property (nonatomic, weak) IBOutlet SwipeView *swipeView;
-@property (nonatomic, strong) IPTMenuTableViewController *leftPanel;
-@property (nonatomic, strong) IPTMenuTableViewController *rightPanel;
+@property (nonatomic, strong) ITPMenuTableViewController *leftPanel;
+@property (nonatomic, strong) ITPMenuTableViewController *rightPanel;
 
 @end
 
 @implementation ITPViewController
 
--(id)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        UINib *nib = [UINib nibWithNibName:@"ITPViewController" bundle:nil];
-        NSArray *nibObjects = [nib instantiateWithOwner:self options:nil];
-        self.view = nibObjects.lastObject;
-        
-        filterOpenFrame = self.filterView.frame;
-        filterCloseFrame = filterOpenFrame;
-        filterCloseFrame.origin.y -= self.filterView.frame.size.height;
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupMenuPanels];
+    maxRecordToLoadForCountry = kITunesMaxLimitLoadEntities; //max iTunes API records
+    
+    filterOpenFrame = self.filterView.frame;
+    filterCloseFrame = filterOpenFrame;
+    filterCloseFrame.origin.y -= self.filterView.frame.size.height;
     
     pickersLoading = NO;
     firstLoad = YES;
     _swipeView.pagingEnabled = YES;
-    
-    UIBarButtonItem *filterBarButtonItem = [[UIBarButtonItem alloc]
-                                            initWithImage:[UIImage imageNamed:@"filter.png"] style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(filterAction:)];
-    self.navigationItem.rightBarButtonItem = filterBarButtonItem;
     
     [self.countryButton setImage:[UIImage imageNamed:@"globe.png"] forState:UIControlStateNormal];
     self.pickerViews = [[NSMutableArray alloc]init];
@@ -87,12 +77,46 @@
     _swipeView.dataSource = nil;
 }
 
-#pragma mark Action
+#pragma mark public
 
-- (IBAction)filterAction:(id)sender {
-    [self toggleFilterPanelWithCompletionBlock:^(BOOL isOpen) {
-    }];
+- (void)reloadWithEntityType:(tITunesEntityType)entityType
+{
+    if(self.entitiesDatasources.entityType != entityType)
+    {
+        
+        //TODO: development message to remove on completion
+        if(entityType != kITunesEntityTypeSoftware && entityType != kITunesEntityTypeMusic)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Work in progress" message:@"Supported types: App, Music\nStay tuned!" delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Cancel",nil), nil];
+            [alert show];
+            return;
+        }
+
+        NSString* userCountry = [self.entitiesDatasources.userCountry copy];
+        NSArray* allPickerCountries = [[self.entitiesDatasources getAllCountries] copy];
+        for (NSString* countryPicker in allPickerCountries) {
+            [self removePickerTableViewForCountry:countryPicker];
+        }
+        
+        self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:entityType limit:maxRecordToLoadForCountry];
+
+        [self updateEntityMunuPanels];
+        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
+        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
+        
+        if(allPickerCountries.count == 0)
+        {
+            allPickerCountries = @[userCountry];
+        }
+        for (NSString* country in allPickerCountries) {
+            [self addPickerTableViewForCountry:country];
+        }
+        [self saveStatePickerApps];
+        [_swipeView reloadData];
+    }
 }
+
+#pragma mark Action
 
 - (IBAction)countryAction:(id)sender {
     [self closeAllPanelsExcept:nil];
@@ -101,6 +125,7 @@
                                                                                      selectedCountries:[[NSSet alloc]initWithArray:[self.entitiesDatasources getAllCountries]]
                                                                                            userCountry:self.entitiesDatasources.userCountry
                                                                                            multiSelect:YES];
+    vc.countriesSelectionLimit = maxOpenedPickers;
     vc.completionBlock = ^(NSArray *countries){
         NSArray* allPickerCountries = [[self.entitiesDatasources getAllCountries] copy];
         for (NSString* countryPicker in allPickerCountries) {
@@ -130,9 +155,6 @@
     [self toggleMenuPanel:sender];
 }
 
-- (IBAction)previousAction:(id)sender {
-}
-
 - (IBAction)openUserCountryPicker:(id)sender {
     ITPCountryItemChartsViewController *vc = [[ITPCountryItemChartsViewController alloc] initWithStyle:UITableViewStylePlain
                                                                                           allCountries:[ACKITunesQuery getITunesStoreCountries]
@@ -151,14 +173,22 @@
                 [self removePickerTableViewForCountry:countryPicker];
             }
         }
-        self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:countries[0] entityType:kITunesEntityTypeSoftware limit:kITunesMaxLimitLoadEntities];
+        tITunesEntityType entityType = self.entitiesDatasources?self.entitiesDatasources.entityType:firstLoadDefaultEntityType;
+        self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:countries[0] entityType:entityType limit:maxRecordToLoadForCountry];
+        [self setupMenuPanels];
+        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
+        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
+        
         [self addPickerTableViewForCountry:countries[0]];
         [self saveStatePickerApps];
-        [self updateCountryBarButtonImage];
         [_swipeView reloadData];
     };
     
     [self presentViewController:navigation animated:YES completion:nil];
+}
+
+- (IBAction)toggleFilter:(id)sender {
+    [self toggleFilterPanelWithCompletionBlock:^(BOOL isOpen) {}];
 }
 
 #pragma mark ITPViewControllerDelegate
@@ -193,28 +223,20 @@
                                                                                           allCountries:[self.entitiesDatasources getAllCountries]
                                                                                            indexCharts:indexCharts
                                                                                                   item:entity];
-    vc.completionBlock = ^(NSArray *countries){
-//        if(countries.count > 0){
-//            NSString* selectedCountry = countries[0];
-//            NSInteger index = [self.entitiesDatasources getDatasourceIndexForCountry:selectedCountry];
-//            if(index != NSNotFound && [((NSNumber*)indexCharts[index]) intValue] != NSNotFound)
-//            {
-//                ITPPickerTableViewController* picker = self.pickerViews[index];
-//                [picker selectEnityAtIndex:[((NSNumber*)indexCharts[index]) intValue]];
-//                [self showPickerAtIndex:index];
-//            }
-//        }
-    };
+    vc.completionBlock = ^(NSArray *countries){};
     
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)openITunesEntityDetail:(ACKITunesEntity*)entity pickerCountry:(NSString*)pickerCountry
+-(void)openITunesEntityDetail:(ACKITunesEntity*)entity
 {
     if([entity isKindOfClass:[ACKApp class]]){
-        ITPPickerDetailViewController* detailController = [[ITPPickerDetailViewController alloc]initWithNibName:nil bundle:nil];
+        ITPAppPickerDetailViewController* detailController = [[ITPAppPickerDetailViewController alloc]initWithNibName:nil bundle:nil];
         detailController.appObject = (ACKApp*)entity;
-        detailController.pickerCountry = pickerCountry;
+        ITPPickerTableViewController* picker = entity.userData;
+        detailController.pickerCountry = picker.country;
+        detailController.allowsSelection = !picker.loadWithArtistId;
+        entity.userData = nil;
         detailController.delegate = self;
         [self.navigationController pushViewController:detailController animated:YES];
     }
@@ -346,25 +368,46 @@
     frame.origin.y += self.filterView.frame.size.height;
     frame.size.height -= self.filterView.frame.size.height;
     
-    self.leftPanel = [[IPTMenuTableViewController alloc]initWithNibName:nil bundle:nil];
+    self.leftPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
     self.leftPanel.type = kPAPMenuPickerTypeRanking;
     self.leftPanel.openDirection = kPAPMenuOpenDirectionRight;
-    self.leftPanel.items = [ACKITunesQuery getAppChartType];
     self.leftPanel.delegate = self;
+    
+    self.rightPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
+    self.rightPanel.type = kPAPMenuPickerTypeGenre;
+    self.rightPanel.openDirection = kPAPMenuOpenDirectionLeft;
+    self.rightPanel.delegate = self;
+    
+    [self updateEntityMunuPanels];
+    
     [self.view insertSubview:self.leftPanel.view belowSubview:self.filterView];
     self.leftPanel.openFrame = frame;
     self.leftPanel.backgroundAreaDismissRect = self.swipeView.frame;
     
-    self.rightPanel = [[IPTMenuTableViewController alloc]initWithNibName:nil bundle:nil];
-    self.rightPanel.type = kPAPMenuPickerTypeGenre;
-    self.rightPanel.openDirection = kPAPMenuOpenDirectionLeft;
-    self.rightPanel.items = [ACKITunesQuery getAppGenreType];
-
-    self.rightPanel.delegate = self;
     [self.view insertSubview:self.rightPanel.view belowSubview:self.filterView];
-
     self.rightPanel.openFrame = frame;
     self.rightPanel.backgroundAreaDismissRect = self.swipeView.frame;
+    
+}
+
+-(void) updateEntityMunuPanels
+{
+    if(self.entitiesDatasources.entityType == kITunesEntityTypeSoftware)
+    {
+        self.leftPanel.items = [ACKITunesQuery getAppChartType];
+        self.rightPanel.items = [ACKITunesQuery getAppGenreType];
+    }
+    else if(self.entitiesDatasources.entityType == kITunesEntityTypeMusic)
+    {
+        self.leftPanel.items = [ACKITunesQuery getMusicChartType];
+        self.rightPanel.items = [ACKITunesQuery getMusicGenreType];
+    }
+    else
+    {
+        //TODO: remove default app on completion
+        self.leftPanel.items = [ACKITunesQuery getAppChartType];
+        self.rightPanel.items = [ACKITunesQuery getAppGenreType];
+    }
 }
 
 -(void)valueSelectedAtIndex:(NSInteger)index forType:(tPAPMenuPickerType)type refreshPickers:(BOOL)refresh
@@ -408,7 +451,7 @@
     }
 }
 
--(void) closeAllPanelsExcept:(IPTMenuTableViewController*)panel
+-(void) closeAllPanelsExcept:(ITPMenuTableViewController*)panel
 {
     if(panel != self.leftPanel && self.leftPanel.isOpen)
         [self.leftPanel togglePanelWithCompletionBlock:^(BOOL isOpen) {
@@ -433,12 +476,14 @@
     {
         NSInteger ranking = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved_picker_ranking"];
         NSInteger genre = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved_picker_genre"];
+        NSInteger entityType = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved_picker_entitytype"];
         NSArray* countries = [[NSUserDefaults standardUserDefaults] arrayForKey:@"saved_picker_countries"];
         NSString* userCountry = [[NSUserDefaults standardUserDefaults] stringForKey:@"saved_picker_usercountry"];
         
         if(ranking != -1 && genre != -1 && countries.count > 0)
         {
-            self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:kITunesEntityTypeSoftware limit:kITunesMaxLimitLoadEntities];
+            self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:entityType limit:maxRecordToLoadForCountry];
+            [self setupMenuPanels];
             [self valueSelectedAtIndex:ranking forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
             [self valueSelectedAtIndex:genre forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
             for (NSString* country in countries) {
@@ -449,12 +494,11 @@
     }
     if(loadDefault)
     {
-        [self valueSelectedAtIndex:kITunesAppChartTypeTopFreeApps forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
-        [self valueSelectedAtIndex:kITunesAppGenreTypeAll forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
+        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
+        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
     }
     else
     {
-        [self updateCountryBarButtonImage];
         [_swipeView reloadData];
     }
 }
@@ -465,16 +509,11 @@
     {
         [[NSUserDefaults standardUserDefaults] setInteger:rankingSelectedIndex forKey:@"saved_picker_ranking"];
         [[NSUserDefaults standardUserDefaults] setInteger:genreSelectedIndex forKey:@"saved_picker_genre"];
+        [[NSUserDefaults standardUserDefaults] setInteger:self.entitiesDatasources.entityType forKey:@"saved_picker_entitytype"];
         [[NSUserDefaults standardUserDefaults] setValue:[self.entitiesDatasources getAllCountries] forKey:@"saved_picker_countries"];
         [[NSUserDefaults standardUserDefaults] setValue:self.entitiesDatasources.userCountry forKey:@"saved_picker_usercountry"];
     }
 }
 
--(void)updateCountryBarButtonImage
-{
-    UIBarButtonItem *userCountryBarButtonItem = [[UIBarButtonItem alloc]
-                                            initWithImage:[[UIImage imageNamed:self.entitiesDatasources.userCountry] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(openUserCountryPicker:)];
-    self.navigationItem.leftBarButtonItem = userCountryBarButtonItem;
-}
 
 @end

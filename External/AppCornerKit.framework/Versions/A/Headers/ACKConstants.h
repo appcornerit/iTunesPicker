@@ -39,6 +39,7 @@ typedef enum {
     kITunesEntityTypeSoftware
 } tITunesEntityType;
 
+//App
 extern NSString *const kITunesAppChartTypeCodeTopFreeApps;
 extern NSString *const kITunesAppChartTypeCodeTopPaidApps;
 extern NSString *const kITunesAppChartTypeCodeTopGrossingApps;
@@ -106,3 +107,105 @@ typedef enum {
     kITunesAppGenreTypeUtilities,
     kITunesAppGenreTypeWeather
 } tITunesAppGenreType;
+
+//Music
+extern NSString *const  kITunesMusicChartTypeCodeTopAlbums;
+//extern NSString *const  kITunesMusicChartTypeCodeTopiMixes;
+extern NSString *const  kITunesMusicChartTypeCodeTopSongs;
+
+typedef enum {
+    kITunesMusicChartTypeTopAlbums = 0,
+//    kITunesMusicChartTypeTopiMixes,
+    kITunesMusicChartTypeTopSongs
+} tITunesMusicChartType;
+
+extern NSString *const kITunesMusicGenreTypeCodeAll;
+extern NSString *const kITunesMusicGenreTypeCodeAlternative;
+extern NSString *const kITunesMusicGenreTypeCodeAnime;
+extern NSString *const kITunesMusicGenreTypeCodeBlues;
+extern NSString *const kITunesMusicGenreTypeCodeBrazilian;
+extern NSString *const kITunesMusicGenreTypeCodeChildrenMusic;
+extern NSString *const kITunesMusicGenreTypeCodeChinese;
+extern NSString *const kITunesMusicGenreTypeCodeChristianGospel;
+extern NSString *const kITunesMusicGenreTypeCodeClassical;
+extern NSString *const kITunesMusicGenreTypeCodeComedy;
+extern NSString *const kITunesMusicGenreTypeCodeCountry;
+extern NSString *const kITunesMusicGenreTypeCodeDance;
+extern NSString *const kITunesMusicGenreTypeCodeDisney;
+extern NSString *const kITunesMusicGenreTypeCodeEasyListening;
+extern NSString *const kITunesMusicGenreTypeCodeElectronic;
+extern NSString *const kITunesMusicGenreTypeCodeEnka;
+extern NSString *const kITunesMusicGenreTypeCodeFitnessWorkout;
+extern NSString *const kITunesMusicGenreTypeCodeFrenchPop;
+extern NSString *const kITunesMusicGenreTypeCodeGermanFolk;
+extern NSString *const kITunesMusicGenreTypeCodeGermanPop;
+extern NSString *const kITunesMusicGenreTypeCodeHipHopRap;
+extern NSString *const kITunesMusicGenreTypeCodeHoliday;
+extern NSString *const kITunesMusicGenreTypeCodeIndian;
+extern NSString *const kITunesMusicGenreTypeCodeInstrumental;
+extern NSString *const kITunesMusicGenreTypeCodeJPop;
+extern NSString *const kITunesMusicGenreTypeCodeJazz;
+extern NSString *const kITunesMusicGenreTypeCodeKPop;
+extern NSString *const kITunesMusicGenreTypeCodeKaraoke;
+extern NSString *const kITunesMusicGenreTypeCodeKayokyoku;
+extern NSString *const kITunesMusicGenreTypeCodeKorean;
+extern NSString *const kITunesMusicGenreTypeCodeLatino;
+extern NSString *const kITunesMusicGenreTypeCodeNewAge;
+extern NSString *const kITunesMusicGenreTypeCodeOpera;
+extern NSString *const kITunesMusicGenreTypeCodePop;
+extern NSString *const kITunesMusicGenreTypeCodeRBSoul;
+extern NSString *const kITunesMusicGenreTypeCodeReggae;
+extern NSString *const kITunesMusicGenreTypeCodeRock;
+extern NSString *const kITunesMusicGenreTypeCodeSingerSongwriter;
+extern NSString *const kITunesMusicGenreTypeCodeSoundtrack;
+extern NSString *const kITunesMusicGenreTypeCodeSpokenWord;
+extern NSString *const kITunesMusicGenreTypeCodeVocal;
+extern NSString *const kITunesMusicGenreTypeCodeWorld;
+
+typedef enum {
+    kITunesMusicGenreTypeAll = 0,
+    kITunesMusicGenreTypeAlternative,
+    kITunesMusicGenreTypeAnime,
+    kITunesMusicGenreTypeBlues,
+    kITunesMusicGenreTypeBrazilian,
+    kITunesMusicGenreTypeChildrenMusic,
+    kITunesMusicGenreTypeChinese,
+    kITunesMusicGenreTypeChristianGospel,
+    kITunesMusicGenreTypeClassical,
+    kITunesMusicGenreTypeComedy,
+    kITunesMusicGenreTypeCountry,
+    kITunesMusicGenreTypeDance,
+    kITunesMusicGenreTypeDisney,
+    kITunesMusicGenreTypeEasyListening,
+    kITunesMusicGenreTypeElectronic,
+    kITunesMusicGenreTypeEnka,
+    kITunesMusicGenreTypeFitnessWorkout,
+    kITunesMusicGenreTypeFrenchPop,
+    kITunesMusicGenreTypeGermanFolk,
+    kITunesMusicGenreTypeGermanPop,
+    kITunesMusicGenreTypeHipHopRap,
+    kITunesMusicGenreTypeHoliday,
+    kITunesMusicGenreTypeIndian,
+    kITunesMusicGenreTypeInstrumental,
+    kITunesMusicGenreTypeJPop,
+    kITunesMusicGenreTypeJazz,
+    kITunesMusicGenreTypeKPop,
+    kITunesMusicGenreTypeKaraoke,
+    kITunesMusicGenreTypeKayokyoku,
+    kITunesMusicGenreTypeKorean,
+    kITunesMusicGenreTypeLatino,
+    kITunesMusicGenreTypeNewAge,
+    kITunesMusicGenreTypeOpera,
+    kITunesMusicGenreTypePop,
+    kITunesMusicGenreTypeRBSoul,
+    kITunesMusicGenreTypeReggae,
+    kITunesMusicGenreTypeRock,
+    kITunesMusicGenreTypeSingerSongwriter,
+    kITunesMusicGenreTypeSoundtrack,
+    kITunesMusicGenreTypeSpokenWord,
+    kITunesMusicGenreTypeVocal,
+    kITunesMusicGenreTypeWorld
+} tITunesMusicGenreType;
+
+extern NSString *const kITunesMusicNotExplicit;
+

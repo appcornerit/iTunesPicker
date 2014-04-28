@@ -13,7 +13,6 @@
 @property (nonatomic,strong) NSString* wrapperType;
 @property (nonatomic,strong) NSString* collectionType;
 @property (nonatomic,strong) NSString* artistId;
-@property (nonatomic,strong) NSString* collectionId;
 @property (nonatomic,strong) NSString* amgArtistId;
 @property (nonatomic,strong) NSString* artistName;
 @property (nonatomic,strong) NSString* collectionName;

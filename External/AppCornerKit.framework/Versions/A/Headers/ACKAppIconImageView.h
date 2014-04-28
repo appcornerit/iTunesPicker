@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 appcorner.it. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @class ACKApp;
 
 @interface ACKAppIconImageView : UIImageView

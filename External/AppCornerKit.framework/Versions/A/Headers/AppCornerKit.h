@@ -17,5 +17,7 @@
 #import "ACKBook.h"
 #import "ACKEntitiesContainer.h"
 
+#import "ACKImageView.h"
 #import "ACKAppIconImageView.h"
 #import "ACKITunesPreviewScrollView.h"
+#import "ACKMusicPlayerView.h"

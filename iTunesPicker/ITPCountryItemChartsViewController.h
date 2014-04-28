@@ -17,5 +17,6 @@
 - (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)allCountries indexCharts:(NSArray*)indexCharts item:(ACKITunesEntity*)item;
 
 @property (nonatomic, copy) void (^completionBlock)(NSArray *selectedCountries);
+@property (nonatomic, assign) NSUInteger countriesSelectionLimit;
 
 @end
