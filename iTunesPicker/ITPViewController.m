@@ -368,12 +368,18 @@
     frame.origin.y += self.filterView.frame.size.height;
     frame.size.height -= self.filterView.frame.size.height;
     
-    self.leftPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
+    if(!self.leftPanel)
+    {
+        self.leftPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
+    }
     self.leftPanel.type = kPAPMenuPickerTypeRanking;
     self.leftPanel.openDirection = kPAPMenuOpenDirectionRight;
     self.leftPanel.delegate = self;
     
-    self.rightPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
+    if(!self.rightPanel)
+    {
+        self.rightPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
+    }
     self.rightPanel.type = kPAPMenuPickerTypeGenre;
     self.rightPanel.openDirection = kPAPMenuOpenDirectionLeft;
     self.rightPanel.delegate = self;
