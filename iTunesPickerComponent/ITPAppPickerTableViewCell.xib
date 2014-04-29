@@ -186,6 +186,11 @@
                 <outlet property="ratingsLabel" destination="8O6-MJ-hOf" id="sdV-f8-k1v"/>
                 <outlet property="starAllVersionsImageView" destination="exV-TF-3GY" id="8Uf-OV-Ngf"/>
                 <outlet property="starImageView" destination="rDm-mA-jyi" id="mTs-hz-YYy"/>
+                <outletCollection property="labelViews" destination="348-ug-EPk" id="Vwd-ch-DAG"/>
+                <outletCollection property="labelViews" destination="JSx-kI-aUw" id="n8Y-Gf-1K1"/>
+                <outletCollection property="labelViews" destination="8O6-MJ-hOf" id="DL5-VC-RnX"/>
+                <outletCollection property="labelViews" destination="O0H-xL-L1L" id="gd4-KT-vLj"/>
+                <outletCollection property="labelViews" destination="tT1-CR-9qX" id="OHj-iw-EcW"/>
             </connections>
         </tableViewCell>
     </objects>

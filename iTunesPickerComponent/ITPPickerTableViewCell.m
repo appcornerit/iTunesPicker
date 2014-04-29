@@ -63,4 +63,28 @@
     }
 }
 
+-(void) setState:(tITunesEntityState)state
+{
+    switch (state) {
+        case kITunesEntityStateNone:
+            self.backgroundColor = [UIColor whiteColor];
+            for (UILabel* label in self.labelViews) {
+                label.textColor = [UIColor grayColor];
+            }
+            break;
+        case kITunesEntityStateInUserCountryChart:
+            self.backgroundColor = [UIColor colorWithRed:76.0/255.0 green:217.0/255.0 blue:100.0/255.0 alpha:0.5];
+            for (UILabel* label in self.labelViews) {
+                label.textColor = [UIColor whiteColor];
+            }
+            break;
+        case kITunesEntityStateNotInTunesUserCountry:
+            self.backgroundColor = [UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:147.0/255.0 alpha:0.5];
+            for (UILabel* label in self.labelViews) {
+                label.textColor = [UIColor whiteColor];
+            }
+            break;
+    }
+}
+
 @end

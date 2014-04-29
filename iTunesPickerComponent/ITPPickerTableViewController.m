@@ -224,12 +224,11 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [UIColor whiteColor];
-    
+    ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNone;
     BOOL exists = [((NSNumber*)[self.existsItemsInUserCountry objectAtIndex:indexPath.row]) boolValue];
     if(self.existsItemsInUserCountry.count == [self ds].count && !exists)
     {
-        cell.backgroundColor = [UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:147.0/255.0 alpha:0.5];
+        ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNotInTunesUserCountry;
     }
     if(self.filterCountry)
     {
@@ -237,7 +236,7 @@
         for (ACKITunesEntity* ent in dsUser) {
             if([ent isEqualToEntity:[self.ds objectAtIndex:indexPath.row]])
             {
-                cell.backgroundColor = [UIColor colorWithRed:76.0/255.0 green:217.0/255.0 blue:100.0/255.0 alpha:0.5];
+                ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateInUserCountryChart;
                 break;
             }
         }

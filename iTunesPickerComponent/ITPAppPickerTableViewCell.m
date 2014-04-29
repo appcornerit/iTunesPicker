@@ -92,4 +92,5 @@
     self.starAllVersionsImageView.frame = CGRectMake(self.starAllVersionsImageView.frame.origin.x,self.starAllVersionsImageView.frame.origin.y,self.starAllVersionsImageView.frame.size.width,9.5f);
 }
 
+
 @end

@@ -47,14 +47,14 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idN-OC-8JP">
-                        <rect key="frame" x="82" y="36" width="161" height="12"/>
+                        <rect key="frame" x="82" y="36" width="161" height="13"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bh-82-ANb">
-                        <rect key="frame" x="82" y="49" width="161" height="12"/>
+                        <rect key="frame" x="82" y="50" width="161" height="12"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,8 +117,8 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gc3-3S-LOo" firstAttribute="top" secondItem="idN-OC-8JP" secondAttribute="bottom" constant="10" id="27A-M3-LLl"/>
-                    <constraint firstAttribute="bottom" secondItem="9Bh-82-ANb" secondAttribute="bottom" constant="21" id="3Fj-WQ-2bg"/>
+                    <constraint firstItem="gc3-3S-LOo" firstAttribute="top" secondItem="idN-OC-8JP" secondAttribute="bottom" constant="9" id="27A-M3-LLl"/>
+                    <constraint firstAttribute="bottom" secondItem="9Bh-82-ANb" secondAttribute="bottom" constant="20" id="3Fj-WQ-2bg"/>
                     <constraint firstItem="tT1-CR-9qX" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" id="4Zc-Jp-Gp8"/>
                     <constraint firstItem="tT1-CR-9qX" firstAttribute="leading" secondItem="idN-OC-8JP" secondAttribute="leading" id="ALi-bf-INh"/>
                     <constraint firstItem="9Bh-82-ANb" firstAttribute="trailing" secondItem="idN-OC-8JP" secondAttribute="trailing" id="C2Y-b2-bIV"/>
@@ -139,7 +139,7 @@
                     <constraint firstItem="bBL-PG-OUD" firstAttribute="top" secondItem="dS7-96-WIu" secondAttribute="top" constant="-2" id="cCa-Cn-dBf"/>
                     <constraint firstItem="ijB-0b-8TS" firstAttribute="bottom" secondItem="Nih-Rf-JAa" secondAttribute="bottom" id="chR-av-nB6"/>
                     <constraint firstItem="Nih-Rf-JAa" firstAttribute="trailing" secondItem="dS7-96-WIu" secondAttribute="trailing" id="dL4-Jn-1pM"/>
-                    <constraint firstItem="idN-OC-8JP" firstAttribute="centerY" secondItem="tdK-y5-lxV" secondAttribute="centerY" id="gs9-dA-qBG"/>
+                    <constraint firstItem="idN-OC-8JP" firstAttribute="centerY" secondItem="tdK-y5-lxV" secondAttribute="centerY" constant="1" id="gs9-dA-qBG"/>
                     <constraint firstAttribute="bottom" secondItem="gc3-3S-LOo" secondAttribute="bottom" constant="2" id="hAy-kJ-Hyk"/>
                     <constraint firstItem="ijB-0b-8TS" firstAttribute="leading" secondItem="gc3-3S-LOo" secondAttribute="trailing" constant="1" id="hva-3t-Lzc"/>
                     <constraint firstItem="tdK-y5-lxV" firstAttribute="leading" secondItem="ijB-0b-8TS" secondAttribute="leading" id="i2S-Eo-jch"/>
@@ -165,6 +165,9 @@
                 <outlet property="trackExplicitness" destination="ijB-0b-8TS" id="9rG-8M-h0j"/>
                 <outlet property="trackNameLabel" destination="bBL-PG-OUD" id="muH-xU-om5"/>
                 <outlet property="trackTimeLabel" destination="9Bh-82-ANb" id="ww6-DR-7do"/>
+                <outletCollection property="labelViews" destination="tT1-CR-9qX" id="iPi-g2-ab7"/>
+                <outletCollection property="labelViews" destination="idN-OC-8JP" id="wUE-Lk-cKq"/>
+                <outletCollection property="labelViews" destination="9Bh-82-ANb" id="awf-MK-ZkO"/>
             </connections>
         </tableViewCell>
     </objects>

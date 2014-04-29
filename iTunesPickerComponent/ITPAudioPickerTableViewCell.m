@@ -9,8 +9,8 @@
 #import "ITPAudioPickerTableViewCell.h"
 @implementation ITPAudioPickerTableViewCell
 
-
 @synthesize iTunesEntity=_iTunesEntity;
+@synthesize imageView=imageView;
 
 #pragma mark - Property methods
 - (void)setITunesEntity:(ACKITunesEntity *)ent
@@ -24,7 +24,9 @@
         self.genreLabel.text = songObject.primaryGenreName;
         
         double time = [[[[NSNumberFormatter alloc]init]numberFromString:songObject.trackTimeMillis] doubleValue];
-        self.trackTimeLabel.text = [NSString stringWithFormat:@"%i:%i",(int)(fmodf(time , (1000*60*60)) / (1000*60)),(int)(fmodf(fmodf(time , (1000*60*60)) , (1000*60)) / 1000)];
+        NSString* minutes = [NSString stringWithFormat:@"%02i",(int)(fmodf(time , (1000*60*60)) / (1000*60)) ];
+        NSString* seconds = [NSString stringWithFormat:@"%02i",(int)(fmodf(fmodf(time , (1000*60*60)) , (1000*60)) / 1000)];
+        self.trackTimeLabel.text = [NSString stringWithFormat:@"%@:%@",minutes,seconds];
         self.trackExplicitness.text = [songObject.trackExplicitness isEqualToString:kITunesMusicNotExplicit]?@"":NSLocalizedString(@"trackExplicit",nil);
         
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
@@ -41,7 +43,9 @@
         self.genreLabel.text = songObject.primaryGenreName;
         self.musicPlayerView.showActivityIndicator = YES;
         self.musicPlayerView.song = songObject;
-        self.musicPlayerView.hidden = NO;        
+        self.musicPlayerView.hidden = NO;
+        self.musicPlayerView.layer.masksToBounds = YES;
+        self.musicPlayerView.layer.cornerRadius = self.imageView.frame.size.width/2.0;
         self.imageView.hidden = YES;
     }
     else if([ent isKindOfClass:[ACKAlbum class]])
@@ -70,6 +74,8 @@
         self.imageView.showActivityIndicator = YES;
         self.imageView.entity = albumObject;
         self.imageView.hidden = NO;
+        self.imageView.layer.masksToBounds = YES;
+        self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2.0;
         self.musicPlayerView.hidden = YES;
     }
 }
