@@ -9,12 +9,15 @@
 #import "ITPPickerTableViewController.h"
 #import "ITPAppPickerTableViewCell.h"
 #import "ITPAudioPickerTableViewCell.h"
+#import "ITPVideoPickerTableViewCell.h"
 
 @interface ITPPickerTableViewController() <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
     @property (nonatomic,readonly) NSArray* ds;
     @property (nonatomic,assign) NSInteger indexSelected;
     @property (nonatomic,strong) ACKITunesQuery* query;
     @property (nonatomic,assign) BOOL filterCountry;
+    @property (nonatomic,assign) NSUInteger chartType;
+    @property (nonatomic,assign) NSUInteger genreType;
 @end
 
 @implementation ITPPickerTableViewController
@@ -73,10 +76,12 @@
 
 -(void) loadChartInITunesStoreCountry:(NSString*)country withType:(NSUInteger)type withGenre:(NSUInteger)genre completionBlock:(ACKArrayResultBlock)completion
 {
+    self.chartType = type;
+    self.genreType = genre;
     self.loading = YES;
     self.filterCountry = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
     
-    self.itemsFounded = nil;
+    _itemsFounded = nil;
     NSInteger limit = [self.delegate entitiesDatasources].limit;
     _country = country;
     
@@ -113,6 +118,10 @@
     {
         [self.query loadMusicChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
     }
+    else if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeMovie)
+    {
+        [self.query loadMovieChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
+    }
     else
     {
         //TODO: default to remove on completion
@@ -125,7 +134,7 @@
     self.loading = YES;
     self.filterCountry = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
     
-    self.itemsFounded = nil;
+    _itemsFounded = nil;
     _country = country;
     
     NSInteger datasourceIndex = [[self.delegate entitiesDatasources]getDatasourceIndexForCountry:country];
@@ -201,6 +210,16 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil]objectAtIndex:0];
         }
     }
+    //movie
+    else if (iTunesEntity.iTunesEntityType == kITunesEntityTypeMovie) {
+        NSString *CellIdentifier = @"ITPVideoPickerTableViewCell";
+        cell = (ITPVideoPickerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil]objectAtIndex:0];
+        }
+        ((ITPVideoPickerTableViewCell *)cell).rent = self.chartType == kITunesMovieChartTypeTopVideoRentals;
+    }
     else
     {
         return cell;
@@ -215,7 +234,7 @@
     else{
         cell.positionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     }
-    cell.detailButton.hidden = ![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)] || [self.delegate entitiesDatasources].entityType == kITunesEntityTypeMusic;
+    cell.detailButton.hidden = ![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)];
     
     return cell;
 }
@@ -225,13 +244,14 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNone;
-    BOOL exists = [((NSNumber*)[self.existsItemsInUserCountry objectAtIndex:indexPath.row]) boolValue];
-    if(self.existsItemsInUserCountry.count == [self ds].count && !exists)
-    {
-        ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNotInTunesUserCountry;
-    }
     if(self.filterCountry)
     {
+        BOOL exists = [((NSNumber*)[self.existsItemsInUserCountry objectAtIndex:indexPath.row]) boolValue];
+        if(self.existsItemsInUserCountry.count == [self ds].count && !exists)
+        {
+            ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNotInTunesUserCountry;
+        }
+        
         NSArray* dsUser = [[self.delegate entitiesDatasources]getDatasourceForCountry:[self.delegate entitiesDatasources].userCountry];
         for (ACKITunesEntity* ent in dsUser) {
             if([ent isEqualToEntity:[self.ds objectAtIndex:indexPath.row]])
@@ -298,15 +318,15 @@
     if(text.length > 0)
     {
         [self setLoading:YES];
-        tITunesEntityType entityType = [self.delegate entitiesDatasources].entityType;
+        tITunesMediaEntityType mediaEntityType = [self.delegate getSearchITunesMediaEntityType];
         NSInteger limit = [self.delegate entitiesDatasources].limit;
-        [self.query searchEntitiesForTerms:text inITunesStoreCountry:self.country withType:entityType limit:limit completionBlock:^(NSArray *array, NSError *err) {
+        [self.query searchEntitiesForTerms:text inITunesStoreCountry:self.country withMediaType:mediaEntityType withAttribute:nil limit:limit completionBlock:^(NSArray *array, NSError *err) {
             if(!err)
             {
-                self.itemsFounded = array;
+                _itemsFounded = array;
             }
             else{
-                self.itemsFounded = nil;
+                _itemsFounded = nil;
             }
             [self.tableView reloadData];
             [self setLoading:NO];
@@ -320,7 +340,7 @@
     NSString* text = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if(text.length == 0)
     {
-        self.itemsFounded = nil;
+        _itemsFounded = nil;
     }
     [self.tableView setUserInteractionEnabled:YES];
     [self.tableView reloadData];
@@ -386,19 +406,21 @@
         self.nextButton.hidden = YES;
     }
     
-    if(self.loadWithArtistId && !self.searchBar.hidden)
+    self.searchBar.hidden = ![self.delegate respondsToSelector:@selector(getSearchITunesMediaEntityType)];
+    
+    if(self.loadWithArtistId)
     {
         self.searchBar.hidden = YES;
         UIView *headerView = [[UIView alloc] initWithFrame:self.searchBar.bounds];
         UILabel *labelView = [[UILabel alloc] initWithFrame:self.searchBar.bounds];
         labelView.textAlignment = NSTextAlignmentCenter;
         [headerView addSubview:labelView];
-        ACKITunesEntity* ent = [self.ds objectAtIndex:0];
-        if(ent.iTunesEntityType == kITunesEntityTypeSoftware)
+        if(self.ds.count > 0)
         {
-           labelView.text = ((ACKApp*)ent).artistName;
+            ACKITunesEntity* ent = [self.ds objectAtIndex:0];
+            labelView.text = ent.artistName;
+            self.tableView.tableHeaderView = headerView;
         }
-        self.tableView.tableHeaderView = headerView;
     }
 }
 
@@ -410,7 +432,7 @@
     [self.query existsEntities:self.ds inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry withType:entityType completionBlock:^(NSArray *array, NSError *err) {
         if(!err)
         {
-            self.existsItemsInUserCountry = array;
+            _existsItemsInUserCountry = array;
         }
         
         self.loading = NO;

@@ -21,6 +21,7 @@ typedef enum {
 @property (nonatomic, assign) tITunesEntityState state;
 
 @property (nonatomic, weak) IBOutlet UIButton *detailButton;
+@property (nonatomic, weak) IBOutlet UIButton *purchaseButton;
 @property (nonatomic, weak) IBOutlet UILabel *positionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *priceLabel;
 @property (nonatomic, strong) IBOutletCollection(UILabel) NSArray *labelViews;

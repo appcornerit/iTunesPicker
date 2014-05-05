@@ -106,3 +106,47 @@
 "19"="World";
 
 "trackExplicit" = "E";
+"preorder" = "Preorder";
+
+
+//Movie
+"topmovies"="Top Movies";
+"topvideorentals"="Top Video Rentals";
+
+"000"="All";
+"4401"="Action & Adventure";
+"4434"="African";
+"4402"="Anime";
+"4431"="Bollywood";
+"4403"="Classics";
+"4404"="Comedy";
+"4422"="Concert Films";
+"4405"="Documentary";
+"4406"="Drama";
+"4407"="Foreign";
+"4420"="Holiday";
+"4408"="Horror";
+"4409"="Independent";
+"4425"="Japanese Cinema";
+"4426"="Jidaigeki";
+"4410"="Kids & Family";
+"4428"="Korean Cinema";
+"4421"="Made for TV";
+"4433"="MiddleEastern";
+"4423"="Music Documentaries";
+"4424"="Music Feature Films";
+"4411"="Musicals";
+"4432"="Regional Indian";
+"4412"="Romance";
+"4429"="Russian";
+"4413"="Sci-Fi & Fantasy";
+"4414"="Short Films";
+"4415"="Special Interest";
+"4417"="Sports";
+"4416"="Thriller";
+"4427"="Tokusatsu";
+"4430"="Turkish";
+"4419"="Urban";
+"4418"="Western";
+
+

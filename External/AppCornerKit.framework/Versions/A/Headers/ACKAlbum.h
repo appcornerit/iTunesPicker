@@ -10,20 +10,17 @@
 
 @interface ACKAlbum : ACKITunesEntity
 
-@property (nonatomic,strong) NSString* wrapperType;
 @property (nonatomic,strong) NSString* collectionType;
 @property (nonatomic,strong) NSString* artistId;
 @property (nonatomic,strong) NSString* amgArtistId;
-@property (nonatomic,strong) NSString* artistName;
 @property (nonatomic,strong) NSString* collectionName;
 @property (nonatomic,strong) NSString* collectionCensoredName;
 @property (nonatomic,strong) NSString* artistViewUrl;
-@property (nonatomic,strong) NSString* collectionViewUrl;
-@property (nonatomic,strong) NSString* artworkUrl60;
-@property (nonatomic,strong) NSString* artworkUrl100;
+@property (nonatomic,strong) NSURL* artworkUrl60;
+@property (nonatomic,strong) NSURL* artworkUrl100;
 @property (nonatomic,strong) NSString* collectionPrice;
 @property (nonatomic,strong) NSString* collectionExplicitness;
-@property (nonatomic,strong) NSString* trackCount;
+@property (nonatomic,strong) NSNumber* trackCount;
 @property (nonatomic,strong) NSString* copyright;
 @property (nonatomic,strong) NSString* country;
 @property (nonatomic,strong) NSString* currency;

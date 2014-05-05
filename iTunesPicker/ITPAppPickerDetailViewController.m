@@ -143,7 +143,7 @@
     query.cachePolicyChart = NSURLRequestUseProtocolCachePolicy;
     query.cachePolicyLoadEntity = NSURLRequestUseProtocolCachePolicy;
     
-    [query openEntity:self.appObject inITunesStoreCountry:self.delegate.entitiesDatasources.userCountry completionBlock:^(BOOL succeeded, NSError *err) {
+    [query openEntity:self.appObject inITunesStoreCountry:self.delegate.entitiesDatasources.userCountry isGift:NO completionBlock:^(BOOL succeeded, NSError *err) {
         if(!succeeded || err)
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error open iTunes Store",nil) message:NSLocalizedString(@"The selected item not exits in your country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Cancel",nil), nil];

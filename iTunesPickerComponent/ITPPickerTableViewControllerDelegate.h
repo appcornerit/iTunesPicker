@@ -14,4 +14,5 @@
 -(void)openITunesEntityDetail:(ACKITunesEntity*)entity;
 -(void)showLoadingHUD:(BOOL)loading;
 -(void)showPickerAtIndex:(NSInteger)index;
+-(tITunesMediaEntityType)getSearchITunesMediaEntityType;
 @end

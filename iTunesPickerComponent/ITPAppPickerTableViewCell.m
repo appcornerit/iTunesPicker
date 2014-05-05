@@ -39,8 +39,7 @@
     ACKApp* appObject = (ACKApp*)ent;
     self.appNameLabel.text = appObject.trackName;
     self.genreLabel.text = appObject.primaryGenreName;
-    
-    
+        
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     

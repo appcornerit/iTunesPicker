@@ -11,12 +11,12 @@
 @interface ITPPickerTableViewController : UIViewController
 
 @property (nonatomic, weak) id <ITPPickerTableViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSArray *existsItemsInUserCountry;
-@property (nonatomic, strong) NSArray *itemsFounded;
-@property (nonatomic, strong) NSString* country;
+
+@property (nonatomic, readonly) NSArray *existsItemsInUserCountry;
+@property (nonatomic, readonly) NSArray *itemsFounded;
+@property (nonatomic, readonly) NSString* country;
 @property (nonatomic, readonly) BOOL loadWithArtistId;
 @property (nonatomic, readonly) BOOL loading;
-
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;

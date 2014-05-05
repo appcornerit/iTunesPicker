@@ -1,5 +1,5 @@
 //
-//  ITPSongPickerTableViewCell.h
+//  ITPAudioPickerTableViewCell.h
 //  iTunesPicker
 //
 //  Created by Denis Berton on 27/04/14.
@@ -11,7 +11,7 @@
 
 @interface ITPAudioPickerTableViewCell : ITPPickerTableViewCell
 
-@property (nonatomic, weak) IBOutlet ACKImageView *imageView;
+@property (nonatomic, weak) IBOutlet ACKImageView *coverImageView;
 @property (nonatomic, weak) IBOutlet ACKMusicPlayerView* musicPlayerView;
 @property (nonatomic, weak) IBOutlet UILabel *trackNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *artistLabel;

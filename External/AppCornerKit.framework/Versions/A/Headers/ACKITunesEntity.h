@@ -11,10 +11,13 @@
 @interface ACKITunesEntity : NSObject
 
 @property (nonatomic,readonly) tITunesEntityType iTunesEntityType;
+@property (nonatomic,readonly) tITunesMediaEntityType iTunesMediaEntityType; //seach term only
 @property (nonatomic,readonly) NSString* country;
 
 @property (nonatomic,strong) id userData; //user data to passing custom data in ACKITunesEntity
 
 -(BOOL) isEqualToEntity:(ACKITunesEntity*)entity;
+
+@property (nonatomic,strong) NSString* artistName;
 
 @end

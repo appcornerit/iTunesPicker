@@ -15,6 +15,6 @@
 @property (nonatomic, strong) UIImage* customPlaceholderImage;
 @property (nonatomic,strong) ACKITunesEntity* entity;
 
-- (id)initWithFrame:(CGRect)frame app:(ACKITunesEntity*)entity;
+- (id)initWithFrame:(CGRect)frame entity:(ACKITunesEntity*)entity;
 
 @end

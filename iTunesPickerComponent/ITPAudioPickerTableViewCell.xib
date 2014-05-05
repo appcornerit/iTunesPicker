@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ITPAudioPickerTableViewCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ITPSongPickerTableViewCell" id="Ex5-Hx-mIX" customClass="ITPAudioPickerTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ITPAudioPickerTableViewCell" id="Ex5-Hx-mIX" customClass="ITPAudioPickerTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ex5-Hx-mIX" id="Htc-AS-hC1">
@@ -26,10 +26,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="48" id="FmY-FC-k6I"/>
+                            <constraint firstAttribute="width" constant="48" id="j6q-5S-QnB"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                        <state key="normal" title="Button">
+                        <state key="normal" title="iTunes">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -156,12 +156,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="artistLabel" destination="tT1-CR-9qX" id="MXG-dJ-WKS"/>
-                <outlet property="detailButton" destination="D0e-a4-gT5" id="P0W-be-IJb"/>
+                <outlet property="coverImageView" destination="ulD-0j-Uu9" id="0Wx-k6-nEj"/>
                 <outlet property="genreLabel" destination="idN-OC-8JP" id="GvY-nt-8oA"/>
-                <outlet property="imageView" destination="ulD-0j-Uu9" id="vL6-Yg-XL6"/>
                 <outlet property="musicPlayerView" destination="Nih-Rf-JAa" id="ZUe-bi-J2L"/>
                 <outlet property="positionLabel" destination="tdK-y5-lxV" id="OQB-oo-GzN"/>
                 <outlet property="priceLabel" destination="gc3-3S-LOo" id="kmt-0R-vpX"/>
+                <outlet property="purchaseButton" destination="D0e-a4-gT5" id="rHY-rq-TDA"/>
                 <outlet property="trackExplicitness" destination="ijB-0b-8TS" id="9rG-8M-h0j"/>
                 <outlet property="trackNameLabel" destination="bBL-PG-OUD" id="muH-xU-om5"/>
                 <outlet property="trackTimeLabel" destination="9Bh-82-ANb" id="ww6-DR-7do"/>

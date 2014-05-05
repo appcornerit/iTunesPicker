@@ -62,7 +62,7 @@
 "topimixes"="Top iMixes";
 "topsongs"="Top Singoli";
 
-"00"="Tutti";
+"00"="Tutti i generi";
 "20"="Alternativa";
 "29"="Cartoni";
 "2"="Blues";
@@ -106,5 +106,45 @@
 "19"="World music";
 
 "trackExplicit" = "E";
+"preorder" = "Preordina";
 
+//Movie
+"topmovies"="Top Film";
+"topvideorentals"="Top Video Rentals";
+
+"000"="Tutti i generi";
+"4401"="Azione e avventura";
+"4434"="Africani";
+"4402"="Anime";
+"4431"="Bollywood";
+"4403"="Classici";
+"4404"="Commedia";
+"4422"="Concert Films";
+"4405"="Documentario";
+"4406"="Dramma";
+"4407"="Foreign";
+"4420"="Holiday";
+"4408"="Horror";
+"4409"="Indipendenti";
+"4425"="Japanese Cinema";
+"4426"="Jidaigeki";
+"4410"="Per tutta la famiglia";
+"4428"="Korean Cinema";
+"4421"="Made for TV";
+"4433"="MiddleEastern";
+"4423"="Music Documentaries";
+"4424"="Music Feature Films";
+"4411"="Musicals";
+"4432"="Indiani";
+"4412"="Sentimentale";
+"4429"="Russi";
+"4413"="Fantascienza e fantasy";
+"4414"="Corti";
+"4415"="Special Interest";
+"4417"="Sport";
+"4416"="Thriller";
+"4427"="Tokusatsu";
+"4430"="Turchi";
+"4419"="Urban";
+"4418"="Western";
 

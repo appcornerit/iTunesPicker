@@ -38,9 +38,11 @@
     switch (indexPath.row) {
         case 0:
         cell.textLabel.text = NSLocalizedString(@"Apps", nil);
+        cell.textLabel.textColor = [UIColor greenColor];
         break;
         case 1:
         cell.textLabel.text = NSLocalizedString(@"Music", nil);
+        cell.textLabel.textColor = [UIColor greenColor];
         break;
         case 2:
         cell.textLabel.text = NSLocalizedString(@"Video Music", nil);
@@ -53,6 +55,7 @@
         break;
         case 5:
         cell.textLabel.text = NSLocalizedString(@"Movies", nil);
+        cell.textLabel.textColor = [UIColor greenColor];            
         break;
         case 6:
         cell.textLabel.text = NSLocalizedString(@"Short film", nil);

@@ -10,7 +10,6 @@
 
 @interface ACKApp : ACKITunesEntity
 
-@property (nonatomic,strong) NSString* kind;
 @property (nonatomic,strong) NSArray* features;
 @property (nonatomic,strong) NSArray* supportedDevices;
 @property (nonatomic,strong) NSNumber* isGameCenterEnabled;
@@ -20,7 +19,6 @@
 @property (nonatomic,strong) NSArray* ipadScreenshotUrls;
 @property (nonatomic,strong) NSString* artworkUrl512;
 @property (nonatomic,strong) NSString* artistId;
-@property (nonatomic,strong) NSString* artistName;
 @property (nonatomic,strong) NSString* price;
 @property (nonatomic,strong) NSString* version;
 @property (nonatomic,strong) NSString* description;
@@ -35,7 +33,6 @@
 @property (nonatomic,strong) NSString* primaryGenreId;
 @property (nonatomic,strong) NSString* releaseNotes;
 @property (nonatomic,strong) NSString* formattedPrice;
-@property (nonatomic,strong) NSString* wrapperType;
 @property (nonatomic,strong) NSString* trackCensoredName;
 @property (nonatomic,strong) NSString* contentAdvisoryRating;
 @property (nonatomic,strong) NSString* artworkUrl100;

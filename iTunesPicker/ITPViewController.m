@@ -22,8 +22,8 @@
 @interface ITPViewController () <SwipeViewDataSource, SwipeViewDelegate, ITPMenuTableViewDelegate>
 {
     CGRect filterCloseFrame,filterOpenFrame;
-    tITunesAppChartType rankingSelectedIndex;
-    tITunesAppGenreType genreSelectedIndex;
+    NSUInteger rankingSelectedIndex;
+    NSUInteger genreSelectedIndex;
     BOOL pickersLoading;
     BOOL firstLoad;
     NSUInteger maxRecordToLoadForCountry;
@@ -85,9 +85,9 @@
     {
         
         //TODO: development message to remove on completion
-        if(entityType != kITunesEntityTypeSoftware && entityType != kITunesEntityTypeMusic)
+        if(entityType != kITunesEntityTypeSoftware && entityType != kITunesEntityTypeMusic && entityType != kITunesEntityTypeMovie)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Work in progress" message:@"Supported types: App, Music\nStay tuned!" delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Cancel",nil), nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Work in progress" message:@"Supported types: App, Music, Movie\nStay tuned!" delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Cancel",nil), nil];
             [alert show];
             return;
         }
@@ -242,6 +242,31 @@
     }
 }
 
+-(tITunesMediaEntityType)getSearchITunesMediaEntityType
+{
+  if(self.entitiesDatasources.entityType == kITunesEntityTypeSoftware)
+  {
+      return kITunesMediaEntityTypeSoftware;
+  }
+  else if(self.entitiesDatasources.entityType == kITunesEntityTypeMusic)
+  {
+      switch (rankingSelectedIndex) {
+          case kITunesMusicChartTypeTopAlbums:
+              return kITunesMediaEntityTypeMusicAlbum;
+              break;
+              
+          case kITunesMusicChartTypeTopSongs:
+              return kITunesMediaEntityTypeMusicSong;
+              break;
+      }
+  }
+  else if(self.entitiesDatasources.entityType == kITunesEntityTypeMovie)
+  {
+      return kITunesMediaEntityTypeMovie;
+  }
+  return kITunesMediaEntityTypeSoftware;  //default
+}
+
 #pragma mark SwipeViewDataSource
 
 - (NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView
@@ -368,16 +393,14 @@
     frame.origin.y += self.filterView.frame.size.height;
     frame.size.height -= self.filterView.frame.size.height;
     
-    if(!self.leftPanel)
-    {
+    if(!self.leftPanel){
         self.leftPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
     }
     self.leftPanel.type = kPAPMenuPickerTypeRanking;
     self.leftPanel.openDirection = kPAPMenuOpenDirectionRight;
     self.leftPanel.delegate = self;
     
-    if(!self.rightPanel)
-    {
+    if(!self.rightPanel){
         self.rightPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
     }
     self.rightPanel.type = kPAPMenuPickerTypeGenre;
@@ -407,6 +430,11 @@
     {
         self.leftPanel.items = [ACKITunesQuery getMusicChartType];
         self.rightPanel.items = [ACKITunesQuery getMusicGenreType];
+    }
+    else if(self.entitiesDatasources.entityType == kITunesEntityTypeMovie)
+    {
+        self.leftPanel.items = [ACKITunesQuery getMovieChartType];
+        self.rightPanel.items = [ACKITunesQuery getMovieGenreType];
     }
     else
     {

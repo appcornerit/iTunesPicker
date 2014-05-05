@@ -9,14 +9,18 @@
 #import "ACKConstants.h"
 #import "ACKITunesQuery.h"
 #import "ACKITunesEntity.h"
+
+//types
 #import "ACKApp.h"
-#import "ACKArtist.h"
 #import "ACKAlbum.h"
 #import "ACKTrackSong.h"
 #import "ACKTrackMovie.h"
 #import "ACKBook.h"
+
+//countries datasource facilities
 #import "ACKEntitiesContainer.h"
 
+//ux facilities
 #import "ACKImageView.h"
 #import "ACKAppIconImageView.h"
 #import "ACKITunesPreviewScrollView.h"

@@ -25,6 +25,8 @@
 		FF3A94BF18D6631E00479E98 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94BC18D6631E00479E98 /* SVProgressHUD.bundle */; };
 		FF3A94C118D6631E00479E98 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3A94BE18D6631E00479E98 /* SVProgressHUD.m */; };
 		FF3A94CA18DBA52E00479E98 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94CD18DBA52E00479E98 /* Localizable.strings */; };
+		FF6631FF191832C700460F0B /* ITPVideoPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6631FC191832C700460F0B /* ITPVideoPickerTableViewCell.xib */; };
+		FF663200191832C700460F0B /* ITPVideoPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6631FD191832C700460F0B /* ITPVideoPickerTableViewCell.m */; };
 		FF68CF2C19085D850068A449 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF2919085D850068A449 /* JASidePanelController.m */; };
 		FF68CF2D19085D850068A449 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF2B19085D850068A449 /* UIViewController+JASidePanel.m */; };
 		FF68CF311908608A0068A449 /* ITPSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF2F1908608A0068A449 /* ITPSideMenuViewController.m */; };
@@ -83,6 +85,9 @@
 		FF3A94C518DBA2D100479E98 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF3A94CE18DBA53000479E98 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF3A94CF18DBA53100479E98 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF6631FC191832C700460F0B /* ITPVideoPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPVideoPickerTableViewCell.xib; sourceTree = "<group>"; };
+		FF6631FD191832C700460F0B /* ITPVideoPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPVideoPickerTableViewCell.m; sourceTree = "<group>"; };
+		FF6631FE191832C700460F0B /* ITPVideoPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPVideoPickerTableViewCell.h; sourceTree = "<group>"; };
 		FF68CF2819085D850068A449 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
 		FF68CF2919085D850068A449 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		FF68CF2A19085D850068A449 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
@@ -331,6 +336,9 @@
 		FF68CF5C190AA7BA0068A449 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				FF6631FE191832C700460F0B /* ITPVideoPickerTableViewCell.h */,
+				FF6631FD191832C700460F0B /* ITPVideoPickerTableViewCell.m */,
+				FF6631FC191832C700460F0B /* ITPVideoPickerTableViewCell.xib */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -458,6 +466,7 @@
 				FF68CF69190ABC510068A449 /* Main_iPhone.storyboard in Resources */,
 				FF68CF61190AA85B0068A449 /* ITPAppPickerDetailViewController.xib in Resources */,
 				FF3A94BF18D6631E00479E98 /* SVProgressHUD.bundle in Resources */,
+				FF6631FF191832C700460F0B /* ITPVideoPickerTableViewCell.xib in Resources */,
 				FF3A94B818D261D900479E98 /* ITPMenuTableViewController.xib in Resources */,
 				FF68CF321908608A0068A449 /* ITPSideMenuViewController.xib in Resources */,
 				FF68CF73190D439B0068A449 /* ITPAudioPickerTableViewCell.xib in Resources */,
@@ -477,6 +486,7 @@
 				FF3A94B618D261D900479E98 /* ITPMenuTableViewController.m in Sources */,
 				FF68CFAD190F0DE20068A449 /* SwipeView.m in Sources */,
 				FF3A94C118D6631E00479E98 /* SVProgressHUD.m in Sources */,
+				FF663200191832C700460F0B /* ITPVideoPickerTableViewCell.m in Sources */,
 				FF68CF60190AA85B0068A449 /* ITPAppPickerDetailViewController.m in Sources */,
 				FF68CF311908608A0068A449 /* ITPSideMenuViewController.m in Sources */,
 				FF68CF2C19085D850068A449 /* JASidePanelController.m in Sources */,
