@@ -13,7 +13,7 @@ Discover, search and compare rankings for apps, books, movies and music **from i
 NSString* iTunesUserCountry = @"ITUNES COUNTRY ISO CODE";
 //ACKEntitiesContainer can handle/compare multiple coutries
 self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:iTunesUserCountry entityType:kITunesEntityTypeSoftware limit:kITunesMaxLimitLoadEntities];
-//ITPPickerTableViewController is controller to show your apps
+//ITPPickerTableViewController is a controller to show your apps
 ITPPickerTableViewController* pickerTableView = [[ITPPickerTableViewController alloc]initWithNibName:nil bundle:nil];
 pickerTableView.delegate = self;
 [pickerTableView loadEntitiesForArtistId:@"YOUR ARTIST ID HERE" inITunesCountry:iTunesUserCountry withType:kITunesEntityTypeSoftware completionBlock:^(NSArray *array, NSError *err) {
@@ -33,7 +33,7 @@ To retrive the "ITUNES COUNTRY ISO CODE" you can use:
 }];
 ```
 
-iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communication with iTunes API, included in the external folder) and has been tested on iPhone 5S.
+iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communication with iTunes API, included in the external folder, free for unlimited use) and has been tested on iPhone 5S.
 
 **Author**: Denis Berton [@DenisBerton](https://twitter.com/DenisBerton)
 
@@ -41,16 +41,17 @@ iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communicati
 ![Alt text](preview/apps.png "Preview apps picker list") 
 ![Alt text](preview/appdetail.png "Preview app picker detail") 
 ![Alt text](preview/comparison.png "Preview ranking positions") 
-During development the layout could be changed.
+(During development the layout could be changed)
 
 
 #### Project Status
-iTunesPicker works with **apps**, songs and albums partially , I'm developing the missing iTunes items: books, movies and music.
+iTunesPicker works with **apps**, songs, albums and movies, I'm developing the missing iTunes items, open an issue for other types you need to support.
 In the next step I will add rankings's trends (up/down arrows) for each item, and add this repo to the cocoapods repo list.
 
 I'd love to have your contribution to iTunesPicker. There are several ways to contribute:
 
 - Build an interface for iPad 
 - Suggest new features
+- Let me know if you include the picker in your app
 
 Work in progress, stay tuned!
