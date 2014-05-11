@@ -21,8 +21,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-a4-gT5">
-                        <rect key="frame" x="272" y="1" width="48" height="80"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-a4-gT5" customClass="YHRoundBorderedButton">
+                        <rect key="frame" x="270" y="29" width="48" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -133,7 +133,7 @@
                     <constraint firstItem="ulD-0j-Uu9" firstAttribute="top" secondItem="Nih-Rf-JAa" secondAttribute="top" id="Ouu-12-LYF"/>
                     <constraint firstItem="Nih-Rf-JAa" firstAttribute="centerY" secondItem="Htc-AS-hC1" secondAttribute="centerY" id="QFV-DI-KML"/>
                     <constraint firstItem="tT1-CR-9qX" firstAttribute="trailing" secondItem="idN-OC-8JP" secondAttribute="trailing" id="UZR-NM-JFx"/>
-                    <constraint firstAttribute="trailing" secondItem="D0e-a4-gT5" secondAttribute="trailing" id="W0I-Kg-rsD"/>
+                    <constraint firstAttribute="trailing" secondItem="D0e-a4-gT5" secondAttribute="trailing" constant="2" id="W0I-Kg-rsD"/>
                     <constraint firstAttribute="bottom" secondItem="dS7-96-WIu" secondAttribute="bottom" constant="10" id="aB0-kw-1rF"/>
                     <constraint firstItem="dS7-96-WIu" firstAttribute="leading" secondItem="Htc-AS-hC1" secondAttribute="leading" constant="12" id="bqp-jt-UUB"/>
                     <constraint firstItem="bBL-PG-OUD" firstAttribute="top" secondItem="dS7-96-WIu" secondAttribute="top" constant="-2" id="cCa-Cn-dBf"/>
@@ -143,14 +143,14 @@
                     <constraint firstAttribute="bottom" secondItem="gc3-3S-LOo" secondAttribute="bottom" constant="2" id="hAy-kJ-Hyk"/>
                     <constraint firstItem="ijB-0b-8TS" firstAttribute="leading" secondItem="gc3-3S-LOo" secondAttribute="trailing" constant="1" id="hva-3t-Lzc"/>
                     <constraint firstItem="tdK-y5-lxV" firstAttribute="leading" secondItem="ijB-0b-8TS" secondAttribute="leading" id="i2S-Eo-jch"/>
-                    <constraint firstItem="D0e-a4-gT5" firstAttribute="leading" secondItem="tdK-y5-lxV" secondAttribute="trailing" constant="10" id="kCB-ly-YWh"/>
-                    <constraint firstItem="D0e-a4-gT5" firstAttribute="top" secondItem="Htc-AS-hC1" secondAttribute="top" constant="1" id="lYv-Vl-KJC"/>
+                    <constraint firstItem="D0e-a4-gT5" firstAttribute="leading" secondItem="tdK-y5-lxV" secondAttribute="trailing" constant="8" id="kCB-ly-YWh"/>
+                    <constraint firstItem="D0e-a4-gT5" firstAttribute="top" secondItem="Htc-AS-hC1" secondAttribute="top" constant="29" id="lYv-Vl-KJC"/>
                     <constraint firstItem="ijB-0b-8TS" firstAttribute="top" secondItem="tdK-y5-lxV" secondAttribute="bottom" id="m8w-qp-l57"/>
                     <constraint firstItem="bBL-PG-OUD" firstAttribute="leading" secondItem="tT1-CR-9qX" secondAttribute="leading" id="qPO-Rl-kGU"/>
                     <constraint firstItem="gc3-3S-LOo" firstAttribute="leading" secondItem="9Bh-82-ANb" secondAttribute="leading" id="tvd-Bo-kNO"/>
                     <constraint firstItem="ulD-0j-Uu9" firstAttribute="leading" secondItem="Nih-Rf-JAa" secondAttribute="leading" id="uRO-eB-u4z"/>
                     <constraint firstItem="idN-OC-8JP" firstAttribute="leading" secondItem="9Bh-82-ANb" secondAttribute="leading" id="vBA-NM-vmZ"/>
-                    <constraint firstItem="D0e-a4-gT5" firstAttribute="leading" secondItem="tT1-CR-9qX" secondAttribute="trailing" constant="29" id="vw7-hg-y5s"/>
+                    <constraint firstItem="D0e-a4-gT5" firstAttribute="leading" secondItem="tT1-CR-9qX" secondAttribute="trailing" constant="27" id="vw7-hg-y5s"/>
                     <constraint firstItem="tdK-y5-lxV" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" constant="9" id="wRp-zs-jvs"/>
                 </constraints>
             </tableViewCellContentView>

@@ -9,6 +9,13 @@
 //preview fullscreen
 "viewer.button.close"="Chiudi";
 
+//right menu
+"menu.selectcountries"="Aggiungi nazioni";
+"menu.changeusercountry"="Modifica la tua nazione";
+
+//left menu
+"menu.mergedview" = "Scopri";
+
 //App
 "topfreeapplications"="Top Gratuite";
 "toppaidapplications"="Top Acquistate";

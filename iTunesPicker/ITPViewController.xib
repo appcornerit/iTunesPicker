@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -7,11 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ITPViewController">
             <connections>
-                <outlet property="countryButton" destination="8tQ-lB-mmc" id="oQb-3l-tOZ"/>
-                <outlet property="filterDxButton" destination="t9N-fq-0iO" id="1iz-xM-HqJ"/>
-                <outlet property="filterSxButton" destination="1Ju-M6-shf" id="gpA-DT-25A"/>
-                <outlet property="filterView" destination="1Bm-vl-keM" id="QoA-gi-wBH"/>
+                <outlet property="bannerHeightLayoutConstraint" destination="Xg8-UN-Xd5" id="zpL-wN-SR1"/>
+                <outlet property="bannerView" destination="HTt-Bi-CbF" id="ZST-7a-PgP"/>
                 <outlet property="swipeView" destination="G6Z-lY-ubw" id="tHi-lf-4lE"/>
+                <outlet property="swipeViewVerticalSpaceLayoutConstraint" destination="tS3-Fi-qX6" id="hal-k2-iWa"/>
                 <outlet property="view" destination="1" id="YCU-tU-Fbk"/>
             </connections>
         </placeholder>
@@ -20,8 +19,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="HTt-Bi-CbF">
+                    <rect key="frame" x="0.0" y="64" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Xg8-UN-Xd5"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Uqo-rh-0fg"/>
+                    </connections>
+                </adBannerView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-lY-ubw" customClass="SwipeView">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504.00000099182131"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
@@ -29,53 +38,16 @@
                         <outlet property="delegate" destination="-1" id="9aT-ll-U9u"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bm-vl-keM" userLabel="Filter View">
-                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1Ju-M6-shf" userLabel="button sx">
-                            <rect key="frame" x="0.0" y="0.0" width="130" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                            <state key="normal" title="Button">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="filterSxAction:" destination="-1" eventType="touchUpInside" id="t68-L7-Rxb"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tQ-lB-mmc" userLabel="button country">
-                            <rect key="frame" x="130" y="0.0" width="60" height="44"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="10"/>
-                            <state key="normal">
-                                <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="countryAction:" destination="-1" eventType="touchUpInside" id="Z1d-Yz-FfN"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="t9N-fq-0iO" userLabel="button dx">
-                            <rect key="frame" x="190" y="0.0" width="130" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                            <state key="normal" title="Button">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="filterDxAction:" destination="-1" eventType="touchUpInside" id="Q8h-dI-Bev"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="G6Z-lY-ubw" firstAttribute="top" secondItem="1" secondAttribute="top" constant="64" id="3KI-WC-b6R"/>
+                <constraint firstItem="HTt-Bi-CbF" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="8Ch-ST-ZxB"/>
+                <constraint firstAttribute="trailing" secondItem="HTt-Bi-CbF" secondAttribute="trailing" id="BaK-iQ-KLI"/>
                 <constraint firstItem="G6Z-lY-ubw" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="GaY-d8-dNr"/>
                 <constraint firstAttribute="trailing" secondItem="G6Z-lY-ubw" secondAttribute="trailing" id="M8X-XG-3BH"/>
+                <constraint firstItem="HTt-Bi-CbF" firstAttribute="top" secondItem="1" secondAttribute="top" constant="64" id="Rir-OT-USM"/>
                 <constraint firstAttribute="bottom" secondItem="G6Z-lY-ubw" secondAttribute="bottom" id="o7o-gf-7Vf"/>
+                <constraint firstItem="G6Z-lY-ubw" firstAttribute="top" secondItem="1" secondAttribute="top" constant="64" id="tS3-Fi-qX6"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

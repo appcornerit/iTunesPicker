@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ITPPickerTableViewControllerDelegate.h"
 #import "SwipeView.h"
+#import "YHRoundBorderedButton.h"
 
 @interface ITPAppPickerDetailViewController : UIViewController
 
@@ -25,7 +26,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *starImageView;
 @property (nonatomic, weak) IBOutlet UILabel *noRatingsLabel;
 @property (nonatomic, weak) IBOutlet UILabel *ratingsLabel;
-@property (nonatomic, weak) IBOutlet UIButton *purchaseButton;
+@property (nonatomic, weak) IBOutlet YHRoundBorderedButton *purchaseButton;
 @property (nonatomic, strong)  UIImageView *separatorImage;
 @property (weak, nonatomic) IBOutlet UIView *backgroundViewButtonDetail;
 @property (weak, nonatomic) IBOutlet UIView *backgroundButtonView;

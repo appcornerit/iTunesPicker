@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5I-1W-lSz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5I-1W-lSz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -12,15 +12,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVg-2o-ti3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2125" y="-577"/>
+            <point key="canvasLocation" x="2125" y="25"/>
         </scene>
-        <!--Side Menu View Controller-->
+        <!--Side Right Menu View Controller-->
         <scene sceneID="G8U-j5-IoX">
             <objects>
-                <viewController storyboardIdentifier="rightViewController" id="lmp-zC-9Yt" customClass="ITPSideMenuViewController" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="rightViewController" id="lmp-zC-9Yt" customClass="ITPSideRightMenuViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uHH-5z-0EY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2125" y="284"/>
+            <point key="canvasLocation" x="2125" y="812"/>
         </scene>
         <!--Side Panel Controller-->
         <scene sceneID="pxg-Fd-cma">
@@ -64,6 +64,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNA-bA-Bqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="957" y="25"/>
+        </scene>
+        <!--Side Left Menu View Controller-->
+        <scene sceneID="rjJ-Rb-XyV">
+            <objects>
+                <viewController storyboardIdentifier="leftViewController" id="VBV-2d-YE7" customClass="ITPSideLeftMenuViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DHr-WI-b7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2125" y="-785"/>
         </scene>
     </scenes>
     <resources>

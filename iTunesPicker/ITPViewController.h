@@ -7,23 +7,34 @@
 //
 
 #import "ITPPickerTableViewControllerDelegate.h"
+#import "ITPMenuTableViewController.h"
+#import "SwipeView.h"
+
+#import <iAd/iAd.h>
+
+typedef enum {
+    kITPMenuFilterPanelNone = 0,
+    kITPMenuFilterPanelRanking,
+    kITPMenuFilterPanelGenre,
+} tITPMenuFilterPanel;
 
 @interface ITPViewController : UIViewController <ITPPickerTableViewControllerDelegate>
 
 @property (nonatomic,strong) ACKEntitiesContainer* entitiesDatasources;
 @property (nonatomic,strong) NSMutableArray* pickerViews;
 
-@property (weak, nonatomic) IBOutlet UIView *filterView;
-@property (weak, nonatomic) IBOutlet UIButton *countryButton;
-@property (weak, nonatomic) IBOutlet UIButton *filterSxButton;
-@property (weak, nonatomic) IBOutlet UIButton *filterDxButton;
+@property (nonatomic, weak) IBOutlet ADBannerView *bannerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bannerHeightLayoutConstraint;
+@property (nonatomic, weak) IBOutlet SwipeView *swipeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *swipeViewVerticalSpaceLayoutConstraint;
+@property (nonatomic, strong) ITPMenuTableViewController *leftPanel;
+@property (nonatomic, strong) ITPMenuTableViewController *rightPanel;
 
-- (IBAction)openUserCountryPicker:(id)sender;
-- (IBAction)toggleFilter:(id)sender;
-- (IBAction)countryAction:(id)sender;
-- (IBAction)filterSxAction:(id)sender;
-- (IBAction)filterDxAction:(id)sender;
-
+- (void)openUserCountryPicker;
+- (void)openCountriesPicker;
+- (void)openMergedView;
 - (void)reloadWithEntityType:(tITunesEntityType)entityType;
+- (void)toggleMenuPanel:(tITPMenuFilterPanel)menuFilterPanel;
+- (NSString*)getSelectedFilterLabel:(tITPMenuFilterPanel)menuFilterPanel;
 
 @end

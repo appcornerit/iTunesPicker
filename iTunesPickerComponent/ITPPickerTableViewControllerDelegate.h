@@ -12,7 +12,7 @@
 @optional
 -(void)selectEntity:(ACKITunesEntity*)entity;
 -(void)openITunesEntityDetail:(ACKITunesEntity*)entity;
--(void)showLoadingHUD:(BOOL)loading;
+-(void)showLoadingHUD:(BOOL)loading sender:(id)sender;
 -(void)showPickerAtIndex:(NSInteger)index;
 -(tITunesMediaEntityType)getSearchITunesMediaEntityType;
 @end

@@ -9,6 +9,13 @@
 //preview fullscreen
 "viewer.button.close"="Close";
 
+//right menu
+"menu.selectcountries"="Add countries";
+"menu.changeusercountry"="Change your country";
+
+//left menu
+"menu.mergedview" = "Discover";
+
 //App
 "topfreeapplications"="Top Free Apps";
 "toppaidapplications"="Top Paid Apps";
@@ -62,7 +69,7 @@
 "topimixes"="Top iMixes";
 "topsongs"="Top Songs";
 
-"00"="All";
+"00"="All Genres";
 "20"="Alternative";
 "29"="Anime";
 "2"="Blues";
@@ -113,7 +120,7 @@
 "topmovies"="Top Movies";
 "topvideorentals"="Top Video Rentals";
 
-"000"="All";
+"000"="All Genres";
 "4401"="Action & Adventure";
 "4434"="African";
 "4402"="Anime";

@@ -29,4 +29,9 @@
 -(NSArray*)getAllCountries;
 -(NSString*)getCountryAtIndex:(NSInteger)index;
 
+//advanced features
+-(NSArray*)mergeEntitiesInCountriesExcludeDuplicate:(BOOL)excludeDuplicate
+                            excludeNotInITunesUserCountry:(BOOL)excludeNotInITunesUserCountry
+                            excludeInUserCountry:(BOOL)excludeInUserCountry;
+
 @end

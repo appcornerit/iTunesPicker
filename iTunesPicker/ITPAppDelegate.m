@@ -8,7 +8,7 @@
 
 #import "ITPAppDelegate.h"
 #import "ITPViewController.h"
-#import "ITPSideMenuViewController.h"
+#import "ITPSideRightMenuViewController.h"
 
 #import "JASidePanelController.h"
 //#import "DCIntrospect.h"
@@ -25,9 +25,9 @@
 {
     // Override point for customization after application launch.
     
-//#if TARGET_IPHONE_SIMULATOR
+#if TARGET_IPHONE_SIMULATOR
 //    [[DCIntrospect sharedIntrospector] start];
-//#endif
+#endif
     
     return YES;
 }

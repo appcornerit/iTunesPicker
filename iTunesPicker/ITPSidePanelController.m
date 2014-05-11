@@ -18,26 +18,42 @@
 {
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"centerViewController"]];
     [self setRightPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"rightViewController"]];
+    [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
 }
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    ((ITPSideMenuViewController*)self.rightPanel).delegate = self;
+    ((ITPSideRightMenuViewController*)self.rightPanel).delegate = self;
+    ((ITPSideLeftMenuViewController*)self.leftPanel).delegate = self;
 }
+
+#pragma mark - super implemetation
+
+- (void) statePanelChanged {
+    self.filterBarButtonItem.enabled = (self.state != JASidePanelRightVisible);
+    self.menuBarButtonItem.enabled = (self.state != JASidePanelLeftVisible);
+    if(self.state == JASidePanelLeftVisible || self.state == JASidePanelRightVisible)
+    {
+        [((ITPViewController*)self.centerPanel) toggleMenuPanel:kITPMenuFilterPanelNone];
+    }
+    if(self.state == JASidePanelLeftVisible)
+    {
+        [((ITPSideLeftMenuViewController*)self.leftPanel).tableView reloadData];
+    }
+}
+
+#pragma mark - Action
 
 - (IBAction)menuAction:(id)sender {
     [self toggleRightPanel:sender];
 }
 
 - (IBAction)filterAction:(id)sender {
-    [((ITPViewController*)self.centerPanel)toggleFilter:sender];
+    [self toggleLeftPanel:sender];
 }
 
-- (void) statePanelChanged {
-    self.filterBarButtonItem.enabled = (self.state != JASidePanelRightVisible);
-}
-
+#pragma mark - ITPSideRightMenuViewControllerDelegate
 
 -(void)iTunesEntityTypeDidSelected:(tITunesEntityType)entityType
 {
@@ -45,15 +61,40 @@
     [((ITPViewController*)self.centerPanel) reloadWithEntityType:entityType];
 }
 
+-(void)openCountriesPicker
+{
+    [self showCenterPanelAnimated:YES];
+    [((ITPViewController*)self.centerPanel) openCountriesPicker];
+}
+
 -(void)openUserCountrySetting
 {
     [self showCenterPanelAnimated:YES];
-    [((ITPViewController*)self.centerPanel) openUserCountryPicker:nil];
+    [((ITPViewController*)self.centerPanel) openUserCountryPicker];
 }
 
 -(NSString*)getUserCountry
 {
   return ((ITPViewController*)self.centerPanel).entitiesDatasources.userCountry;
+}
+
+#pragma mark - ITPSideLeftMenuViewControllerDelegate
+
+-(NSString*)getSelectedFilterLabel:(tITPMenuFilterPanel)menuFilterPanel
+{
+    return [((ITPViewController*)self.centerPanel) getSelectedFilterLabel:menuFilterPanel];
+}
+
+- (void)toggleMenuPanel:(tITPMenuFilterPanel)menuFilterPanel
+{
+    [self showCenterPanelAnimated:YES];    
+    return [((ITPViewController*)self.centerPanel) toggleMenuPanel:menuFilterPanel];
+}
+
+-(void)openMergedView
+{
+    [self showCenterPanelAnimated:YES];
+    return [((ITPViewController*)self.centerPanel) openMergedView];
 }
 
 @end

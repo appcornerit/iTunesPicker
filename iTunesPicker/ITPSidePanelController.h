@@ -6,12 +6,13 @@
 //  Copyright (c) 2014 appcorner.it. All rights reserved.
 //
 
-#import "ITPSideMenuViewController.h"
+#import "ITPSideRightMenuViewController.h"
+#import "ITPSideLeftMenuViewController.h"
 
 #import "JASidePanelController.h"
 #import "UIViewController+JASidePanel.h"
 
-@interface ITPSidePanelController : JASidePanelController <ITPSideMenuViewControllerDelegate>
+@interface ITPSidePanelController : JASidePanelController <ITPSideRightMenuViewControllerDelegate,ITPSideLeftMenuViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *filterBarButtonItem;

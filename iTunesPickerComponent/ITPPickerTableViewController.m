@@ -18,6 +18,7 @@
     @property (nonatomic,assign) BOOL filterCountry;
     @property (nonatomic,assign) NSUInteger chartType;
     @property (nonatomic,assign) NSUInteger genreType;
+    @property (nonatomic,assign) BOOL mustScrollContent;
 @end
 
 @implementation ITPPickerTableViewController
@@ -29,6 +30,7 @@
         self.query = [[ACKITunesQuery alloc]init];
         self.query.cachePolicyChart = NSURLRequestUseProtocolCachePolicy;
         self.query.cachePolicyLoadEntity = NSURLRequestUseProtocolCachePolicy;
+        self.mustScrollContent = YES;
     }
     return self;
 }
@@ -37,6 +39,11 @@
 {
     [super viewWillAppear:animated];
     [self updateUI];
+    if(_loadState == kITPLoadStateRanking && self.mustScrollContent)
+    {
+        self.mustScrollContent = NO;
+        self.tableView.contentOffset = CGPointMake(0, self.searchBar.frame.size.height);
+    }
 }
 
 - (void)dealloc
@@ -81,7 +88,9 @@
     self.loading = YES;
     self.filterCountry = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
     
-    _itemsFounded = nil;
+    _loadState = kITPLoadStateRanking;
+    
+    _itemsArray = nil;
     NSInteger limit = [self.delegate entitiesDatasources].limit;
     _country = country;
     
@@ -98,17 +107,17 @@
         if(!err)
         {
             [[self.delegate entitiesDatasources] replaceDatasourceAtIndex:datasourceIndex entity:array foriTunesCountry:country];
-            [self loadExistEntitiesInUserCountry:completion];
         }
-        else{
-            self.loading = NO;
-            [self updateUI];
-            if(completion)
-            {
-                completion(array,err);
-            }
+        self.loading = NO;
+        self.mustScrollContent = YES;
+        [self updateUI];
+        if(completion)
+        {
+            completion(array,err);
         }
     };
+    
+    self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
     
     if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeSoftware)
     {
@@ -134,7 +143,7 @@
     self.loading = YES;
     self.filterCountry = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
     
-    _itemsFounded = nil;
+    _itemsArray = nil;
     _country = country;
     
     NSInteger datasourceIndex = [[self.delegate entitiesDatasources]getDatasourceIndexForCountry:country];
@@ -145,23 +154,44 @@
     }
     [self updateUI];
     
-    _loadWithArtistId = YES;
+    _loadState = kITPLoadStateArtist;
+    self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
     
     [self.query loadEntitiesForArtistId:artistId inITunesCountry:country withType:type completionBlock:^(NSArray *array, NSError *err) {
         if(!err)
         {
             [[self.delegate entitiesDatasources] replaceDatasourceAtIndex:datasourceIndex entity:array foriTunesCountry:country];
-            [self loadExistEntitiesInUserCountry:completion];
         }
-        else{
-            self.loading = NO;
-            [self updateUI];
-            if(completion)
-            {
-                completion(array,err);
-            }
+        self.loading = NO;
+        [self updateUI];
+        if(completion)
+        {
+            completion(array,err);
         }
     }];
+}
+
+-(void)showEntities:(NSArray*)array completionBlock:(ACKArrayResultBlock)completion
+{
+    self.filterCountry = NO;
+    self.loading = YES;
+    
+    _loadState = kITPLoadStateExternalEntities;
+    self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
+    [self.query loadEntities:array inITunesStoreCountry:self.delegate.entitiesDatasources.userCountry completionBlock:^(NSArray *array, NSError *err) {
+        if(!err)
+        {
+            _itemsArray = [array copy];
+        }
+        self.loading = NO;
+        [self updateUI];
+        [self.tableView reloadData];
+        if(completion)
+        {
+            completion(array,err);
+        }
+    }];
+
 }
 
 -(void) selectEnityAtIndex:(NSInteger)index
@@ -227,12 +257,12 @@
  
     cell.iTunesEntity = iTunesEntity;
     cell.userCountry = [self.delegate entitiesDatasources].userCountry;
-    if(self.itemsFounded || self.loadWithArtistId)
+    if(_loadState == kITPLoadStateRanking)
     {
-        cell.positionLabel.text = @"";
+        cell.positionLabel.text = [NSString stringWithFormat:@"%d",iTunesEntity.order+1];
     }
     else{
-        cell.positionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
+        cell.positionLabel.text = @"";
     }
     cell.detailButton.hidden = ![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)];
     
@@ -246,8 +276,7 @@
     ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNone;
     if(self.filterCountry)
     {
-        BOOL exists = [((NSNumber*)[self.existsItemsInUserCountry objectAtIndex:indexPath.row]) boolValue];
-        if(self.existsItemsInUserCountry.count == [self ds].count && !exists)
+        if(((ACKITunesEntity*)[self.ds objectAtIndex:indexPath.row]).existInUserCountry)
         {
             ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNotInTunesUserCountry;
         }
@@ -271,8 +300,7 @@
     }
     if (indexPath.row < self.ds.count) {
         ACKITunesEntity* entity = self.ds[indexPath.row];
-        BOOL exists = [((NSNumber*)[self.existsItemsInUserCountry objectAtIndex:indexPath.row]) boolValue];
-        if(exists && ![self.country isEqual:[self.delegate entitiesDatasources].userCountry])
+        if(entity.existInUserCountry && ![self.country isEqual:[self.delegate entitiesDatasources].userCountry])
         {
             self.tableView.userInteractionEnabled = NO;
             [self.query loadEntity:entity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry completionBlock:^(ACKITunesEntity *userCountryEntity, NSError *err) {
@@ -317,19 +345,21 @@
     NSString* text = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if(text.length > 0)
     {
-        [self setLoading:YES];
+        self.loading = YES;
+        _loadState = kITPLoadStateSearchTerms;
         tITunesMediaEntityType mediaEntityType = [self.delegate getSearchITunesMediaEntityType];
         NSInteger limit = [self.delegate entitiesDatasources].limit;
+        self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
         [self.query searchEntitiesForTerms:text inITunesStoreCountry:self.country withMediaType:mediaEntityType withAttribute:nil limit:limit completionBlock:^(NSArray *array, NSError *err) {
             if(!err)
             {
-                _itemsFounded = array;
+                _itemsArray = array;
             }
             else{
-                _itemsFounded = nil;
+                _itemsArray = nil;
             }
             [self.tableView reloadData];
-            [self setLoading:NO];
+            self.loading = NO;
         }];
     }
     [self.searchBar resignFirstResponder];
@@ -340,7 +370,8 @@
     NSString* text = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if(text.length == 0)
     {
-        _itemsFounded = nil;
+        _itemsArray = nil;
+        _loadState = kITPLoadStateRanking;
     }
     [self.tableView setUserInteractionEnabled:YES];
     [self.tableView reloadData];
@@ -367,9 +398,9 @@
 
 -(NSArray*)ds
 {
-    if(self.itemsFounded)
+    if(self.itemsArray)
     {
-       return self.itemsFounded;
+       return self.itemsArray;
     }
     return [[self.delegate entitiesDatasources]getDatasourceAtIndex:[self pickerIndex]];
 }
@@ -382,11 +413,11 @@
 -(void)setLoading:(BOOL)loading
 {
     _loading = loading;
-    if(![self.delegate respondsToSelector:@selector(showLoadingHUD:)])
+    if(![self.delegate respondsToSelector:@selector(showLoadingHUD:sender:)])
     {
         return;
     }
-    [self.delegate showLoadingHUD:loading];
+    [self.delegate showLoadingHUD:loading sender:self];
 }
 
 -(void) updateUI
@@ -408,7 +439,7 @@
     
     self.searchBar.hidden = ![self.delegate respondsToSelector:@selector(getSearchITunesMediaEntityType)];
     
-    if(self.loadWithArtistId)
+    if(_loadState == kITPLoadStateArtist)
     {
         self.searchBar.hidden = YES;
         UIView *headerView = [[UIView alloc] initWithFrame:self.searchBar.bounds];
@@ -422,27 +453,13 @@
             self.tableView.tableHeaderView = headerView;
         }
     }
+    if(_loadState == kITPLoadStateExternalEntities)
+    {
+        self.bottomViewHeightLayoutConstraint.constant = 0;
+        self.tableView.tableHeaderView = nil;
+        [self.view setNeedsUpdateConstraints];
+    }
 }
 
--(void) loadExistEntitiesInUserCountry:(ACKArrayResultBlock)completion
-{
-    self.loading = YES;
-    
-    tITunesEntityType entityType = [self.delegate entitiesDatasources].entityType;
-    [self.query existsEntities:self.ds inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry withType:entityType completionBlock:^(NSArray *array, NSError *err) {
-        if(!err)
-        {
-            _existsItemsInUserCountry = array;
-        }
-        
-        self.loading = NO;
-        
-        [self updateUI];
-        if(completion)
-        {
-            completion(array,err);
-        }
-    }];
-}
 
 @end

@@ -77,7 +77,7 @@
     
     self.pageControl.numberOfPages = 2;
     self.pageControl.currentPage = 0;
-    [self.purchaseButton setTitle:NSLocalizedString(@"itppicker.detail.app.button.purchase",nil) forState:UIControlStateNormal];    
+    [self.purchaseButton setTitle:NSLocalizedString(@"itppicker.detail.app.button.purchase",nil) forState:UIControlStateNormal];   
 
     UIImage *starsImage = [UIImage imageNamed:@"stars.png"];
     UIGraphicsBeginImageContextWithOptions(self.starImageView.frame.size, NO, 0);

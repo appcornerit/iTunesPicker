@@ -11,6 +11,7 @@
 
 @interface ACKITunesQuery : NSObject
 
+@property(nonatomic, strong) NSString* userCountry; //assign ISO country code to load existInUserCountry in ACKITunesEntity
 @property(nonatomic, assign, readonly) BOOL isLoading; //use KVO to handle a loading HUD
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicyLoadEntity;
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicyExistsEntity;
@@ -38,6 +39,7 @@
 -(void) existsEntities:(NSArray *)entities inITunesStoreCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion;
 
 -(void) loadEntity:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country completionBlock:(ACKEntityResultBlock)completion;
+-(void) loadEntities:(NSArray*)entities inITunesStoreCountry:(NSString*)country completionBlock:(ACKArrayResultBlock)completion;
 
 -(void) openEntity:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country isGift:(BOOL)gift completionBlock:(ACKBooleanResultBlock)completion;
 

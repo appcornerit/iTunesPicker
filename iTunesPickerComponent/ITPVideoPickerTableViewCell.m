@@ -15,7 +15,7 @@
 - (void)setITunesEntity:(ACKITunesEntity *)ent
 {
     _iTunesEntity = ent;
-    ACKTrackMovie* movieObject = (ACKTrackMovie*)ent;
+    ACKTrackMovie* movieObject = (ACKTrackMovie*)ent; 
     self.trackNameLabel.text = movieObject.trackName;
     if(movieObject.collectionName)
     {
