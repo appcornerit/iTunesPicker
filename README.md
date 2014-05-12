@@ -46,7 +46,7 @@ iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communicati
 
 #### Project Status
 iTunesPicker works with **apps**, songs, albums and movies, I'm developing the missing iTunes items, open an issue for other types you need to support.
-In the next step I will add rankings's trends (up/down arrows) for each item, and add this repo to the cocoapods repo list.
+In the next step I will add rankings's trends (up/down arrows) for each item and "best deal" function to see "price drop" list (thanks to Nam for your suggestion).
 
 I'd love to have your contribution to iTunesPicker. There are several ways to contribute:
 
