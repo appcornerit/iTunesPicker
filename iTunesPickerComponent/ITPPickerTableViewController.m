@@ -276,7 +276,7 @@
     ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNone;
     if(self.filterCountry)
     {
-        if(((ACKITunesEntity*)[self.ds objectAtIndex:indexPath.row]).existInUserCountry)
+        if(!((ACKITunesEntity*)[self.ds objectAtIndex:indexPath.row]).existInUserCountry)
         {
             ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNotInTunesUserCountry;
         }
