@@ -50,8 +50,13 @@ In the next step I will add rankings's trends (up/down arrows) for each item, an
 
 I'd love to have your contribution to iTunesPicker. There are several ways to contribute:
 
+- Translation in other languages
 - Build an interface for iPad 
 - Suggest new features
-- Let me know if you include the picker in your app
 
 Work in progress, stay tuned!
+
+####Publish on AppStore
+iTunesPicker is not published on the AppStore (at least by appcorner.it), you're free to publish this version "as is" on App Store (with quote of this repository in the app description) or with your changes. 
+The app "as is" could not pass the approval rules of AppStore, for rule 8.1 cannot contain "iTunes" in the app name, for rule 2.25 you should remove apps ranking or insert in your app's description a disclaimer like "This application is for entertainment only and is not affiliated with iTunes. iTunes is a trademarks of Apple Inc" (thanks to Nam for your suggestion). Let me know if you include the picker in your app.
+ 
