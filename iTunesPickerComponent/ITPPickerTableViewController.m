@@ -10,12 +10,13 @@
 #import "ITPAppPickerTableViewCell.h"
 #import "ITPAudioPickerTableViewCell.h"
 #import "ITPVideoPickerTableViewCell.h"
+#import "ITPBookPickerTableViewCell.h"
 
 @interface ITPPickerTableViewController() <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
     @property (nonatomic,readonly) NSArray* ds;
     @property (nonatomic,assign) NSInteger indexSelected;
     @property (nonatomic,strong) ACKITunesQuery* query;
-    @property (nonatomic,assign) BOOL filterCountry;
+    @property (nonatomic,assign) BOOL highlightCells;
     @property (nonatomic,assign) NSUInteger chartType;
     @property (nonatomic,assign) NSUInteger genreType;
     @property (nonatomic,assign) BOOL mustScrollContent;
@@ -26,7 +27,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.indexSelected = NSNotFound;
-        self.filterCountry = YES;
+        self.highlightCells = YES;
         self.query = [[ACKITunesQuery alloc]init];
         self.query.cachePolicyChart = NSURLRequestUseProtocolCachePolicy;
         self.query.cachePolicyLoadEntity = NSURLRequestUseProtocolCachePolicy;
@@ -75,7 +76,7 @@
     {
        return;
     }
-    self.filterCountry = !self.filterCountry;
+    self.highlightCells = !self.highlightCells;
     [self.tableView reloadData];
 }
 
@@ -86,7 +87,7 @@
     self.chartType = type;
     self.genreType = genre;
     self.loading = YES;
-    self.filterCountry = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
+    self.highlightCells = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
     
     _loadState = kITPLoadStateRanking;
     
@@ -131,9 +132,12 @@
     {
         [self.query loadMovieChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
     }
+    else if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeEBook)
+    {
+        [self.query loadBookChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
+    }
     else
     {
-        //TODO: default to remove on completion
         [self.query loadAppChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
     }
 }
@@ -141,7 +145,7 @@
 -(void) loadEntitiesForArtistId:(NSString *)artistId inITunesCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion
 {
     self.loading = YES;
-    self.filterCountry = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
+    self.highlightCells = ![country isEqualToString:[self.delegate entitiesDatasources].userCountry];
     
     _itemsArray = nil;
     _country = country;
@@ -171,14 +175,14 @@
     }];
 }
 
--(void)showEntities:(NSArray*)array completionBlock:(ACKArrayResultBlock)completion
+-(void)showEntities:(NSArray*)array keepEntitiesNotInCountry:(BOOL)keepEntitiesNotInCountry highlightCells:(BOOL)highlightCells completionBlock:(ACKArrayResultBlock)completion
 {
-    self.filterCountry = NO;
+    self.highlightCells = highlightCells;
     self.loading = YES;
     
     _loadState = kITPLoadStateExternalEntities;
     self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
-    [self.query loadEntities:array inITunesStoreCountry:self.delegate.entitiesDatasources.userCountry completionBlock:^(NSArray *array, NSError *err) {
+    [self.query loadEntities:array inITunesStoreCountry:self.delegate.entitiesDatasources.userCountry keepEntitiesNotInCountry:keepEntitiesNotInCountry completionBlock:^(NSArray *array, NSError *err) {
         if(!err)
         {
             _itemsArray = [array copy];
@@ -250,6 +254,15 @@
         }
         ((ITPVideoPickerTableViewCell *)cell).rent = self.chartType == kITunesMovieChartTypeTopVideoRentals;
     }
+    //book
+    else if (iTunesEntity.iTunesEntityType == kITunesEntityTypeEBook) {
+        NSString *CellIdentifier = @"ITPBookPickerTableViewCell";
+        cell = (ITPBookPickerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil]objectAtIndex:0];
+        }
+    }
     else
     {
         return cell;
@@ -259,7 +272,7 @@
     cell.userCountry = [self.delegate entitiesDatasources].userCountry;
     if(_loadState == kITPLoadStateRanking)
     {
-        cell.positionLabel.text = [NSString stringWithFormat:@"%d",iTunesEntity.order+1];
+        cell.positionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     }
     else{
         cell.positionLabel.text = @"";
@@ -274,7 +287,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNone;
-    if(self.filterCountry)
+    if(self.highlightCells)
     {
         if(!((ACKITunesEntity*)[self.ds objectAtIndex:indexPath.row]).existInUserCountry)
         {

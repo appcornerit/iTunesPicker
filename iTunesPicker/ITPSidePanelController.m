@@ -91,10 +91,16 @@
     return [((ITPViewController*)self.centerPanel) toggleMenuPanel:menuFilterPanel];
 }
 
--(void)openMergedView
+-(void)openDiscoverView
 {
     [self showCenterPanelAnimated:YES];
-    return [((ITPViewController*)self.centerPanel) openMergedView];
+    return [((ITPViewController*)self.centerPanel) openDiscoverView];
+}
+
+-(void)openGlobalRankingView
+{
+    [self showCenterPanelAnimated:YES];
+    return [((ITPViewController*)self.centerPanel) openGlobalRankingView];
 }
 
 @end

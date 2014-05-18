@@ -10,11 +10,16 @@
 "viewer.button.close"="Chiudi";
 
 //right menu
+"menu.section.types"="Tipi";
+"menu.section.settings"="Impostazioni";
 "menu.selectcountries"="Aggiungi nazioni";
 "menu.changeusercountry"="Modifica la tua nazione";
 
 //left menu
-"menu.mergedview" = "Scopri";
+"menu.section.filters"="Filtri";
+"menu.section.views"="Viste di sintesi";
+"menu.discoverview" = "Scopri";
+"menu.globalrankingview" = "Classifica globale";
 
 //App
 "topfreeapplications"="Top Gratuite";
@@ -155,3 +160,32 @@
 "4419"="Urban";
 "4418"="Western";
 
+//Book
+"topfreeebooks"="Top Gratuiti";
+"toppaidebooks"="Top Acquistati";
+
+"0000"="Tutti i generi";
+"9007"="Arte e intrattenimento";
+"9008"="Biografie e memorie";
+"9009"="Affari e finanze personali";
+"9010"="Bambini e ragazzi";
+"9026"="Comics e narrattiva a fumetti";
+"9027"="Computers e internet";
+"9028"="Cucina, gastronomia e vini";
+"9031"="Fiction e letteratura";
+"9025"="Salute fisica e mentale";
+"9015"="Storia";
+"9012"="Commedia";
+"9024"="Mode, tendenze e casa";
+"9032"="Misteri e gialli";
+"9002"="Non-fiction";
+"9030"="Educazione dei figli";
+"9034"="Politica e attualità";
+"9029"="Argomenti professionali/tecnici";
+"9033"="Riferimento";
+"9018"="Religione e spiritualità";
+"9003"="Romanzi rosa";
+"9020"="Fantascienza e fantasy";
+"9019"="Scienza e natura";
+"9035"="Sport e vita all'aperto";
+"9004"="Viaggi e avventura";

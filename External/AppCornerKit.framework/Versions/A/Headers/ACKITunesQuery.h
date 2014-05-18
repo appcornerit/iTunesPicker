@@ -21,6 +21,7 @@
 +(NSArray*) getITunesStoreCountries;
 +(NSArray*) getITunesEntityType;
 +(NSArray*) getITunesMediaEntityType;
+
 //App
 +(NSArray*) getAppChartType;
 +(NSArray*) getAppGenreType;
@@ -30,6 +31,9 @@
 //Movie
 +(NSArray*) getMovieChartType;
 +(NSArray*) getMovieGenreType;
+//Book
++(NSArray*) getBookChartType;
++(NSArray*) getBookGenreType;
 
 +(void) getITunesStoreCountryUserAccountByProductId:(NSString*)inAppPurchaseProductId completionBlock:(ACKStringResultBlock)completion;
 
@@ -39,7 +43,7 @@
 -(void) existsEntities:(NSArray *)entities inITunesStoreCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion;
 
 -(void) loadEntity:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country completionBlock:(ACKEntityResultBlock)completion;
--(void) loadEntities:(NSArray*)entities inITunesStoreCountry:(NSString*)country completionBlock:(ACKArrayResultBlock)completion;
+-(void) loadEntities:(NSArray*)entities inITunesStoreCountry:(NSString*)country keepEntitiesNotInCountry:(BOOL)keepEntitiesNotInCountry completionBlock:(ACKArrayResultBlock)completion;
 
 -(void) openEntity:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country isGift:(BOOL)gift completionBlock:(ACKBooleanResultBlock)completion;
 
@@ -51,4 +55,6 @@
 -(void) loadMusicChartInITunesStoreCountry:(NSString*)country withType:(tITunesMusicChartType)type withGenre:(tITunesMusicGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 //Movie
 -(void) loadMovieChartInITunesStoreCountry:(NSString*)country withType:(tITunesMovieChartType)type withGenre:(tITunesMovieGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
+//Book
+-(void) loadBookChartInITunesStoreCountry:(NSString*)country withType:(tITunesBookChartType)type withGenre:(tITunesBookGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 @end

@@ -16,7 +16,33 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return 3;
+    switch (section) {
+        case 0:
+            return 2;
+        default:
+            return 2;
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return NSLocalizedString(@"menu.section.filters", nil);
+        default:
+            return NSLocalizedString(@"menu.section.views", nil);
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
+        UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
+        tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentCenter;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -32,20 +58,31 @@
     cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     cell.imageView.image = nil;
-    
-    switch (indexPath.row) {
+
+    switch (indexPath.section) {
         case 0:
-            cell.textLabel.text = [self.delegate getSelectedFilterLabel:kITPMenuFilterPanelRanking];
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = [self.delegate getSelectedFilterLabel:kITPMenuFilterPanelRanking];
+                    break;
+                case 1:
+                    cell.textLabel.text = [self.delegate getSelectedFilterLabel:kITPMenuFilterPanelGenre];
+                    break;
+            }
             break;
         case 1:
-            cell.textLabel.text = [self.delegate getSelectedFilterLabel:kITPMenuFilterPanelGenre];
-            break;
-        case 2:
-            cell.textLabel.text = NSLocalizedString(@"menu.mergedview", nil);
-            break;
-//        case :
-//            cell.textLabel.text = NSLocalizedString(@"menu.pricedrop", nil);
-//            break;
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = NSLocalizedString(@"menu.discoverview", nil);
+                    break;
+                case 1:
+                    cell.textLabel.text = NSLocalizedString(@"menu.globalrankingview", nil);
+                    break;
+//                case :
+//                    cell.textLabel.text = NSLocalizedString(@"menu.pricedrop", nil);
+//                    break;
+            }
+            break;            
     }
     
     return cell;
@@ -55,18 +92,29 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
-            [self.delegate toggleMenuPanel:kITPMenuFilterPanelRanking];
+            switch (indexPath.row) {
+                case 0:
+                    [self.delegate toggleMenuPanel:kITPMenuFilterPanelRanking];
+                    break;
+                case 1:
+                    [self.delegate toggleMenuPanel:kITPMenuFilterPanelGenre];
+                    break;
+            }
             break;
         case 1:
-            [self.delegate toggleMenuPanel:kITPMenuFilterPanelGenre];
+            switch (indexPath.row) {
+                case 0:
+                    [self.delegate openDiscoverView];
+                    break;
+                case 1:
+                    [self.delegate openGlobalRankingView];
+                    break;
+//                case :
+//                    break;
+            }
             break;
-        case 2:
-            [self.delegate openMergedView];
-            break;
-//        case :
-//            break;
     }
 }
 

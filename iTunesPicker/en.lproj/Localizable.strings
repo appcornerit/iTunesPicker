@@ -10,11 +10,16 @@
 "viewer.button.close"="Close";
 
 //right menu
+"menu.section.types"="Types";
+"menu.section.settings"="Settings";
 "menu.selectcountries"="Add countries";
 "menu.changeusercountry"="Change your country";
 
 //left menu
-"menu.mergedview" = "Discover";
+"menu.section.filters"="Filters";
+"menu.section.views"="Summary views";
+"menu.discoverview" = "Discover";
+"menu.globalrankingview" = "Global ranking";
 
 //App
 "topfreeapplications"="Top Free Apps";
@@ -156,4 +161,33 @@
 "4419"="Urban";
 "4418"="Western";
 
+//Book
+"topfreeebooks"="Top Free Books";
+"toppaidebooks"="Top Paid Books";
+
+"0000"="All Genres";
+"9007"="Arts & Entertainment";
+"9008"="Biographies & Memoirs";
+"9009"="Business & Personal Finance";
+"9010"="Children & Teens";
+"9026"="Comics & Graphic Novels";
+"9027"="Computers & Internet";
+"9028"="Cookbooks, Food & Wine";
+"9031"="Fiction & Literature";
+"9025"="Health, Mind & Body";
+"9015"="History";
+"9012"="Humor";
+"9024"="Lifestyle & Home";
+"9032"="Mysteries & Thrillers";
+"9002"="Nonfiction";
+"9030"="Parenting";
+"9034"="Politics & Current Events";
+"9029"="Professional & Technical";
+"9033"="Reference";
+"9018"="Religion & Spirituality";
+"9003"="Romance";
+"9020"="Sci-Fi & Fantasy";
+"9019"="Science & Nature";
+"9035"="Sports & Outdoors";
+"9004"="Travel & Adventure";
 

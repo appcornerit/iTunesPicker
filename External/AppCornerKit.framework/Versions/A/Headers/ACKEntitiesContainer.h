@@ -34,4 +34,6 @@
                             excludeNotInITunesUserCountry:(BOOL)excludeNotInITunesUserCountry
                             excludeInUserCountry:(BOOL)excludeInUserCountry;
 
+-(NSArray*)orderByCalculatedGlobalRanking:(NSArray*)array;
+
 @end

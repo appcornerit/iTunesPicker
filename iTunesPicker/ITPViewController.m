@@ -14,8 +14,9 @@
 
 #import "SVProgressHUD.h"
 
-#define firstLoadDefaultEntityType kITunesEntityTypeSoftware; //default type on first open
-#define maxOpenedPickers 20; //limit to max countries loaded on device, high value are network expensive and cause memory crash (not applied on simulator)
+#define firstLoadDefaultEntityType kITunesEntityTypeSoftware //default type on first open
+#define maxOpenedPickers 20 //limit to max countries loaded on device, high value are network expensive and cause memory crash (not applied on simulator)
+#define firstLoadCountriesPickers @[@"US",@"GB",@"JP",@"AU"] //default countries to show on first load
 
 @interface ITPViewController () <SwipeViewDataSource, SwipeViewDelegate, ITPMenuTableViewDelegate, ADBannerViewDelegate>
 {
@@ -39,6 +40,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(!IAD_BANNER_ENABLE)
+    {
+        [self.bannerView removeFromSuperview];
+    }
+    
     maxRecordToLoadForCountry = kITunesMaxLimitLoadEntities; //max iTunes API records
     
     pickersLoading = NO;
@@ -56,11 +62,14 @@
     
     if(firstLoad)
     {
-        firstLoad = NO;
         [self loadPickerState];
         if(!self.entitiesDatasources)
         {
             [self openUserCountryPicker];
+        }
+        else
+        {
+            firstLoad = NO;
         }
     }
 }
@@ -139,7 +148,8 @@
                                                                                           allCountries:[ACKITunesQuery getITunesStoreCountries]
                                                                                      selectedCountries:[[NSSet alloc]initWithArray:[self.entitiesDatasources getAllCountries]]
                                                                                            userCountry:self.entitiesDatasources.userCountry
-                                                                                           multiSelect:YES];
+                                                                                           multiSelect:YES
+                                                                                               isModal:NO];
     vc.countriesSelectionLimit = maxOpenedPickers;
     vc.completionBlock = ^(NSArray *countries){
         NSArray* allPickerCountries = [[self.entitiesDatasources getAllCountries] copy];
@@ -162,7 +172,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)openMergedView
+- (void)openDiscoverView
 {
     [self closeAllPanelsExcept:nil];
     ITPPickerTableViewController* pickerTableView = [[ITPPickerTableViewController alloc]initWithNibName:nil bundle:nil];
@@ -170,16 +180,31 @@
     NSArray* data = [self.entitiesDatasources mergeEntitiesInCountriesExcludeDuplicate:YES
                                                                   excludeNotInITunesUserCountry:YES
                                                                            excludeInUserCountry:YES];
-    [pickerTableView showEntities:data completionBlock:nil];
+    [pickerTableView showEntities:data keepEntitiesNotInCountry:NO highlightCells:NO completionBlock:nil];
     [self.navigationController pushViewController:pickerTableView animated:YES];
 }
+
+- (void)openGlobalRankingView
+{
+    [self closeAllPanelsExcept:nil];
+    ITPPickerTableViewController* pickerTableView = [[ITPPickerTableViewController alloc]initWithNibName:nil bundle:nil];
+    pickerTableView.delegate = self;
+    NSArray* data = [self.entitiesDatasources mergeEntitiesInCountriesExcludeDuplicate:YES
+                                                         excludeNotInITunesUserCountry:NO
+                                                                  excludeInUserCountry:NO];
+    data = [self.entitiesDatasources orderByCalculatedGlobalRanking:data];
+    [pickerTableView showEntities:data keepEntitiesNotInCountry:YES highlightCells:YES completionBlock:nil];
+    [self.navigationController pushViewController:pickerTableView animated:YES];
+}
+
 
 - (void)openUserCountryPicker {
     ITPCountryItemChartsViewController *vc = [[ITPCountryItemChartsViewController alloc] initWithStyle:UITableViewStylePlain
                                                                                           allCountries:[ACKITunesQuery getITunesStoreCountries]
                                                                                      selectedCountries:nil
                                                                                            userCountry:[NSLocale preferredLanguages][0]
-                                                                                       multiSelect:NO];
+                                                                                           multiSelect:NO
+                                                                                              isModal:!firstLoad];
     
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
     vc.navigationItem.title=NSLocalizedString(@"Select your iTunes Country",nil);
@@ -199,8 +224,22 @@
         [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
         
         [self addPickerTableViewForCountry:countries[0]];
+        if(firstLoad)
+        {
+            for (NSString* firstLoadCountry in firstLoadCountriesPickers) {
+                if(![firstLoadCountry isEqualToString:countries[0]] && [[ACKITunesQuery getITunesStoreCountries] containsObject:firstLoadCountry])
+                {
+                    [self addPickerTableViewForCountry:firstLoadCountry];
+                }
+            }
+        }
+        
         [self saveStatePickerApps];
         [_swipeView reloadData];
+        if(firstLoad)
+        {
+            firstLoad = NO;
+        }
     };
     
     [self presentViewController:navigation animated:YES completion:nil];
@@ -278,6 +317,10 @@
   else if(self.entitiesDatasources.entityType == kITunesEntityTypeMovie)
   {
       return kITunesMediaEntityTypeMovie;
+  }
+  else if(self.entitiesDatasources.entityType == kITunesEntityTypeEBook)
+  {
+      return kITunesMediaEntityTypeEBook;
   }
   return kITunesMediaEntityTypeSoftware;  //default
 }
@@ -428,9 +471,13 @@
         rankingItems = [ACKITunesQuery getMovieChartType];
         genreItems = [ACKITunesQuery getMovieGenreType];
     }
+    else if(self.entitiesDatasources.entityType == kITunesEntityTypeEBook)
+    {
+        rankingItems = [ACKITunesQuery getBookChartType];
+        genreItems = [ACKITunesQuery getBookGenreType];
+    }
     else
     {
-        //TODO: remove default app on completion
         rankingItems= [ACKITunesQuery getAppChartType];
         genreItems = [ACKITunesQuery getAppGenreType];
     }

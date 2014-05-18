@@ -56,7 +56,6 @@
     self.priceLabel.text = [NSString stringWithFormat:@"SD %@ / HD %@", [formatter stringFromNumber:priceSDNumber],[formatter stringFromNumber:priceHDNumber]];
     
     //movie is DRM protected video file, I can't show the preview in app.
-    self.genreLabel.text = movieObject.primaryGenreName;
     self.coverImageView.showActivityIndicator = YES;
     self.coverImageView.entity = movieObject;
 }

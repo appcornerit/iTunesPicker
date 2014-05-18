@@ -29,11 +29,12 @@ static NSString *CellIdentifier = @"CountryCell";
     
     BOOL chartMode;
     BOOL multiSelect;
+    BOOL isModal;
     ACKITunesEntity* item;
 }
 
 
-- (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)aCountries selectedCountries:(NSSet*)sCountries userCountry:(NSString*)uCountry multiSelect:(BOOL)mSelect
+- (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)aCountries selectedCountries:(NSSet*)sCountries userCountry:(NSString*)uCountry multiSelect:(BOOL)mSelect isModal:(BOOL)modal
 {
     if (self = [super initWithStyle:style]) {
         allCountries = aCountries;
@@ -42,6 +43,7 @@ static NSString *CellIdentifier = @"CountryCell";
         userCountry = uCountry;
         chartMode = NO;
         multiSelect = mSelect;
+        isModal = modal;
     }
     return self;
 }
@@ -54,6 +56,7 @@ static NSString *CellIdentifier = @"CountryCell";
         item = i;
         chartMode = YES;
         self.tableView.allowsSelection = NO;
+        isModal = NO;
     }
     return self;
 }
@@ -93,6 +96,14 @@ static NSString *CellIdentifier = @"CountryCell";
                                    target:self
                                    action:@selector(doneAction:)];
         self.navigationItem.rightBarButtonItem = doneButton;
+    }
+    else if(isModal)
+    {
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                       target:self
+                                       action:@selector(cancelAction:)];
+        self.navigationItem.leftBarButtonItem = cancelButton;
     }
     
     NSLocale *locale = [NSLocale currentLocale];
@@ -360,6 +371,10 @@ static NSString *CellIdentifier = @"CountryCell";
     }
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)cancelAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

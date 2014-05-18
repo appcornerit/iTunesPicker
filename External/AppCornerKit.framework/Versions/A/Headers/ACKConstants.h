@@ -191,3 +191,39 @@ typedef enum {
     kITunesMovieGenreTypeUrban,
     kITunesMovieGenreTypeWestern
 } tITunesMovieGenreType;
+
+//Book
+
+typedef enum {
+    kITunesBookChartTypeTopFree = 0,
+    kITunesBookChartTypeTopPaid
+} tITunesBookChartType;
+
+typedef enum {
+    kITunesBookGenreTypeAll = 0,
+    kITunesBookGenreTypeArtsEntertainment,
+    kITunesBookGenreTypeBiographiesMemoirs,
+    kITunesBookGenreTypeBusinessPersonalFinance,
+    kITunesBookGenreTypeChildrenTeens,
+    kITunesBookGenreTypeComicsGraphicNovels,
+    kITunesBookGenreTypeComputersInternet,
+    kITunesBookGenreTypeCookbooksFoodWine,
+    kITunesBookGenreTypeFictionLiterature,
+    kITunesBookGenreTypeHealthMindBody,
+    kITunesBookGenreTypeHistory,
+    kITunesBookGenreTypeHumor,
+    kITunesBookGenreTypeLifestyleHome,
+    kITunesBookGenreTypeMysteriesThrillers,
+    kITunesBookGenreTypeNonfiction,
+    kITunesBookGenreTypeParenting,
+    kITunesBookGenreTypePoliticsCurrentEvents,
+    kITunesBookGenreTypeProfessionalTechnical,
+    kITunesBookGenreTypeReference,
+    kITunesBookGenreTypeReligionSpirituality,
+    kITunesBookGenreTypeRomance,
+    kITunesBookGenreTypeSciFiFantasy,
+    kITunesBookGenreTypeScienceNature,
+    kITunesBookGenreTypeSportsOutdoors,
+    kITunesBookGenreTypeTravelAdventure
+} tITunesBookGenreType;
+

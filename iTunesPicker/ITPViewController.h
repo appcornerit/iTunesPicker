@@ -32,7 +32,8 @@ typedef enum {
 
 - (void)openUserCountryPicker;
 - (void)openCountriesPicker;
-- (void)openMergedView;
+- (void)openDiscoverView;
+- (void)openGlobalRankingView;
 - (void)reloadWithEntityType:(tITunesEntityType)entityType;
 - (void)toggleMenuPanel:(tITPMenuFilterPanel)menuFilterPanel;
 - (NSString*)getSelectedFilterLabel:(tITPMenuFilterPanel)menuFilterPanel;

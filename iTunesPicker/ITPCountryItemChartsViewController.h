@@ -13,7 +13,7 @@
 
 @interface ITPCountryItemChartsViewController : UITableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)allCountries selectedCountries:(NSSet*)selectedCountries userCountry:(NSString*) userCountry multiSelect:(BOOL)multiSelect;
+- (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)allCountries selectedCountries:(NSSet*)selectedCountries userCountry:(NSString*) userCountry multiSelect:(BOOL)multiSelect isModal:(BOOL)modal;
 - (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)allCountries indexCharts:(NSArray*)indexCharts item:(ACKITunesEntity*)item;
 
 @property (nonatomic, copy) void (^completionBlock)(NSArray *selectedCountries);

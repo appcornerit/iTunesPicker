@@ -22,6 +22,7 @@
 
 - (void)toggleMenuPanel:(tITPMenuFilterPanel)menuFilterPanel;
 -(NSString*)getSelectedFilterLabel:(tITPMenuFilterPanel)menuFilterPanel;
-- (void)openMergedView;
+-(void)openDiscoverView;
+-(void)openGlobalRankingView;
 
 @end
