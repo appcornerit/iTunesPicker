@@ -1,7 +1,7 @@
 iTunesPicker
 ============
 
-Discover, search and compare rankings for apps, books, movies and music **from iTunes in any available country**.
+A complete App to discover, search and compare rankings for apps, books, movies and music **from iTunes in any available country**.
 
 #### Why another picker?
 - iTunes charts are available only for your country, with iTunesPicker you can discover apps (and others items) in the world rankings and compare the position (top 200 is the iTunes API limit) for an app (book,movie,music) in the world rankings.
