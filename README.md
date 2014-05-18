@@ -59,8 +59,9 @@ Work in progress, stay tuned!
 ####Publish on AppStore
 iTunesPicker is not published on the AppStore by appcorner.it, you're free to publish this version "as is" on App Store (with quote of this repository in the app description) or with your changes.
 The app "as is" could not pass the approval rules of AppStore, for rule 8.1 cannot contain "iTunes" in the app name, for rule 2.25 you should remove apps ranking or insert in your app's description a disclaimer like "This application is for entertainment only and is not affiliated with iTunes. iTunes is a trademarks of Apple Inc" (thanks to Nam for your suggestion).
+
 To enable iAd set on iTunesPicker-Prefix.pch
 ```objc
 #define IAD_BANNER_ENABLE 1
 ```
-Let me know if you include the picker in your app.
+**Let me know if you include the picker in your app.**
