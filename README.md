@@ -37,6 +37,7 @@ iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communicati
 
 **Author**: Denis Berton [@DenisBerton](https://twitter.com/DenisBerton)
 
+[![Demo iTunesPicker](http://img.youtube.com/vi/rpfFmVLQiGI/0.jpg)](https://www.youtube.com/watch?v=rpfFmVLQiGI)
 ![Alt text](preview/songs.png "Preview songs picker list") 
 ![Alt text](preview/apps.png "Preview apps picker list") 
 ![Alt text](preview/appdetail.png "Preview app picker detail") 
