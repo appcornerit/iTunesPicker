@@ -15,11 +15,31 @@
 "menu.selectcountries"="Add countries";
 "menu.changeusercountry"="Change your country";
 
+"type_1"="Music";
+"type_2"="Movies";
+"type_3"="Video Music";
+"type_4"="TV Show";
+"type_5"="Audiobooks";
+"type_6"="E-books";
+"type_7"="Podcast";
+"type_8"="Short film";
+"type_9"="Apps";
+
 //left menu
-"menu.section.filters"="Filters";
+"menu.section.filters"="Charts";
 "menu.section.views"="Summary views";
 "menu.discoverview" = "Discover";
 "menu.globalrankingview" = "Global ranking";
+
+//countries picker
+"countries.picker.title" = "Select your iTunes country";
+
+//errors
+"error_title_item_not_in_user_country"="Error open iTunes Store";
+"error_message_item_not_in_user_country"="The selected item is not available in your country.";
+
+//buttons
+"button_cancel"="Cancel";
 
 //App
 "topfreeapplications"="Top Free Apps";

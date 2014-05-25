@@ -77,7 +77,8 @@
     
     self.pageControl.numberOfPages = 2;
     self.pageControl.currentPage = 0;
-    [self.purchaseButton setTitle:NSLocalizedString(@"itppicker.detail.app.button.purchase",nil) forState:UIControlStateNormal];   
+    [self.purchaseButton setTitle:NSLocalizedString(@"itppicker.detail.app.button.purchase",nil) forState:UIControlStateNormal];
+    self.purchaseButton.plusIconVisible = [self.appObject isUniversal];
 
     UIImage *starsImage = [UIImage imageNamed:@"stars.png"];
     UIGraphicsBeginImageContextWithOptions(self.starImageView.frame.size, NO, 0);
@@ -146,7 +147,7 @@
     [query openEntity:self.appObject inITunesStoreCountry:self.delegate.entitiesDatasources.userCountry isGift:NO completionBlock:^(BOOL succeeded, NSError *err) {
         if(!succeeded || err)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error open iTunes Store",nil) message:NSLocalizedString(@"The selected item not exits in your country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Cancel",nil), nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error_title_item_not_in_user_country",nil) message:NSLocalizedString(@"error_message_item_not_in_user_country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"button_cancel",nil), nil];
             [alert show]; 
         }
     }];

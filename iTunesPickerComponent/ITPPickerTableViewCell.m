@@ -8,6 +8,9 @@
 
 #import "ITPPickerTableViewCell.h"
 
+#define kColorEntityInUserCountryChart [UIColor colorWithRed:76.0/255.0 green:217.0/255.0 blue:100.0/255.0 alpha:0.5]
+#define kColorEntityNotInTunesUserCountry [UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:147.0/255.0 alpha:0.5]
+
 @implementation ITPPickerTableViewCell
 
 - (void) awakeFromNib
@@ -28,7 +31,11 @@
 
 -(void) initCell
 {
-    
+    //external view
+    self.positionBadge.widthMode = LKBadgeViewWidthModeSmall;
+    self.positionBadge.textColor = [UIColor whiteColor];
+    self.positionBadge.badgeColor = [UIColor redColor];
+    self.positionBadge.horizontalAlignment = LKBadgeViewHorizontalAlignmentRight;
 }
 
 #pragma mark Action
@@ -56,7 +63,7 @@
         [query openEntity:self.iTunesEntity inITunesStoreCountry:self.userCountry isGift:NO completionBlock:^(BOOL succeeded, NSError *err) {
             if(!succeeded || err)
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error open iTunes Store",nil) message:NSLocalizedString(@"The selected item not exits in your country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Cancel",nil), nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error_title_item_not_in_user_country",nil) message:NSLocalizedString(@"error_message_item_not_in_user_country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"button_cancel",nil), nil];
                 [alert show];
             }
         }];
@@ -73,13 +80,13 @@
             }
             break;
         case kITunesEntityStateInUserCountryChart:
-            self.backgroundColor = [UIColor colorWithRed:76.0/255.0 green:217.0/255.0 blue:100.0/255.0 alpha:0.5];
+            self.backgroundColor = kColorEntityInUserCountryChart;
             for (UILabel* label in self.labelViews) {
                 label.textColor = [UIColor whiteColor];
             }
             break;
         case kITunesEntityStateNotInTunesUserCountry:
-            self.backgroundColor = [UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:147.0/255.0 alpha:0.5];
+            self.backgroundColor = kColorEntityNotInTunesUserCountry;
             for (UILabel* label in self.labelViews) {
                 label.textColor = [UIColor whiteColor];
             }

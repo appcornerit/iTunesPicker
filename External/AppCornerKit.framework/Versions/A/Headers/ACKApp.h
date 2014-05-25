@@ -27,7 +27,6 @@
 @property (nonatomic,strong) NSArray* genreIds;
 @property (nonatomic,strong) NSDate* releaseDate;
 @property (nonatomic,strong) NSString* sellerName;
-@property (nonatomic,strong) NSString* bundleId;
 @property (nonatomic,strong) NSString* trackName;
 @property (nonatomic,strong) NSString* primaryGenreName;
 @property (nonatomic,strong) NSString* primaryGenreId;
@@ -43,5 +42,7 @@
 @property (nonatomic,strong) NSString* trackContentRating;
 @property (nonatomic,strong) NSNumber* averageUserRating;
 @property (nonatomic,strong) NSNumber* userRatingCount;
+
+-(BOOL) isUniversal;
 
 @end

@@ -26,6 +26,21 @@
     [super viewDidLoad];
     ((ITPSideRightMenuViewController*)self.rightPanel).delegate = self;
     ((ITPSideLeftMenuViewController*)self.leftPanel).delegate = self;
+    
+    UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    titleButton.frame = CGRectMake(0, 0, 90, 40);
+    titleButton.backgroundColor = [UIColor clearColor];
+    [titleButton setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [titleButton addTarget:self action:@selector(didTapTitleViewAction:) forControlEvents:UIControlEventTouchUpInside];
+    titleButton.hidden = YES;
+    self.navigationItem.titleView = titleButton;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateACKTypes:) name:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - super implemetation
@@ -41,6 +56,10 @@
     {
         [((ITPSideLeftMenuViewController*)self.leftPanel).tableView reloadData];
     }
+    if(self.state == JASidePanelRightVisible)
+    {
+        [((ITPSideRightMenuViewController*)self.rightPanel).tableView reloadData];
+    }
 }
 
 #pragma mark - Action
@@ -53,10 +72,17 @@
     [self toggleLeftPanel:sender];
 }
 
+-(void)didTapTitleViewAction:(id)sender
+{
+    [ACKITunesQuery cleanCacheExceptTypes:nil];
+    [((ITPViewController*)self.centerPanel) refreshAllPickers];
+}
+
 #pragma mark - ITPSideRightMenuViewControllerDelegate
 
 -(void)iTunesEntityTypeDidSelected:(tITunesEntityType)entityType
 {
+    [self updateTitleBarForEntityType:entityType];    
     [self showCenterPanelAnimated:YES];
     [((ITPViewController*)self.centerPanel) reloadWithEntityType:entityType];
 }
@@ -101,6 +127,23 @@
 {
     [self showCenterPanelAnimated:YES];
     return [((ITPViewController*)self.centerPanel) openGlobalRankingView];
+}
+
+#pragma mark - Notifications
+
+-(void)updateACKTypes:(NSNotification*)notification
+{
+  NSNumber* currentType = [notification.userInfo objectForKey:NOTIFICATION_PARAM_ENTITY_TYPE];
+  [self updateTitleBarForEntityType:[currentType integerValue]];
+}
+
+#pragma mark - private
+-(void) updateTitleBarForEntityType:(tITunesEntityType) entityType
+{
+    NSString* typeKey = [NSString stringWithFormat:@"type_%d",entityType];
+    UIButton* titleButton = ((UIButton*)self.navigationItem.titleView);
+    [titleButton setTitle:NSLocalizedString(typeKey,nil) forState:UIControlStateNormal];
+    titleButton.hidden = NO;
 }
 
 @end

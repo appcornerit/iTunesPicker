@@ -29,6 +29,14 @@
 //    [[DCIntrospect sharedIntrospector] start];
 #endif
     
+    NSArray *types = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_ACK_TYPES_KEY];
+    if(!types || !REMOTE_CONFIGURATION_ENABLE)
+    {
+        types = DEFAULT_ACK_TYPES;
+        [[NSUserDefaults standardUserDefaults] setObject:types forKey:DEFAULT_ACK_TYPES_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     return YES;
 }
 							
@@ -52,6 +60,12 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if(REMOTE_CONFIGURATION_ENABLE)
+    {
+        [[ACKITunesQuery new] loadRemoteConfigurationFromURL:[NSURL URLWithString:REMOTE_CONFIGURATION_SERVER_URL] success:^(NSDictionary *defaults) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES object:nil];
+        } failure:nil];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

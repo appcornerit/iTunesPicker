@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF28866819324ED30099DA00 /* AppCornerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF28866619324ED30099DA00 /* AppCornerKit.framework */; };
+		FF28866919324ED30099DA00 /* AppCornerKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF28866719324ED30099DA00 /* AppCornerKitResources.bundle */; };
+		FF28866C19324EEA0099DA00 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF28866B19324EEA0099DA00 /* SwipeView.m */; };
 		FF2E269418B2AA4000270C57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2E269318B2AA4000270C57 /* Foundation.framework */; };
 		FF2E269618B2AA4000270C57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2E269518B2AA4000270C57 /* CoreGraphics.framework */; };
 		FF2E269818B2AA4000270C57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2E269718B2AA4000270C57 /* UIKit.framework */; };
@@ -25,12 +28,12 @@
 		FF3A94BF18D6631E00479E98 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94BC18D6631E00479E98 /* SVProgressHUD.bundle */; };
 		FF3A94C118D6631E00479E98 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3A94BE18D6631E00479E98 /* SVProgressHUD.m */; };
 		FF3A94CA18DBA52E00479E98 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF3A94CD18DBA52E00479E98 /* Localizable.strings */; };
-		FF55685C192926DD00EBB7DD /* ITPBookPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF556859192926DD00EBB7DD /* ITPBookPickerTableViewCell.xib */; };
-		FF55685D192926DD00EBB7DD /* ITPBookPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF55685A192926DD00EBB7DD /* ITPBookPickerTableViewCell.m */; };
-		FF6631FF191832C700460F0B /* ITPVideoPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6631FC191832C700460F0B /* ITPVideoPickerTableViewCell.xib */; };
-		FF663200191832C700460F0B /* ITPVideoPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6631FD191832C700460F0B /* ITPVideoPickerTableViewCell.m */; };
+		FF55685719291CE700EBB7DD /* ITPBookPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF55685519291CE700EBB7DD /* ITPBookPickerTableViewCell.m */; };
+		FF55685819291CE700EBB7DD /* ITPBookPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF55685619291CE700EBB7DD /* ITPBookPickerTableViewCell.xib */; };
 		FF68CF2C19085D850068A449 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF2919085D850068A449 /* JASidePanelController.m */; };
 		FF68CF2D19085D850068A449 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF2B19085D850068A449 /* UIViewController+JASidePanel.m */; };
+		FF68CF311908608A0068A449 /* ITPSideRightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF2F1908608A0068A449 /* ITPSideRightMenuViewController.m */; };
+		FF68CF321908608A0068A449 /* ITPSideRightMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68CF301908608A0068A449 /* ITPSideRightMenuViewController.xib */; };
 		FF68CF35190864D90068A449 /* ITPSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF34190864D90068A449 /* ITPSidePanelController.m */; };
 		FF68CF52190AA4260068A449 /* ITPAppPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF4B190AA4260068A449 /* ITPAppPickerTableViewCell.m */; };
 		FF68CF53190AA4260068A449 /* ITPAppPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68CF4C190AA4260068A449 /* ITPAppPickerTableViewCell.xib */; };
@@ -42,15 +45,13 @@
 		FF68CF6E190B1FF00068A449 /* ITPPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF6D190B1FF00068A449 /* ITPPickerTableViewCell.m */; };
 		FF68CF71190D420F0068A449 /* ITPAudioPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CF70190D420F0068A449 /* ITPAudioPickerTableViewCell.m */; };
 		FF68CF73190D439B0068A449 /* ITPAudioPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68CF72190D439B0068A449 /* ITPAudioPickerTableViewCell.xib */; };
-		FF68CFA9190F0CF50068A449 /* AppCornerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF68CFA7190F0CF50068A449 /* AppCornerKit.framework */; };
-		FF68CFAA190F0CF60068A449 /* AppCornerKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF68CFA8190F0CF50068A449 /* AppCornerKitResources.bundle */; };
-		FF68CFAD190F0DE20068A449 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68CFAC190F0DE20068A449 /* SwipeView.m */; };
-		FFD5B9EB192032D400B66238 /* YHRoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD5B9EA192032D400B66238 /* YHRoundBorderedButton.m */; };
-		FFD5B9ED192032F300B66238 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD5B9EC192032F300B66238 /* iAd.framework */; };
-		FFD5B9F81920337700B66238 /* ITPSideLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD5B9F11920337700B66238 /* ITPSideLeftMenuViewController.m */; };
-		FFD5B9F91920337700B66238 /* ITPSideRightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD5B9F21920337700B66238 /* ITPSideRightMenuViewController.m */; };
-		FFD5B9FA1920337700B66238 /* ITPSideRightMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD5B9F41920337700B66238 /* ITPSideRightMenuViewController.xib */; };
-		FFD5B9FB1920337700B66238 /* ITPSideLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD5B9F51920337700B66238 /* ITPSideLeftMenuViewController.xib */; };
+		FF6CB492191E78570015661E /* ITPSideLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6CB490191E78570015661E /* ITPSideLeftMenuViewController.m */; };
+		FF6CB493191E78570015661E /* ITPSideLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6CB491191E78570015661E /* ITPSideLeftMenuViewController.xib */; };
+		FF6CB495191E86B40015661E /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6CB494191E86B40015661E /* iAd.framework */; };
+		FF6CB49C19200FA20015661E /* YHRoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6CB49B19200FA20015661E /* YHRoundBorderedButton.m */; };
+		FFD2E6821916A04C00F9672D /* ITPVideoPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD2E67F1916A04C00F9672D /* ITPVideoPickerTableViewCell.m */; };
+		FFD2E6831916A04C00F9672D /* ITPVideoPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD2E6801916A04C00F9672D /* ITPVideoPickerTableViewCell.xib */; };
+		FFDE6AEC1932015B00F317B2 /* LKBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDE6AEB1932015B00F317B2 /* LKBadgeView.m */; };
 		FFEE4D7D18B40D61001C7D54 /* ITPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFEE4D7C18B40D61001C7D54 /* ITPViewController.xib */; };
 		FFEE4D8018B41BBE001C7D54 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4D7F18B41BBE001C7D54 /* CoreData.framework */; };
 		FFEE4D8218B41BD4001C7D54 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4D8118B41BD4001C7D54 /* CFNetwork.framework */; };
@@ -61,6 +62,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF28866619324ED30099DA00 /* AppCornerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCornerKit.framework; path = External/AppCornerKit.framework; sourceTree = "<group>"; };
+		FF28866719324ED30099DA00 /* AppCornerKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AppCornerKitResources.bundle; path = External/AppCornerKitResources.bundle; sourceTree = "<group>"; };
+		FF28866A19324EEA0099DA00 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeView.h; path = External/SwipeView/SwipeView.h; sourceTree = SOURCE_ROOT; };
+		FF28866B19324EEA0099DA00 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwipeView.m; path = External/SwipeView/SwipeView.m; sourceTree = SOURCE_ROOT; };
 		FF2E269018B2AA4000270C57 /* iTunesPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2E269318B2AA4000270C57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FF2E269518B2AA4000270C57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -91,16 +96,16 @@
 		FF3A94C518DBA2D100479E98 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF3A94CE18DBA53000479E98 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF3A94CF18DBA53100479E98 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FF556859192926DD00EBB7DD /* ITPBookPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPBookPickerTableViewCell.xib; sourceTree = "<group>"; };
-		FF55685A192926DD00EBB7DD /* ITPBookPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPBookPickerTableViewCell.m; sourceTree = "<group>"; };
-		FF55685B192926DD00EBB7DD /* ITPBookPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBookPickerTableViewCell.h; sourceTree = "<group>"; };
-		FF6631FC191832C700460F0B /* ITPVideoPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPVideoPickerTableViewCell.xib; sourceTree = "<group>"; };
-		FF6631FD191832C700460F0B /* ITPVideoPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPVideoPickerTableViewCell.m; sourceTree = "<group>"; };
-		FF6631FE191832C700460F0B /* ITPVideoPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPVideoPickerTableViewCell.h; sourceTree = "<group>"; };
+		FF55685419291CE700EBB7DD /* ITPBookPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBookPickerTableViewCell.h; sourceTree = "<group>"; };
+		FF55685519291CE700EBB7DD /* ITPBookPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPBookPickerTableViewCell.m; sourceTree = "<group>"; };
+		FF55685619291CE700EBB7DD /* ITPBookPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPBookPickerTableViewCell.xib; sourceTree = "<group>"; };
 		FF68CF2819085D850068A449 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
 		FF68CF2919085D850068A449 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		FF68CF2A19085D850068A449 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
 		FF68CF2B19085D850068A449 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
+		FF68CF2E1908608A0068A449 /* ITPSideRightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSideRightMenuViewController.h; sourceTree = "<group>"; };
+		FF68CF2F1908608A0068A449 /* ITPSideRightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSideRightMenuViewController.m; sourceTree = "<group>"; };
+		FF68CF301908608A0068A449 /* ITPSideRightMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPSideRightMenuViewController.xib; sourceTree = "<group>"; };
 		FF68CF33190864D90068A449 /* ITPSidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSidePanelController.h; sourceTree = "<group>"; };
 		FF68CF34190864D90068A449 /* ITPSidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSidePanelController.m; sourceTree = "<group>"; };
 		FF68CF4A190AA4260068A449 /* ITPAppPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAppPickerTableViewCell.h; sourceTree = "<group>"; };
@@ -119,20 +124,18 @@
 		FF68CF6F190D420F0068A449 /* ITPAudioPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAudioPickerTableViewCell.h; sourceTree = "<group>"; };
 		FF68CF70190D420F0068A449 /* ITPAudioPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAudioPickerTableViewCell.m; sourceTree = "<group>"; };
 		FF68CF72190D439B0068A449 /* ITPAudioPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPAudioPickerTableViewCell.xib; sourceTree = "<group>"; };
-		FF68CFA7190F0CF50068A449 /* AppCornerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCornerKit.framework; path = External/AppCornerKit.framework; sourceTree = "<group>"; };
-		FF68CFA8190F0CF50068A449 /* AppCornerKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AppCornerKitResources.bundle; path = External/AppCornerKitResources.bundle; sourceTree = "<group>"; };
-		FF68CFAB190F0DE20068A449 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeView.h; path = External/SwipeView/SwipeView.h; sourceTree = SOURCE_ROOT; };
-		FF68CFAC190F0DE20068A449 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwipeView.m; path = External/SwipeView/SwipeView.m; sourceTree = SOURCE_ROOT; };
-		FFD5B9E9192032D400B66238 /* YHRoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHRoundBorderedButton.h; sourceTree = "<group>"; };
-		FFD5B9EA192032D400B66238 /* YHRoundBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHRoundBorderedButton.m; sourceTree = "<group>"; };
-		FFD5B9EC192032F300B66238 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		FFD5B9F11920337700B66238 /* ITPSideLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSideLeftMenuViewController.m; sourceTree = "<group>"; };
-		FFD5B9F21920337700B66238 /* ITPSideRightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSideRightMenuViewController.m; sourceTree = "<group>"; };
-		FFD5B9F31920337700B66238 /* ITPSideMenuViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSideMenuViewControllerDelegate.h; sourceTree = "<group>"; };
-		FFD5B9F41920337700B66238 /* ITPSideRightMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPSideRightMenuViewController.xib; sourceTree = "<group>"; };
-		FFD5B9F51920337700B66238 /* ITPSideLeftMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPSideLeftMenuViewController.xib; sourceTree = "<group>"; };
-		FFD5B9F61920337700B66238 /* ITPSideLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSideLeftMenuViewController.h; sourceTree = "<group>"; };
-		FFD5B9F71920337700B66238 /* ITPSideRightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSideRightMenuViewController.h; sourceTree = "<group>"; };
+		FF6CB48E191E77F50015661E /* ITPSideMenuViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSideMenuViewControllerDelegate.h; sourceTree = "<group>"; };
+		FF6CB48F191E78570015661E /* ITPSideLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSideLeftMenuViewController.h; sourceTree = "<group>"; };
+		FF6CB490191E78570015661E /* ITPSideLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSideLeftMenuViewController.m; sourceTree = "<group>"; };
+		FF6CB491191E78570015661E /* ITPSideLeftMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPSideLeftMenuViewController.xib; sourceTree = "<group>"; };
+		FF6CB494191E86B40015661E /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		FF6CB49A19200FA20015661E /* YHRoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHRoundBorderedButton.h; sourceTree = "<group>"; };
+		FF6CB49B19200FA20015661E /* YHRoundBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHRoundBorderedButton.m; sourceTree = "<group>"; };
+		FFD2E67F1916A04C00F9672D /* ITPVideoPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPVideoPickerTableViewCell.m; sourceTree = "<group>"; };
+		FFD2E6801916A04C00F9672D /* ITPVideoPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPVideoPickerTableViewCell.xib; sourceTree = "<group>"; };
+		FFD2E6811916A04C00F9672D /* ITPVideoPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPVideoPickerTableViewCell.h; sourceTree = "<group>"; };
+		FFDE6AEA1932015B00F317B2 /* LKBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBadgeView.h; sourceTree = "<group>"; };
+		FFDE6AEB1932015B00F317B2 /* LKBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBadgeView.m; sourceTree = "<group>"; };
 		FFEE4D7C18B40D61001C7D54 /* ITPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPViewController.xib; sourceTree = "<group>"; };
 		FFEE4D7F18B41BBE001C7D54 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FFEE4D8118B41BD4001C7D54 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -147,12 +150,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD5B9ED192032F300B66238 /* iAd.framework in Frameworks */,
+				FF6CB495191E86B40015661E /* iAd.framework in Frameworks */,
 				FF3A648519053A1700003669 /* libsqlite3.0.dylib in Frameworks */,
 				FF3A64831905391600003669 /* AdSupport.framework in Frameworks */,
 				FF3A6481190538F200003669 /* libz.dylib in Frameworks */,
 				FFEE4DCD18B6CB4E001C7D54 /* QuartzCore.framework in Frameworks */,
-				FF68CFA9190F0CF50068A449 /* AppCornerKit.framework in Frameworks */,
 				FFEE4D8818B565AB001C7D54 /* SystemConfiguration.framework in Frameworks */,
 				FFEE4D8618B41BFB001C7D54 /* MobileCoreServices.framework in Frameworks */,
 				FFEE4D8418B41BF4001C7D54 /* Security.framework in Frameworks */,
@@ -160,6 +162,7 @@
 				FFEE4D8018B41BBE001C7D54 /* CoreData.framework in Frameworks */,
 				FF2E269618B2AA4000270C57 /* CoreGraphics.framework in Frameworks */,
 				FF2E269818B2AA4000270C57 /* UIKit.framework in Frameworks */,
+				FF28866819324ED30099DA00 /* AppCornerKit.framework in Frameworks */,
 				FF2E269418B2AA4000270C57 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,9 +191,9 @@
 		FF2E269218B2AA4000270C57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FFD5B9EC192032F300B66238 /* iAd.framework */,
-				FF68CFA7190F0CF50068A449 /* AppCornerKit.framework */,
-				FF68CFA8190F0CF50068A449 /* AppCornerKitResources.bundle */,
+				FF28866619324ED30099DA00 /* AppCornerKit.framework */,
+				FF28866719324ED30099DA00 /* AppCornerKitResources.bundle */,
+				FF6CB494191E86B40015661E /* iAd.framework */,
 				FF3A648419053A1700003669 /* libsqlite3.0.dylib */,
 				FF3A64821905391600003669 /* AdSupport.framework */,
 				FF3A6480190538F200003669 /* libz.dylib */,
@@ -251,9 +254,9 @@
 		FF3A64681902DF5600003669 /* SupportViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FFD5B9F01920333D00B66238 /* countries */,
-				FFD5B9EF1920333100B66238 /* filters */,
-				FFD5B9EE1920331600B66238 /* sidesmenu */,
+				FF6CB498191E95A20015661E /* sidesmenu */,
+				FF6CB497191E95840015661E /* filters */,
+				FF6CB496191E95740015661E /* countries */,
 				FF68CF33190864D90068A449 /* ITPSidePanelController.h */,
 				FF68CF34190864D90068A449 /* ITPSidePanelController.m */,
 			);
@@ -339,9 +342,9 @@
 		FF68CF5B190AA7B20068A449 /* Book */ = {
 			isa = PBXGroup;
 			children = (
-				FF55685B192926DD00EBB7DD /* ITPBookPickerTableViewCell.h */,
-				FF55685A192926DD00EBB7DD /* ITPBookPickerTableViewCell.m */,
-				FF556859192926DD00EBB7DD /* ITPBookPickerTableViewCell.xib */,
+				FF55685419291CE700EBB7DD /* ITPBookPickerTableViewCell.h */,
+				FF55685519291CE700EBB7DD /* ITPBookPickerTableViewCell.m */,
+				FF55685619291CE700EBB7DD /* ITPBookPickerTableViewCell.xib */,
 			);
 			name = Book;
 			sourceTree = "<group>";
@@ -349,9 +352,9 @@
 		FF68CF5C190AA7BA0068A449 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				FF6631FE191832C700460F0B /* ITPVideoPickerTableViewCell.h */,
-				FF6631FD191832C700460F0B /* ITPVideoPickerTableViewCell.m */,
-				FF6631FC191832C700460F0B /* ITPVideoPickerTableViewCell.xib */,
+				FFD2E6811916A04C00F9672D /* ITPVideoPickerTableViewCell.h */,
+				FFD2E67F1916A04C00F9672D /* ITPVideoPickerTableViewCell.m */,
+				FFD2E6801916A04C00F9672D /* ITPVideoPickerTableViewCell.xib */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -366,30 +369,16 @@
 			name = App;
 			sourceTree = "<group>";
 		};
-		FFD5B9E8192032D400B66238 /* YHRoundBorderedButton */ = {
+		FF6CB496191E95740015661E /* countries */ = {
 			isa = PBXGroup;
 			children = (
-				FFD5B9E9192032D400B66238 /* YHRoundBorderedButton.h */,
-				FFD5B9EA192032D400B66238 /* YHRoundBorderedButton.m */,
+				FF3A94AC18CFC03D00479E98 /* ITPCountryItemChartsViewController.h */,
+				FF3A94AD18CFC03D00479E98 /* ITPCountryItemChartsViewController.m */,
 			);
-			path = YHRoundBorderedButton;
+			name = countries;
 			sourceTree = "<group>";
 		};
-		FFD5B9EE1920331600B66238 /* sidesmenu */ = {
-			isa = PBXGroup;
-			children = (
-				FFD5B9F31920337700B66238 /* ITPSideMenuViewControllerDelegate.h */,
-				FFD5B9F71920337700B66238 /* ITPSideRightMenuViewController.h */,
-				FFD5B9F21920337700B66238 /* ITPSideRightMenuViewController.m */,
-				FFD5B9F41920337700B66238 /* ITPSideRightMenuViewController.xib */,
-				FFD5B9F61920337700B66238 /* ITPSideLeftMenuViewController.h */,
-				FFD5B9F11920337700B66238 /* ITPSideLeftMenuViewController.m */,
-				FFD5B9F51920337700B66238 /* ITPSideLeftMenuViewController.xib */,
-			);
-			name = sidesmenu;
-			sourceTree = "<group>";
-		};
-		FFD5B9EF1920333100B66238 /* filters */ = {
+		FF6CB497191E95840015661E /* filters */ = {
 			isa = PBXGroup;
 			children = (
 				FF3A94B318D261D900479E98 /* ITPMenuTableViewController.h */,
@@ -399,19 +388,43 @@
 			name = filters;
 			sourceTree = "<group>";
 		};
-		FFD5B9F01920333D00B66238 /* countries */ = {
+		FF6CB498191E95A20015661E /* sidesmenu */ = {
 			isa = PBXGroup;
 			children = (
-				FF3A94AC18CFC03D00479E98 /* ITPCountryItemChartsViewController.h */,
-				FF3A94AD18CFC03D00479E98 /* ITPCountryItemChartsViewController.m */,
+				FF6CB48E191E77F50015661E /* ITPSideMenuViewControllerDelegate.h */,
+				FF68CF2E1908608A0068A449 /* ITPSideRightMenuViewController.h */,
+				FF68CF2F1908608A0068A449 /* ITPSideRightMenuViewController.m */,
+				FF68CF301908608A0068A449 /* ITPSideRightMenuViewController.xib */,
+				FF6CB48F191E78570015661E /* ITPSideLeftMenuViewController.h */,
+				FF6CB490191E78570015661E /* ITPSideLeftMenuViewController.m */,
+				FF6CB491191E78570015661E /* ITPSideLeftMenuViewController.xib */,
 			);
-			name = countries;
+			name = sidesmenu;
+			sourceTree = "<group>";
+		};
+		FF6CB49919200FA20015661E /* YHRoundBorderedButton */ = {
+			isa = PBXGroup;
+			children = (
+				FF6CB49A19200FA20015661E /* YHRoundBorderedButton.h */,
+				FF6CB49B19200FA20015661E /* YHRoundBorderedButton.m */,
+			);
+			path = YHRoundBorderedButton;
+			sourceTree = "<group>";
+		};
+		FFDE6AE91932015B00F317B2 /* LKBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				FFDE6AEA1932015B00F317B2 /* LKBadgeView.h */,
+				FFDE6AEB1932015B00F317B2 /* LKBadgeView.m */,
+			);
+			path = LKBadgeView;
 			sourceTree = "<group>";
 		};
 		FFEE4DB118B6CB2D001C7D54 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				FFD5B9E8192032D400B66238 /* YHRoundBorderedButton */,
+				FFDE6AE91932015B00F317B2 /* LKBadgeView */,
+				FF6CB49919200FA20015661E /* YHRoundBorderedButton */,
 				FF68CF2719085D850068A449 /* JASidePanels */,
 				FF3A94BA18D6631E00479E98 /* SVProgressHUD */,
 				FFEE4E1518BFF1E9001C7D54 /* SwipeView */,
@@ -422,8 +435,8 @@
 		FFEE4E1518BFF1E9001C7D54 /* SwipeView */ = {
 			isa = PBXGroup;
 			children = (
-				FF68CFAB190F0DE20068A449 /* SwipeView.h */,
-				FF68CFAC190F0DE20068A449 /* SwipeView.m */,
+				FF28866A19324EEA0099DA00 /* SwipeView.h */,
+				FF28866B19324EEA0099DA00 /* SwipeView.m */,
 			);
 			name = SwipeView;
 			path = "../../../../../Downloads/SwipeView-master/SwipeView";
@@ -494,20 +507,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF3A94B118CFC20000479E98 /* CountriesFlags36px.xcassets in Resources */,
-				FF68CFAA190F0CF60068A449 /* AppCornerKitResources.bundle in Resources */,
 				FF68CF53190AA4260068A449 /* ITPAppPickerTableViewCell.xib in Resources */,
-				FFD5B9FA1920337700B66238 /* ITPSideRightMenuViewController.xib in Resources */,
 				FF2E26AF18B2AA4000270C57 /* Images.xcassets in Resources */,
-				FF55685C192926DD00EBB7DD /* ITPBookPickerTableViewCell.xib in Resources */,
 				FF68CF55190AA4260068A449 /* ITPPickerTableViewController.xib in Resources */,
+				FF28866919324ED30099DA00 /* AppCornerKitResources.bundle in Resources */,
 				FF68CF69190ABC510068A449 /* Main_iPhone.storyboard in Resources */,
+				FF55685819291CE700EBB7DD /* ITPBookPickerTableViewCell.xib in Resources */,
 				FF68CF61190AA85B0068A449 /* ITPAppPickerDetailViewController.xib in Resources */,
 				FF3A94BF18D6631E00479E98 /* SVProgressHUD.bundle in Resources */,
-				FF6631FF191832C700460F0B /* ITPVideoPickerTableViewCell.xib in Resources */,
+				FFD2E6831916A04C00F9672D /* ITPVideoPickerTableViewCell.xib in Resources */,
+				FF6CB493191E78570015661E /* ITPSideLeftMenuViewController.xib in Resources */,
 				FF3A94B818D261D900479E98 /* ITPMenuTableViewController.xib in Resources */,
+				FF68CF321908608A0068A449 /* ITPSideRightMenuViewController.xib in Resources */,
 				FF68CF73190D439B0068A449 /* ITPAudioPickerTableViewCell.xib in Resources */,
 				FF3A94CA18DBA52E00479E98 /* Localizable.strings in Resources */,
-				FFD5B9FB1920337700B66238 /* ITPSideLeftMenuViewController.xib in Resources */,
 				FF2E269E18B2AA4000270C57 /* InfoPlist.strings in Resources */,
 				FFEE4D7D18B40D61001C7D54 /* ITPViewController.xib in Resources */,
 			);
@@ -521,22 +534,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF3A94B618D261D900479E98 /* ITPMenuTableViewController.m in Sources */,
-				FF68CFAD190F0DE20068A449 /* SwipeView.m in Sources */,
 				FF3A94C118D6631E00479E98 /* SVProgressHUD.m in Sources */,
-				FF663200191832C700460F0B /* ITPVideoPickerTableViewCell.m in Sources */,
+				FFD2E6821916A04C00F9672D /* ITPVideoPickerTableViewCell.m in Sources */,
 				FF68CF60190AA85B0068A449 /* ITPAppPickerDetailViewController.m in Sources */,
+				FF68CF311908608A0068A449 /* ITPSideRightMenuViewController.m in Sources */,
+				FFDE6AEC1932015B00F317B2 /* LKBadgeView.m in Sources */,
+				FF28866C19324EEA0099DA00 /* SwipeView.m in Sources */,
+				FF6CB49C19200FA20015661E /* YHRoundBorderedButton.m in Sources */,
 				FF68CF2C19085D850068A449 /* JASidePanelController.m in Sources */,
 				FF2E26AD18B2AA4000270C57 /* ITPViewController.m in Sources */,
+				FF6CB492191E78570015661E /* ITPSideLeftMenuViewController.m in Sources */,
 				FF68CF52190AA4260068A449 /* ITPAppPickerTableViewCell.m in Sources */,
-				FFD5B9F81920337700B66238 /* ITPSideLeftMenuViewController.m in Sources */,
 				FF68CF2D19085D850068A449 /* UIViewController+JASidePanel.m in Sources */,
 				FF68CF71190D420F0068A449 /* ITPAudioPickerTableViewCell.m in Sources */,
 				FF68CF54190AA4260068A449 /* ITPPickerTableViewController.m in Sources */,
-				FFD5B9EB192032D400B66238 /* YHRoundBorderedButton.m in Sources */,
-				FFD5B9F91920337700B66238 /* ITPSideRightMenuViewController.m in Sources */,
 				FF2E26A418B2AA4000270C57 /* ITPAppDelegate.m in Sources */,
 				FF68CF35190864D90068A449 /* ITPSidePanelController.m in Sources */,
-				FF55685D192926DD00EBB7DD /* ITPBookPickerTableViewCell.m in Sources */,
+				FF55685719291CE700EBB7DD /* ITPBookPickerTableViewCell.m in Sources */,
 				FF3A94AE18CFC03D00479E98 /* ITPCountryItemChartsViewController.m in Sources */,
 				FF2E26A018B2AA4000270C57 /* main.m in Sources */,
 				FF68CF6E190B1FF00068A449 /* ITPPickerTableViewCell.m in Sources */,

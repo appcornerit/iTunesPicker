@@ -14,10 +14,6 @@
 
 #import "SVProgressHUD.h"
 
-#define firstLoadDefaultEntityType kITunesEntityTypeSoftware //default type on first open
-#define maxOpenedPickers 20 //limit to max countries loaded on device, high value are network expensive and cause memory crash (not applied on simulator)
-#define firstLoadCountriesPickers @[@"US",@"GB",@"JP",@"AU"] //default countries to show on first load
-
 @interface ITPViewController () <SwipeViewDataSource, SwipeViewDelegate, ITPMenuTableViewDelegate, ADBannerViewDelegate>
 {
     CGRect filterCloseFrame,filterOpenFrame;
@@ -29,8 +25,10 @@
     NSArray *genreItems;
     NSUInteger rankingSelectedIndex;
     NSUInteger genreSelectedIndex;
-    
+
     BOOL bannerIsVisible;
+    
+    NSDate* startLoadingDate;
 }
 
 @end
@@ -54,31 +52,27 @@
     self.pickerViews = [[NSMutableArray alloc]init];
 
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"save_picker_state"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkACKTypes:) name:NOTIFICATION_CHECK_ACK_TYPES object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if(firstLoad)
-    {
-        [self loadPickerState];
-        if(!self.entitiesDatasources)
-        {
-            [self openUserCountryPicker];
-        }
-        else
-        {
-            firstLoad = NO;
-        }
-    }
+    [self checkFirstLoad];
 }
 
 - (void)dealloc
 {
     _swipeView.delegate = nil;
     _swipeView.dataSource = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+//-(void)didReceiveMemoryWarning
+//{
+//    [super didReceiveMemoryWarning];
+//    [ACKITunesQuery cleanCacheExceptTypes:@[@(self.entitiesDatasources.entityType)]];
+//}
 
 #pragma mark public
 
@@ -150,7 +144,7 @@
                                                                                            userCountry:self.entitiesDatasources.userCountry
                                                                                            multiSelect:YES
                                                                                                isModal:NO];
-    vc.countriesSelectionLimit = maxOpenedPickers;
+    vc.countriesSelectionLimit = MAX_OPENED_PICKERS;
     vc.completionBlock = ^(NSArray *countries){
         NSArray* allPickerCountries = [[self.entitiesDatasources getAllCountries] copy];
         for (NSString* countryPicker in allPickerCountries) {
@@ -207,7 +201,7 @@
                                                                                               isModal:!firstLoad];
     
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
-    vc.navigationItem.title=NSLocalizedString(@"Select your iTunes Country",nil);
+    vc.navigationItem.title=NSLocalizedString(@"countries.picker.title",nil);
     vc.completionBlock = ^(NSArray *countries){
         [navigation dismissViewControllerAnimated:YES completion:NO];
         if(self.entitiesDatasources)
@@ -217,7 +211,10 @@
                 [self removePickerTableViewForCountry:countryPicker];
             }
         }
-        tITunesEntityType entityType = self.entitiesDatasources?self.entitiesDatasources.entityType:firstLoadDefaultEntityType;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSArray *types = [defaults arrayForKey:DEFAULT_ACK_TYPES_KEY];
+        
+        tITunesEntityType entityType = self.entitiesDatasources?self.entitiesDatasources.entityType:[types[0] intValue];
         self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:countries[0] entityType:entityType limit:maxRecordToLoadForCountry];
         [self setupMenuPanels];
         [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
@@ -226,14 +223,14 @@
         [self addPickerTableViewForCountry:countries[0]];
         if(firstLoad)
         {
-            for (NSString* firstLoadCountry in firstLoadCountriesPickers) {
+            for (NSString* firstLoadCountry in DEFAULT_COUNTRIES) {
                 if(![firstLoadCountry isEqualToString:countries[0]] && [[ACKITunesQuery getITunesStoreCountries] containsObject:firstLoadCountry])
                 {
                     [self addPickerTableViewForCountry:firstLoadCountry];
                 }
             }
         }
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:self userInfo:@{NOTIFICATION_PARAM_ENTITY_TYPE:[NSNumber numberWithInt:entityType]}];
         [self saveStatePickerApps];
         [_swipeView reloadData];
         if(firstLoad)
@@ -276,6 +273,7 @@
     ITPCountryItemChartsViewController *vc = [[ITPCountryItemChartsViewController alloc] initWithStyle:UITableViewStylePlain
                                                                                           allCountries:[self.entitiesDatasources getAllCountries]
                                                                                            indexCharts:indexCharts
+                                                                                           userCountry:self.entitiesDatasources.userCountry
                                                                                                   item:entity];
     vc.completionBlock = ^(NSArray *countries){};
     
@@ -288,7 +286,7 @@
         ITPAppPickerDetailViewController* detailController = [[ITPAppPickerDetailViewController alloc]initWithNibName:nil bundle:nil];
         detailController.appObject = (ACKApp*)entity;
         ITPPickerTableViewController* picker = entity.userData;
-        detailController.pickerCountry = picker.country;
+        detailController.pickerCountry = picker.country?picker.country:entity.country;
         detailController.allowsSelection = picker.loadState != kITPLoadStateArtist;
         entity.userData = nil;
         detailController.delegate = self;
@@ -378,10 +376,14 @@
     
     if(pickersLoading)
     {
+        startLoadingDate = [NSDate date];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     }
     else
     {
+#if DEBUG
+        NSLog(@"Loading time %f",[[NSDate date] timeIntervalSinceDate:startLoadingDate]);
+#endif
         [SVProgressHUD dismiss];
     }
 }
@@ -422,6 +424,22 @@
     [self.entitiesDatasources removeDatasourceAtIndex:index];
     [self.pickerViews removeObjectAtIndex:index];
     [_swipeView reloadData];
+}
+
+-(void) checkFirstLoad
+{
+    if(firstLoad)
+    {
+        [self loadPickerState];
+        if(!self.entitiesDatasources)
+        {
+            [self openUserCountryPicker];
+        }
+        else
+        {
+            firstLoad = NO;
+        }
+    }
 }
 
 #pragma mark - filters
@@ -529,6 +547,7 @@
                                          @"", @"saved_picker_usercountry",
                                          nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultUserDefaults];
+    NSArray *types = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_ACK_TYPES_KEY];
     
     BOOL loadDefault = YES;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"save_picker_state"])
@@ -539,7 +558,7 @@
         NSArray* countries = [[NSUserDefaults standardUserDefaults] arrayForKey:@"saved_picker_countries"];
         NSString* userCountry = [[NSUserDefaults standardUserDefaults] stringForKey:@"saved_picker_usercountry"];
         
-        if(ranking != -1 && genre != -1 && countries.count > 0)
+        if(ranking != -1 && genre != -1 && countries.count > 0 && [types containsObject:@(entityType)])
         {
             self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:entityType limit:maxRecordToLoadForCountry];
             [self setupMenuPanels];
@@ -571,6 +590,23 @@
         [[NSUserDefaults standardUserDefaults] setInteger:self.entitiesDatasources.entityType forKey:@"saved_picker_entitytype"];
         [[NSUserDefaults standardUserDefaults] setValue:[self.entitiesDatasources getAllCountries] forKey:@"saved_picker_countries"];
         [[NSUserDefaults standardUserDefaults] setValue:self.entitiesDatasources.userCountry forKey:@"saved_picker_usercountry"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+#pragma mark - Notifications
+
+-(void)checkACKTypes:(NSNotification*)notification
+{
+    if(self.entitiesDatasources)
+    {
+        NSArray *types = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_ACK_TYPES_KEY];
+        if(![types containsObject:@(self.entitiesDatasources.entityType)])
+        {
+            firstLoad = YES;
+            self.entitiesDatasources = nil;
+            [self checkFirstLoad];
+        }
     }
 }
 
@@ -608,6 +644,5 @@
         bannerIsVisible = NO;
     }
 }
-
 
 @end

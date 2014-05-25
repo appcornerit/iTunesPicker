@@ -17,6 +17,7 @@
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicyExistsEntity;
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicySearchTerms;
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicyChart;
+@property(nonatomic, assign) NSTimeInterval memoryCacheExpiration; //entities cache time (default 1h) to reduce bandwidth request, 0 not use cache
 
 +(NSArray*) getITunesStoreCountries;
 +(NSArray*) getITunesEntityType;
@@ -57,4 +58,13 @@
 -(void) loadMovieChartInITunesStoreCountry:(NSString*)country withType:(tITunesMovieChartType)type withGenre:(tITunesMovieGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 //Book
 -(void) loadBookChartInITunesStoreCountry:(NSString*)country withType:(tITunesBookChartType)type withGenre:(tITunesBookGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
+
+//Load remote configuration from your server like @"http://example.com/defaults.plist"
+- (void)loadRemoteConfigurationFromURL:(NSURL *)url
+                               success:(void (^)(NSDictionary *defaults))success
+                               failure:(void (^)(NSError *error))failure;
+
+//In memory cache clean
++(void)cleanCacheExceptTypes:(NSArray*)iTunesEntityTypes;
+
 @end

@@ -48,13 +48,14 @@ static NSString *CellIdentifier = @"CountryCell";
     return self;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)aCountries indexCharts:(NSArray*)iCharts item:(ACKITunesEntity*)i
+- (id)initWithStyle:(UITableViewStyle)style allCountries:(NSArray*)aCountries indexCharts:(NSArray*)iCharts userCountry:(NSString*)uCountry item:(ACKITunesEntity*)i
 {
     if (self = [super initWithStyle:style]) {
         allCountries = aCountries;
         indexCharts = iCharts;
         item = i;
         chartMode = YES;
+        userCountry = uCountry;
         self.tableView.allowsSelection = NO;
         isModal = NO;
     }
@@ -255,6 +256,7 @@ static NSString *CellIdentifier = @"CountryCell";
     }
     
     cell.imageView.image = [UIImage imageNamed:cd[@"code"]];
+    cell.backgroundColor = [UIColor whiteColor];
     
     if(!chartMode)
     {
@@ -262,6 +264,13 @@ static NSString *CellIdentifier = @"CountryCell";
         if([internalSelectedCountries containsObject:cd[@"code"]])
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
+    else
+    {
+        if([cd[@"code"]isEqualToString:userCountry])
+        {
+            cell.backgroundColor = [UIColor colorWithRed:76.0/255.0 green:217.0/255.0 blue:100.0/255.0 alpha:0.5];
         }
     }
     return cell;

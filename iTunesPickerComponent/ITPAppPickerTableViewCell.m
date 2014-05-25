@@ -14,6 +14,7 @@
 
 -(void) initCell
 {
+    [super initCell];
     self.iconView.contentMode = UIViewContentModeScaleAspectFit;
 
     self.starImageView.contentMode = UIViewContentModeScaleAspectFill;

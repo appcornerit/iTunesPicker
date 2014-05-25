@@ -7,6 +7,7 @@
 //
 
 #import "ITPPickerTableViewCell.h"
+#import "LKBadgeView.h"
 
 @interface ITPAppPickerTableViewCell : ITPPickerTableViewCell
 

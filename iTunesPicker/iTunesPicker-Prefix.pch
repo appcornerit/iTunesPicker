@@ -26,4 +26,20 @@
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 
-#define IAD_BANNER_ENABLE 0
+//notifications
+#define NOTIFICATION_CHECK_ACK_TYPES @"NOTIFICATION_CHECK_ACK_TYPES"
+#define NOTIFICATION_CHECK_ACK_TYPES_UPDATED @"NOTIFICATION_CHECK_ACK_TYPES_UPDATED"
+#define NOTIFICATION_PARAM_ENTITY_TYPE @"NOTIFICATION_PARAM_ENTITY_TYPE"
+
+//iAd Configuration
+#define IAD_BANNER_ENABLE 0 //1 to enable iAd
+
+//Remote configuration (https://github.com/mattt/GroundControl/tree/1.0.0)
+#define REMOTE_CONFIGURATION_ENABLE 0 //1 to loads types from remote plist
+#define REMOTE_CONFIGURATION_SERVER_URL @"http://example.com/defaults.plist" //see the plist in github repository as example
+#define DEFAULT_ACK_TYPES_KEY @"ACK_TYPES_KEY"
+
+//Default configuration
+#define DEFAULT_ACK_TYPES @[@(kITunesEntityTypeSoftware),@(kITunesEntityTypeMusic),@(kITunesEntityTypeEBook),@(kITunesEntityTypeMovie)]; //first type is the default type opened on first time app launch
+#define DEFAULT_COUNTRIES @[@"US",@"GB",@"JP",@"AU"] //default countries to show on first load
+#define MAX_OPENED_PICKERS 20 //limit to max countries loaded on device, high value are network expensive and cause memory crash (not applied on simulator)

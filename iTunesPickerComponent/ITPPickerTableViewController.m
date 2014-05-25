@@ -272,10 +272,10 @@
     cell.userCountry = [self.delegate entitiesDatasources].userCountry;
     if(_loadState == kITPLoadStateRanking)
     {
-        cell.positionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
+        cell.positionBadge.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     }
     else{
-        cell.positionLabel.text = @"";
+        cell.positionBadge.text = @"";
     }
     cell.detailButton.hidden = ![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)];
     

@@ -16,11 +16,17 @@
 
 @implementation ITPSideRightMenuViewController
 
+-(NSArray*)getAvailableTypes
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults arrayForKey:DEFAULT_ACK_TYPES_KEY];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
     switch (section) {
         case 0:
-            return 4;
+            return [self getAvailableTypes].count;
         default:
             return 2;
     }
@@ -63,36 +69,11 @@
     
     switch (indexPath.section) {
         case 0:
-            switch (indexPath.row) {
-                case 0:
-                cell.textLabel.text = NSLocalizedString(@"Apps", nil);
-                break;
-                case 1:
-                cell.textLabel.text = NSLocalizedString(@"Music", nil);
-                break;
-//                case :
-//                cell.textLabel.text = NSLocalizedString(@"Video Music", nil);
-//                break;
-                case 2:
-                cell.textLabel.text = NSLocalizedString(@"E-books", nil);
-                break;
-//                case :
-//                cell.textLabel.text = NSLocalizedString(@"Audiobooks", nil);
-//                break;
-                case 3:
-                cell.textLabel.text = NSLocalizedString(@"Movies", nil);
-                break;
-//                case :
-//                cell.textLabel.text = NSLocalizedString(@"Short film", nil);
-//                break;
-//                case :
-//                cell.textLabel.text = NSLocalizedString(@"TV Show", nil);
-//                break;
-//                case :
-//                cell.textLabel.text = NSLocalizedString(@"Podcast", nil);
-//                break;
-            }
+        {
+            NSString* key = [NSString stringWithFormat:@"type_%d",[[self getAvailableTypes][indexPath.row] intValue]];
+            cell.textLabel.text = NSLocalizedString(key, nil);
             break;
+        }
         case 1:
             switch (indexPath.row) {
                 case 0:
@@ -102,9 +83,6 @@
                     cell.textLabel.text = NSLocalizedString(@"menu.changeusercountry", nil);
                     cell.imageView.image = [UIImage imageNamed:[self.delegate getUserCountry]];
                     break;
-//                case :
-//                   cell.textLabel.text = NSLocalizedString(@"Help", nil);
-//                    break;
             }
             break;
     }
@@ -120,35 +98,7 @@
     
     switch (indexPath.section) {
         case 0:
-            switch (indexPath.row) {
-                case 0:
-                selectedType = kITunesEntityTypeSoftware;
-                break;
-                case 1:
-                selectedType = kITunesEntityTypeMusic;
-                break;
-//                case :
-//                selectedType = kITunesEntityTypeMusicVideo;
-//                break;
-                case 2:
-                selectedType = kITunesEntityTypeEBook;
-                break;
-//                case :
-//                selectedType = kITunesEntityTypeAudiobook;
-//                break;
-                case 3:
-                selectedType = kITunesEntityTypeMovie;
-                break;
-//                case :
-//                selectedType = kITunesEntityTypeShortFilm;
-//                break;
-//                case :
-//                selectedType = kITunesEntityTypeTVShow;
-//                break;
-//                case :
-//                selectedType = kITunesEntityTypePodcast;
-//                break;
-            }
+            selectedType = [[self getAvailableTypes][indexPath.row] intValue];
             break;
         case 1:
             switch (indexPath.row) {
@@ -160,8 +110,6 @@
                     [self.delegate openUserCountrySetting];
                     return;
                     break;
-//                case :
-//                break;
             }
             break;
     }

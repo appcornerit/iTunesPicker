@@ -25,7 +25,7 @@ typedef enum {
     kITunesEntityTypeEBook,
     kITunesEntityTypePodcast,
     kITunesEntityTypeShortFilm,
-    kITunesEntityTypeSoftware
+    kITunesEntityTypeSoftware  //=9
 } tITunesEntityType;
 
 typedef enum {
