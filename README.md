@@ -7,7 +7,7 @@ Charts supported by the current version:
 iOS Apps, iPad Apps, Mac Apps, Music (Song and Albums), Music Videos, Ebooks, Movies.
 
 #### Why another picker?
-- iTunes charts are available only for your country, with iTunesPicker you can discover apps (and others items) in the world rankings and compare the position for an app (book,movie,music) in the world rankings.
+- iTunes charts are available only for your country, with iTunesPicker you can discover apps (and others items) and compare the position for an app (book,movie,music) in the world rankings.
 
 - you can include iTunesPicker in your app to encourage the download of your others apps (without breaking the approval rule 2.25), you can show your others apps in the App Store with a few lines of code. 
 
