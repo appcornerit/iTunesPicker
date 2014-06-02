@@ -79,6 +79,7 @@
     self.pageControl.currentPage = 0;
     [self.purchaseButton setTitle:NSLocalizedString(@"itppicker.detail.app.button.purchase",nil) forState:UIControlStateNormal];
     self.purchaseButton.plusIconVisible = [self.appObject isUniversal];
+    self.purchaseButton.hidden = self.appObject.iTunesMediaEntityType == kITunesMediaEntityTypeSoftwareMac;
 
     UIImage *starsImage = [UIImage imageNamed:@"stars.png"];
     UIGraphicsBeginImageContextWithOptions(self.starImageView.frame.size, NO, 0);
@@ -128,7 +129,7 @@
     
     self.previewScrollView.item = self.appObject;
  
-    self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:self.delegate.entitiesDatasources.userCountry entityType:kITunesEntityTypeSoftware limit:kITunesMaxLimitLoadEntities];
+    self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:self.delegate.entitiesDatasources.userCountry entityType:kITunesEntityTypeSoftware mediaEntityType:kITunesMediaEntityTypeDefaultForEntity limit:kITunesMaxLimitLoadEntities];
 }
 
 - (void)dealloc

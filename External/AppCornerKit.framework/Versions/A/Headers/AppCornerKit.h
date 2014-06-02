@@ -16,6 +16,7 @@
 #import "ACKTrackSong.h"
 #import "ACKTrackMovie.h"
 #import "ACKBook.h"
+#import "ACKTrackMovie.h"
 
 //countries datasource facilities
 #import "ACKEntitiesContainer.h"
@@ -25,3 +26,4 @@
 #import "ACKAppIconImageView.h"
 #import "ACKITunesPreviewScrollView.h"
 #import "ACKMusicPlayerView.h"
+#import "ACKTrackMusicVideoPlayerView.h"

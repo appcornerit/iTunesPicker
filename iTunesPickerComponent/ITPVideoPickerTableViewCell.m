@@ -53,7 +53,18 @@
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     [formatter setCurrencyCode:movieObject.currency];
     [formatter setLocale:[NSLocale currentLocale]];
-    self.priceLabel.text = [NSString stringWithFormat:@"SD %@ / HD %@", [formatter stringFromNumber:priceSDNumber],[formatter stringFromNumber:priceHDNumber]];
+    if(movieObject.trackHdPrice)
+    {
+        self.priceLabel.text = [NSString stringWithFormat:@"SD %@ / HD %@", [formatter stringFromNumber:priceSDNumber],[formatter stringFromNumber:priceHDNumber]];
+    }
+    else if(movieObject.trackPrice)
+    {
+        self.priceLabel.text = [NSString stringWithFormat:@"SD %@", [formatter stringFromNumber:priceSDNumber]];
+    }
+    else
+    {
+        self.priceLabel.text = @"";
+    }
     
     //movie is DRM protected video file, I can't show the preview in app.
     self.coverImageView.showActivityIndicator = YES;

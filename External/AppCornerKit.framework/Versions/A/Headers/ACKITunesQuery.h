@@ -25,7 +25,11 @@
 
 //App
 +(NSArray*) getAppChartType;
++(NSArray*) getAppIPadChartType;
 +(NSArray*) getAppGenreType;
+//App Mac
++(NSArray*) getAppMacChartType;
++(NSArray*) getAppMacGenreType;
 //Music
 +(NSArray*) getMusicChartType;
 +(NSArray*) getMusicGenreType;
@@ -35,6 +39,9 @@
 //Book
 +(NSArray*) getBookChartType;
 +(NSArray*) getBookGenreType;
+//Music videos
++(NSArray*) getMusicVideosChartType;
++(NSArray*) getMusicVideosGenreType;
 
 +(void) getITunesStoreCountryUserAccountByProductId:(NSString*)inAppPurchaseProductId completionBlock:(ACKStringResultBlock)completion;
 
@@ -51,13 +58,16 @@
 -(void) loadEntitiesForArtistId:(NSString *)artistId inITunesCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion;
 
 //App
--(void) loadAppChartInITunesStoreCountry:(NSString*)country withType:(tITunesAppChartType)type withGenre:(tITunesAppGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
+-(void) loadAppChartInITunesStoreCountry:(NSString*)country  withMediaType:(tITunesMediaEntityType)mediaEntityType withType:(tITunesAppChartType)type withGenre:(tITunesAppGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 //Music
--(void) loadMusicChartInITunesStoreCountry:(NSString*)country withType:(tITunesMusicChartType)type withGenre:(tITunesMusicGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
+-(void) loadMusicChartInITunesStoreCountry:(NSString*)country withType:(tITunesMusicChartType)type withGenre:(tITunesMusicGenreType)genre explicit:(BOOL)addExplict limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 //Movie
 -(void) loadMovieChartInITunesStoreCountry:(NSString*)country withType:(tITunesMovieChartType)type withGenre:(tITunesMovieGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 //Book
 -(void) loadBookChartInITunesStoreCountry:(NSString*)country withType:(tITunesBookChartType)type withGenre:(tITunesBookGenreType)genre limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
+//Music Videos
+-(void) loadMusicVideosChartInITunesStoreCountry:(NSString*)country withType:(tITunesMusicVideosChartType)type withGenre:(tITunesMusicVideosGenreType)genre explicit:(BOOL)addExplict limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
+
 
 //Load remote configuration from your server like @"http://example.com/defaults.plist"
 - (void)loadRemoteConfigurationFromURL:(NSURL *)url

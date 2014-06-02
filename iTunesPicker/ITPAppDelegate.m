@@ -25,9 +25,9 @@
 {
     // Override point for customization after application launch.
     
-#if TARGET_IPHONE_SIMULATOR
+//#if TARGET_IPHONE_SIMULATOR
 //    [[DCIntrospect sharedIntrospector] start];
-#endif
+//#endif
     
     NSArray *types = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_ACK_TYPES_KEY];
     if(!types || !REMOTE_CONFIGURATION_ENABLE)
@@ -73,4 +73,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    
+    if ([[self.window.rootViewController presentedViewController] isKindOfClass:[MPMoviePlayerViewController class]]) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }    
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end

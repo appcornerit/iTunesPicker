@@ -11,8 +11,10 @@
 #import "ITPAudioPickerTableViewCell.h"
 #import "ITPVideoPickerTableViewCell.h"
 #import "ITPBookPickerTableViewCell.h"
+#import "ITPMusicVideoPickerTableViewCell.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface ITPPickerTableViewController() <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
+@interface ITPPickerTableViewController() <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, ACKTrackMusicVideoPlayerDelegate>
     @property (nonatomic,readonly) NSArray* ds;
     @property (nonatomic,assign) NSInteger indexSelected;
     @property (nonatomic,strong) ACKITunesQuery* query;
@@ -92,7 +94,8 @@
     _loadState = kITPLoadStateRanking;
     
     _itemsArray = nil;
-    NSInteger limit = [self.delegate entitiesDatasources].limit;
+    //NSInteger limit = [self.delegate entitiesDatasources].limit;
+    NSInteger limit = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_ACK_CHART_ITEMS_KEY];
     _country = country;
     
     NSInteger datasourceIndex = [[self.delegate entitiesDatasources]getDatasourceIndexForCountry:country];
@@ -122,11 +125,11 @@
     
     if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeSoftware)
     {
-        [self.query loadAppChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
+        [self.query loadAppChartInITunesStoreCountry:country withMediaType:self.delegate.entitiesDatasources.mediaEntityType withType:type withGenre:genre limit:limit completionBlock:completionBlock];
     }
     else if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeMusic)
     {
-        [self.query loadMusicChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
+        [self.query loadMusicChartInITunesStoreCountry:country withType:type withGenre:genre explicit:YES limit:limit completionBlock:completionBlock];
     }
     else if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeMovie)
     {
@@ -136,9 +139,13 @@
     {
         [self.query loadBookChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
     }
+    else if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeMusicVideo)
+    {
+        [self.query loadMusicVideosChartInITunesStoreCountry:country withType:type withGenre:genre explicit:YES limit:limit completionBlock:completionBlock];
+    }
     else
     {
-        [self.query loadAppChartInITunesStoreCountry:country withType:type withGenre:genre limit:limit completionBlock:completionBlock];
+        [self.query loadAppChartInITunesStoreCountry:country withMediaType:self.delegate.entitiesDatasources.mediaEntityType withType:type withGenre:genre limit:limit completionBlock:completionBlock];
     }
 }
 
@@ -258,6 +265,16 @@
     else if (iTunesEntity.iTunesEntityType == kITunesEntityTypeEBook) {
         NSString *CellIdentifier = @"ITPBookPickerTableViewCell";
         cell = (ITPBookPickerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil]objectAtIndex:0];
+        }
+    }
+    //music video
+    else if (iTunesEntity.iTunesEntityType == kITunesEntityTypeMusicVideo) {
+        NSString *CellIdentifier = @"ITPMusicVideoPickerTableViewCell";
+        cell = (ITPMusicVideoPickerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        ((ITPMusicVideoPickerTableViewCell*)cell).coverImageView.delegate = self;
         if (!cell)
         {
             cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil]objectAtIndex:0];
@@ -394,6 +411,13 @@
 {
     [self.tableView setUserInteractionEnabled:NO];
     return YES;
+}
+
+#pragma mark ACKTrackMusicVideoPlayerDelegate
+
+-(void)presentVideoPlayer:(MPMoviePlayerViewController*)moviePlayerView
+{
+    [((UIViewController*)self.delegate).navigationController presentMoviePlayerViewControllerAnimated:moviePlayerView];
 }
 
 #pragma mark private

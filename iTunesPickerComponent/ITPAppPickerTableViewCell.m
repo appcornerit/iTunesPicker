@@ -83,6 +83,7 @@
     
     self.iconView.showActivityIndicator = YES;
     self.iconView.app = appObject;
+    self.iconViewButton.userInteractionEnabled = appObject.iTunesMediaEntityType != kITunesMediaEntityTypeSoftwareMac;
 }
 
 -(void) prepareForReuse

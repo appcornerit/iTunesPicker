@@ -11,7 +11,7 @@
 
 @protocol ITPSideRightMenuViewControllerDelegate <NSObject>
 
--(void)iTunesEntityTypeDidSelected:(tITunesEntityType)entityType;
+-(void)iTunesEntityTypeDidSelected:(tITunesEntityType)entityType withMediaType:(tITunesMediaEntityType)entityMediaType;
 -(void)openCountriesPicker;
 -(void)openUserCountrySetting;
 -(NSString*)getUserCountry;
@@ -22,6 +22,7 @@
 
 - (void)toggleMenuPanel:(tITPMenuFilterPanel)menuFilterPanel;
 -(NSString*)getSelectedFilterLabel:(tITPMenuFilterPanel)menuFilterPanel;
+-(NSInteger)getFilterCountLabels:(tITPMenuFilterPanel)menuFilterPanel;
 -(void)openDiscoverView;
 -(void)openGlobalRankingView;
 

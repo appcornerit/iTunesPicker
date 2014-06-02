@@ -15,15 +15,19 @@
 "menu.selectcountries"="Add countries";
 "menu.changeusercountry"="Change your country";
 
-"type_1"="Music";
-"type_2"="Movies";
-"type_3"="Video Music";
-"type_4"="TV Show";
-"type_5"="Audiobooks";
-"type_6"="E-books";
-"type_7"="Podcast";
-"type_8"="Short film";
-"type_9"="Apps";
+"type_1_0"="Music";
+"type_2_0"="Movies";
+"type_3_0"="Video Music";
+"type_4_0"="TV Show";
+"type_5_0"="Audiobooks";
+"type_6_0"="E-books";
+"type_7_0"="Podcast";
+"type_8_0"="Short film";
+"type_9_1"="iOS Apps";
+"type_9_2"="iPad Apps";
+"type_9_3"="Mac Apps";
+
+"slidercell.label"="Results";
 
 //left menu
 "menu.section.filters"="Charts";
@@ -49,6 +53,11 @@
 "newfreeapplications"="New Free Applications";
 "newpaidapplications"="New Paid Applications";
 
+//App iPad
+"topfreeipadapplications"="Top Free iPad Apps";
+"toppaidipadapplications"="Top Paid iPad Apps";
+"topgrossingipadapplications"="Top Grossing iPad Apps";
+
 "0"="All Genres";
 "6018"="Books";
 "6000"="Business";
@@ -73,6 +82,36 @@
 "6003"="Travel";
 "6002"="Utilities";
 "6001"="Weather";
+
+//App Mac
+"topmacapps"="Top Mac Apps";
+"topfreemacapps"="Top Free Mac Apps";
+"toppaidmacapps"="Top Paid Mac Apps";
+"topgrossingmacapps"="Top Grossing Mac Apps";
+
+"00000" = "All Genres";
+"12001" = "Business";
+"12002" = "Developer Tools";
+"12003" = "Education";
+"12004" = "Entertainment";
+"12005" = "Finance";
+"12006" = "Games";
+"12022" = "Graphics and Design";
+"12007" = "Health and Fitness";
+"12008" = "Lifestyle";
+"12008" = "Medical";
+"12011" = "Music";
+"12012" = "News";
+"12013" = "Photography";
+"12014" = "Productivity";
+"12015" = "Reference";
+"12016" = "Social Networking";
+"12017" = "Sports";
+"12018" = "Travel";
+"12019" = "Utilities";
+"12020" = "Video";
+"12021" = "Weather";
+
 
 "itppicker.tablecell.app.noratings"="No ratings for current version";
 "itppicker.tablecell.app.noratings.allversions"="No ratings for all versions";
@@ -210,4 +249,52 @@
 "9019"="Science & Nature";
 "9035"="Sports & Outdoors";
 "9004"="Travel & Adventure";
+
+//Music Videos
+"topmusicvideos"="Top Music Videos";
+
+"000000"="All Genres";
+"1620"="Alternative";
+"1629"="Anime";
+"1685"="Big Band";
+"1602"="Blues";
+"1671"="Brazilian";
+"1604"="Children's Music";
+"1637"="Chinese";
+"1622"="Christian and Gospel";
+"1605"="Classical";
+"1603"="Comedy";
+"1606"="Country";
+"1617"="Dance";
+"1631"="Disney";
+"1625"="Easy Listening";
+"1607"="Electronic";
+"1628"="Enka";
+"1683"="Fitness and Workout";
+"1632"="French Pop";
+"1634"="German Folk";
+"1633"="German Pop";
+"1618"="Hip-Hop/Rap";
+"1608"="Holiday";
+"1690"="Indian";
+"1684"="Instrumental";
+"1627"="J-Pop";
+"1611"="Jazz";
+"1686"="K-Pop";
+"1687"="Karaoke";
+"1630"="Kayokyoku";
+"1648"="Korean";
+"1612"="Latin";
+"1613"="New Age";
+"1609"="Opera";
+"1626"="Podcasts";
+"1614"="Pop";
+"1615"="R&B/Soul";
+"1624"="Reggae";
+"1621"="Rock";
+"1610"="Singer/Songwriter";
+"1616"="Soundtrack";
+"1689"="Spoken Word";
+"1623"="Vocal";
+"1619"="World";
 

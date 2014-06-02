@@ -28,7 +28,7 @@
     ((ITPSideLeftMenuViewController*)self.leftPanel).delegate = self;
     
     UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    titleButton.frame = CGRectMake(0, 0, 90, 40);
+    titleButton.frame = CGRectMake(0, 0, 200, 40);
     titleButton.backgroundColor = [UIColor clearColor];
     [titleButton setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     [titleButton addTarget:self action:@selector(didTapTitleViewAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -80,11 +80,11 @@
 
 #pragma mark - ITPSideRightMenuViewControllerDelegate
 
--(void)iTunesEntityTypeDidSelected:(tITunesEntityType)entityType
+-(void)iTunesEntityTypeDidSelected:(tITunesEntityType)entityType withMediaType:(tITunesMediaEntityType)mediaEntityType
 {
-    [self updateTitleBarForEntityType:entityType];    
+    [self updateTitleBarForEntityType:entityType withMediaType:mediaEntityType];
     [self showCenterPanelAnimated:YES];
-    [((ITPViewController*)self.centerPanel) reloadWithEntityType:entityType];
+    [((ITPViewController*)self.centerPanel) reloadWithEntityType:entityType withMediaType:mediaEntityType];
 }
 
 -(void)openCountriesPicker
@@ -111,10 +111,18 @@
     return [((ITPViewController*)self.centerPanel) getSelectedFilterLabel:menuFilterPanel];
 }
 
+-(NSInteger)getFilterCountLabels:(tITPMenuFilterPanel)menuFilterPanel
+{
+    return [((ITPViewController*)self.centerPanel) getFilterCountLabels:menuFilterPanel];
+}
+
 - (void)toggleMenuPanel:(tITPMenuFilterPanel)menuFilterPanel
 {
-    [self showCenterPanelAnimated:YES];    
-    return [((ITPViewController*)self.centerPanel) toggleMenuPanel:menuFilterPanel];
+    if([self getFilterCountLabels:menuFilterPanel] >1)
+    {
+        [self showCenterPanelAnimated:YES];
+        [((ITPViewController*)self.centerPanel) toggleMenuPanel:menuFilterPanel];
+    }
 }
 
 -(void)openDiscoverView
@@ -133,14 +141,20 @@
 
 -(void)updateACKTypes:(NSNotification*)notification
 {
-  NSNumber* currentType = [notification.userInfo objectForKey:NOTIFICATION_PARAM_ENTITY_TYPE];
-  [self updateTitleBarForEntityType:[currentType integerValue]];
+  NSNumber* entityType = [notification.userInfo objectForKey:NOTIFICATION_PARAM_ENTITY_TYPE];
+  NSNumber* mediaType = [notification.userInfo objectForKey:NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE];
+  [self updateTitleBarForEntityType:[entityType integerValue] withMediaType:[mediaType integerValue]];
 }
 
 #pragma mark - private
--(void) updateTitleBarForEntityType:(tITunesEntityType) entityType
+
+-(void) updateTitleBarForEntityType:(tITunesEntityType) entityType withMediaType:(tITunesMediaEntityType)mediaEntityType
 {
-    NSString* typeKey = [NSString stringWithFormat:@"type_%d",entityType];
+    if(entityType == kITunesEntityTypeSoftware && mediaEntityType == kITunesMediaEntityTypeDefaultForEntity)
+    {
+        mediaEntityType = kITunesMediaEntityTypeSoftware;
+    }
+    NSString* typeKey = [NSString stringWithFormat:@"type_%d_%d",entityType,mediaEntityType];
     UIButton* titleButton = ((UIButton*)self.navigationItem.titleView);
     [titleButton setTitle:NSLocalizedString(typeKey,nil) forState:UIControlStateNormal];
     titleButton.hidden = NO;

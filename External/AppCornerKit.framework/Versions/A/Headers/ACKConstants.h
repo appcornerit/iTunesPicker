@@ -29,7 +29,8 @@ typedef enum {
 } tITunesEntityType;
 
 typedef enum {
-    kITunesMediaEntityTypeSoftware = 0,
+    kITunesMediaEntityTypeDefaultForEntity = 0,
+    kITunesMediaEntityTypeSoftware,
     kITunesMediaEntityTypeSoftwareiPad,
     kITunesMediaEntityTypeSoftwareMac,
     kITunesMediaEntityTypeAllArtist,
@@ -65,6 +66,15 @@ typedef enum {
     kITunesAppChartTypeNewPaidApps
 } tITunesAppChartType;
 
+//App iPad
+
+typedef enum {
+    kITunesAppChartTypeTopFreeIPadApps = 0,
+    kITunesAppChartTypeTopPaidIPadApps,
+    kITunesAppChartTypeTopGrossingIPadApps
+} tITunesAppIPadChartType;
+
+
 typedef enum {
     kITunesAppGenreTypeAll = 0,
     kITunesAppGenreTypeBooks,
@@ -91,6 +101,41 @@ typedef enum {
     kITunesAppGenreTypeUtilities,
     kITunesAppGenreTypeWeather
 } tITunesAppGenreType;
+
+
+//App Mac
+
+typedef enum {
+    kITunesAppChartTypeTopMacApps = 0,
+    kITunesAppChartTypeTopFreeMacApps,
+    kITunesAppChartTypeTopPaidMacApps,
+    kITunesAppChartTypeTopGrossingMacApps
+} tITunesAppMacChartType;
+
+typedef enum {
+    kITunesAppMacGenreTypeAll = 0,
+    kITunesAppMacGenreTypeBusiness,
+    kITunesAppMacGenreTypeDeveloperTools,
+    kITunesAppMacGenreTypeEducation,
+    kITunesAppMacGenreTypeEntertainment,
+    kITunesAppMacGenreTypeFinance,
+    kITunesAppMacGenreTypeGames,
+    kITunesAppMacGenreTypeGraphicsDesign,
+    kITunesAppMacGenreTypeHealthFitness,
+    kITunesAppMacGenreTypeLifestyle,
+    kITunesAppMacGenreTypeMedical,
+    kITunesAppMacGenreTypeMusic,
+    kITunesAppMacGenreTypeNews,
+    kITunesAppMacGenreTypePhotography,
+    kITunesAppMacGenreTypeProductivity,
+    kITunesAppMacGenreTypeReference,
+    kITunesAppMacGenreTypeSocialNetworking,
+    kITunesAppMacGenreTypeSports,
+    kITunesAppMacGenreTypeTravel,
+    kITunesAppMacGenreTypeUtilities,
+    kITunesAppMacGenreTypeVideo,
+    kITunesAppMacGenreTypeWeather
+} tITunesAppMacGenreType;
 
 //Music
 
@@ -226,4 +271,58 @@ typedef enum {
     kITunesBookGenreTypeSportsOutdoors,
     kITunesBookGenreTypeTravelAdventure
 } tITunesBookGenreType;
+
+//Music Videos
+
+typedef enum {
+    kITunesMusicVideosChartTypeTop = 0
+} tITunesMusicVideosChartType;
+
+typedef enum {
+    kITunesMusicVideosTypeAll = 0,
+    kITunesMusicVideosTypeAlternative,
+    kITunesMusicVideosTypeAnime,
+    kITunesMusicVideosTypeBigBand,
+    kITunesMusicVideosTypeBlues,
+    kITunesMusicVideosTypeBrazilian,
+    kITunesMusicVideosTypeChildrensMusic,
+    kITunesMusicVideosTypeChinese,
+    kITunesMusicVideosTypeChristianGospel,
+    kITunesMusicVideosTypeClassical,
+    kITunesMusicVideosTypeComedy,
+    kITunesMusicVideosTypeCountry,
+    kITunesMusicVideosTypeDance,
+    kITunesMusicVideosTypeDisney,
+    kITunesMusicVideosTypeEasyListening,
+    kITunesMusicVideosTypeElectronic,
+    kITunesMusicVideosTypeEnka,
+    kITunesMusicVideosTypeFitnessWorkout,
+    kITunesMusicVideosTypeFrenchPop,
+    kITunesMusicVideosTypeGermanFolk,
+    kITunesMusicVideosTypeGermanPop,
+    kITunesMusicVideosTypeHipHopRap,
+    kITunesMusicVideosTypeHoliday,
+    kITunesMusicVideosTypeIndian,
+    kITunesMusicVideosTypeInstrumental,
+    kITunesMusicVideosTypeJPop,
+    kITunesMusicVideosTypeJazz,
+    kITunesMusicVideosTypeKPop,
+    kITunesMusicVideosTypeKaraoke,
+    kITunesMusicVideosTypeKayokyoku,
+    kITunesMusicVideosTypeKorean,
+    kITunesMusicVideosTypeLatin,
+    kITunesMusicVideosTypeNewAge,
+    kITunesMusicVideosTypeOpera,
+    kITunesMusicVideosTypePodcasts,
+    kITunesMusicVideosTypePop,
+    kITunesMusicVideosTypeRBSoul,
+    kITunesMusicVideosTypeReggae,
+    kITunesMusicVideosTypeRock,
+    kITunesMusicVideosTypeSingerSongwriter,
+    kITunesMusicVideosTypeSoundtrack,
+    kITunesMusicVideosTypeSpokenWord,
+    kITunesMusicVideosTypeVocal,
+    kITunesMusicVideosTypeWorld
+} tITunesMusicVideosGenreType;
+
 

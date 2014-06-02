@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *starAllVersionsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *ratingsAllVersionsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noRatingsAllVersionsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *iconViewButton;
 
 @end

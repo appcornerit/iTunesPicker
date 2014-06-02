@@ -26,10 +26,14 @@
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 
+//local nsuserdefaults
+#define DEFAULT_ACK_CHART_ITEMS_KEY @"DEFAULT_ACK_CHART_ITEMS_KEY"
+
 //notifications
 #define NOTIFICATION_CHECK_ACK_TYPES @"NOTIFICATION_CHECK_ACK_TYPES"
 #define NOTIFICATION_CHECK_ACK_TYPES_UPDATED @"NOTIFICATION_CHECK_ACK_TYPES_UPDATED"
 #define NOTIFICATION_PARAM_ENTITY_TYPE @"NOTIFICATION_PARAM_ENTITY_TYPE"
+#define NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE @"NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE"
 
 //iAd Configuration
 #define IAD_BANNER_ENABLE 0 //1 to enable iAd
@@ -40,6 +44,6 @@
 #define DEFAULT_ACK_TYPES_KEY @"ACK_TYPES_KEY"
 
 //Default configuration
-#define DEFAULT_ACK_TYPES @[@(kITunesEntityTypeSoftware),@(kITunesEntityTypeMusic),@(kITunesEntityTypeEBook),@(kITunesEntityTypeMovie)]; //first type is the default type opened on first time app launch
+#define DEFAULT_ACK_TYPES @[@(kITunesEntityTypeSoftware),@(kITunesEntityTypeMusic),@(kITunesEntityTypeMusicVideo),@(kITunesEntityTypeEBook),@(kITunesEntityTypeMovie)]; //first type is the default type opened on first time app launch
 #define DEFAULT_COUNTRIES @[@"US",@"GB",@"JP",@"AU"] //default countries to show on first load
 #define MAX_OPENED_PICKERS 20 //limit to max countries loaded on device, high value are network expensive and cause memory crash (not applied on simulator)

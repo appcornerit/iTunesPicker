@@ -17,7 +17,11 @@
         <!--Side Right Menu View Controller-->
         <scene sceneID="G8U-j5-IoX">
             <objects>
-                <viewController storyboardIdentifier="rightViewController" id="lmp-zC-9Yt" customClass="ITPSideRightMenuViewController" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="rightViewController" id="lmp-zC-9Yt" customClass="ITPSideRightMenuViewController" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uHH-5z-0EY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2125" y="812"/>
@@ -25,7 +29,7 @@
         <!--Side Panel Controller-->
         <scene sceneID="pxg-Fd-cma">
             <objects>
-                <viewController id="YDX-U1-YNv" customClass="ITPSidePanelController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="YDX-U1-YNv" customClass="ITPSidePanelController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="LXk-wg-fUL">
                         <barButtonItem key="leftBarButtonItem" systemItem="search" id="ONg-8x-nmg">
                             <connections>
@@ -68,7 +72,11 @@
         <!--Side Left Menu View Controller-->
         <scene sceneID="rjJ-Rb-XyV">
             <objects>
-                <viewController storyboardIdentifier="leftViewController" id="VBV-2d-YE7" customClass="ITPSideLeftMenuViewController" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="leftViewController" id="VBV-2d-YE7" customClass="ITPSideLeftMenuViewController" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHr-WI-b7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2125" y="-785"/>

@@ -76,9 +76,9 @@
 
 #pragma mark public
 
-- (void)reloadWithEntityType:(tITunesEntityType)entityType
+- (void)reloadWithEntityType:(tITunesEntityType)entityType withMediaType:(tITunesMediaEntityType)mediaEntityType
 {
-    if(self.entitiesDatasources.entityType != entityType)
+    if(self.entitiesDatasources.entityType != entityType || self.entitiesDatasources.mediaEntityType != mediaEntityType)
     {
         NSString* userCountry = [self.entitiesDatasources.userCountry copy];
         NSArray* allPickerCountries = [[self.entitiesDatasources getAllCountries] copy];
@@ -86,7 +86,7 @@
             [self removePickerTableViewForCountry:countryPicker];
         }
         
-        self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:entityType limit:maxRecordToLoadForCountry];
+        self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:entityType mediaEntityType:mediaEntityType limit:maxRecordToLoadForCountry];
 
         [self updateEntityMunuPanels];
         [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
@@ -134,6 +134,15 @@
         return NSLocalizedString(rankingItems[rankingSelectedIndex],@"");
     }
     return NSLocalizedString(genreItems[genreSelectedIndex],@"");
+}
+
+-(NSInteger)getFilterCountLabels:(tITPMenuFilterPanel)menuFilterPanel
+{
+    if(menuFilterPanel == kITPMenuFilterPanelRanking)
+    {
+        return rankingItems.count;
+    }
+    return genreItems.count;
 }
 
 - (void)openCountriesPicker {
@@ -215,7 +224,8 @@
         NSArray *types = [defaults arrayForKey:DEFAULT_ACK_TYPES_KEY];
         
         tITunesEntityType entityType = self.entitiesDatasources?self.entitiesDatasources.entityType:[types[0] intValue];
-        self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:countries[0] entityType:entityType limit:maxRecordToLoadForCountry];
+        tITunesMediaEntityType mediaType = self.entitiesDatasources?self.entitiesDatasources.mediaEntityType:kITunesMediaEntityTypeDefaultForEntity;
+        self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:countries[0] entityType:entityType mediaEntityType:mediaType limit:maxRecordToLoadForCountry];
         [self setupMenuPanels];
         [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
         [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
@@ -230,7 +240,7 @@
                 }
             }
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:self userInfo:@{NOTIFICATION_PARAM_ENTITY_TYPE:[NSNumber numberWithInt:entityType]}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:self userInfo:@{NOTIFICATION_PARAM_ENTITY_TYPE:[NSNumber numberWithInt:entityType],NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE:[NSNumber numberWithInt:mediaType]}];
         [self saveStatePickerApps];
         [_swipeView reloadData];
         if(firstLoad)
@@ -298,7 +308,7 @@
 {
   if(self.entitiesDatasources.entityType == kITunesEntityTypeSoftware)
   {
-      return kITunesMediaEntityTypeSoftware;
+      return self.entitiesDatasources.mediaEntityType;
   }
   else if(self.entitiesDatasources.entityType == kITunesEntityTypeMusic)
   {
@@ -319,6 +329,10 @@
   else if(self.entitiesDatasources.entityType == kITunesEntityTypeEBook)
   {
       return kITunesMediaEntityTypeEBook;
+  }
+  else if(self.entitiesDatasources.entityType == kITunesEntityTypeMusicVideo)
+  {
+      return kITunesMediaEntityTypeMusicVideoMusic;
   }
   return kITunesMediaEntityTypeSoftware;  //default
 }
@@ -438,7 +452,12 @@
         else
         {
             firstLoad = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:self userInfo:@{NOTIFICATION_PARAM_ENTITY_TYPE:[NSNumber numberWithInt:self.entitiesDatasources.entityType],NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE:[NSNumber numberWithInt:self.entitiesDatasources.mediaEntityType]}];            
         }
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:self userInfo:@{NOTIFICATION_PARAM_ENTITY_TYPE:[NSNumber numberWithInt:self.entitiesDatasources.entityType],NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE:[NSNumber numberWithInt:self.entitiesDatasources.mediaEntityType]}];
     }
 }
 
@@ -476,8 +495,22 @@
 {
     if(self.entitiesDatasources.entityType == kITunesEntityTypeSoftware)
     {
-        rankingItems = [ACKITunesQuery getAppChartType];
-        genreItems = [ACKITunesQuery getAppGenreType];
+        switch (self.entitiesDatasources.mediaEntityType) {
+            case kITunesMediaEntityTypeSoftwareiPad:
+                rankingItems = [ACKITunesQuery getAppIPadChartType];
+                genreItems = [ACKITunesQuery getAppGenreType];
+                break;
+
+            case kITunesMediaEntityTypeSoftwareMac:
+                rankingItems = [ACKITunesQuery getAppMacChartType];
+                genreItems = [ACKITunesQuery getAppMacGenreType];
+                break;
+                
+            default:
+                rankingItems = [ACKITunesQuery getAppChartType];
+                genreItems = [ACKITunesQuery getAppGenreType];
+                break;
+        }
     }
     else if(self.entitiesDatasources.entityType == kITunesEntityTypeMusic)
     {
@@ -493,6 +526,11 @@
     {
         rankingItems = [ACKITunesQuery getBookChartType];
         genreItems = [ACKITunesQuery getBookGenreType];
+    }
+    else if(self.entitiesDatasources.entityType == kITunesEntityTypeMusicVideo)
+    {
+        rankingItems = [ACKITunesQuery getMusicVideosChartType];
+        genreItems = [ACKITunesQuery getMusicVideosGenreType];
     }
     else
     {
@@ -543,6 +581,7 @@
     NSDictionary *defaultUserDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                          [NSNumber numberWithInteger:-1], @"saved_picker_ranking",
                                          [NSNumber numberWithInteger:-1], @"saved_picker_genre",
+                                         [NSNumber numberWithInteger:10], DEFAULT_ACK_CHART_ITEMS_KEY,
                                          [[NSArray alloc]init], @"saved_picker_countries",
                                          @"", @"saved_picker_usercountry",
                                          nil];
@@ -555,12 +594,13 @@
         NSInteger ranking = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved_picker_ranking"];
         NSInteger genre = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved_picker_genre"];
         NSInteger entityType = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved_picker_entitytype"];
+        NSInteger mediaType = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved_picker_mediaentitytype"];
         NSArray* countries = [[NSUserDefaults standardUserDefaults] arrayForKey:@"saved_picker_countries"];
         NSString* userCountry = [[NSUserDefaults standardUserDefaults] stringForKey:@"saved_picker_usercountry"];
         
         if(ranking != -1 && genre != -1 && countries.count > 0 && [types containsObject:@(entityType)])
         {
-            self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:entityType limit:maxRecordToLoadForCountry];
+            self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:userCountry entityType:entityType mediaEntityType:mediaType limit:maxRecordToLoadForCountry];
             [self setupMenuPanels];
             [self valueSelectedAtIndex:ranking forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
             [self valueSelectedAtIndex:genre forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
@@ -588,6 +628,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:rankingSelectedIndex forKey:@"saved_picker_ranking"];
         [[NSUserDefaults standardUserDefaults] setInteger:genreSelectedIndex forKey:@"saved_picker_genre"];
         [[NSUserDefaults standardUserDefaults] setInteger:self.entitiesDatasources.entityType forKey:@"saved_picker_entitytype"];
+        [[NSUserDefaults standardUserDefaults] setInteger:self.entitiesDatasources.mediaEntityType forKey:@"saved_picker_mediaentitytype"];
         [[NSUserDefaults standardUserDefaults] setValue:[self.entitiesDatasources getAllCountries] forKey:@"saved_picker_countries"];
         [[NSUserDefaults standardUserDefaults] setValue:self.entitiesDatasources.userCountry forKey:@"saved_picker_usercountry"];
         [[NSUserDefaults standardUserDefaults] synchronize];

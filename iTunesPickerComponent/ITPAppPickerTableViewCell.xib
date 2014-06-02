@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bBL-PG-OUD">
-                        <rect key="frame" x="82" y="8" width="229" height="15"/>
+                        <rect key="frame" x="82" y="7" width="229" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -132,7 +132,7 @@
                     <constraint firstItem="8O6-MJ-hOf" firstAttribute="trailing" secondItem="348-ug-EPk" secondAttribute="trailing" id="M4G-wj-1Fj"/>
                     <constraint firstItem="8O6-MJ-hOf" firstAttribute="top" secondItem="tT1-CR-9qX" secondAttribute="bottom" id="NAg-o5-Wwo"/>
                     <constraint firstItem="JSx-kI-aUw" firstAttribute="trailing" secondItem="O0H-xL-L1L" secondAttribute="trailing" id="NIb-ad-tER"/>
-                    <constraint firstItem="dS7-96-WIu" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="top" id="Q7q-pL-5lU"/>
+                    <constraint firstItem="dS7-96-WIu" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="top" constant="1" id="Q7q-pL-5lU"/>
                     <constraint firstItem="8O6-MJ-hOf" firstAttribute="centerY" secondItem="rDm-mA-jyi" secondAttribute="centerY" id="QCj-Lc-fqc"/>
                     <constraint firstAttribute="bottom" secondItem="D0e-a4-gT5" secondAttribute="bottom" constant="1" id="S8I-Pi-AgV"/>
                     <constraint firstItem="JSx-kI-aUw" firstAttribute="leading" secondItem="GpJ-fX-HcV" secondAttribute="trailing" constant="6" id="Su4-7c-lpl"/>
@@ -151,20 +151,20 @@
                     <constraint firstItem="D0e-a4-gT5" firstAttribute="leading" secondItem="hT0-A0-UxW" secondAttribute="trailing" id="gmm-C7-xlH"/>
                     <constraint firstItem="D0e-a4-gT5" firstAttribute="leading" secondItem="gc3-3S-LOo" secondAttribute="trailing" constant="20" id="hEC-Df-pYe"/>
                     <constraint firstAttribute="bottom" secondItem="348-ug-EPk" secondAttribute="bottom" constant="24" id="hok-7K-39X"/>
-                    <constraint firstItem="tT1-CR-9qX" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" id="hsn-Js-l2c"/>
+                    <constraint firstItem="tT1-CR-9qX" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" constant="-1" id="hsn-Js-l2c"/>
                     <constraint firstItem="348-ug-EPk" firstAttribute="top" secondItem="8O6-MJ-hOf" secondAttribute="bottom" id="jJz-3z-fai"/>
                     <constraint firstItem="JSx-kI-aUw" firstAttribute="top" secondItem="O0H-xL-L1L" secondAttribute="bottom" id="jsH-Zj-lAb"/>
                     <constraint firstAttribute="trailing" secondItem="hT0-A0-UxW" secondAttribute="trailing" constant="52" id="kA4-Dk-1Pw"/>
                     <constraint firstAttribute="bottom" secondItem="gc3-3S-LOo" secondAttribute="bottom" constant="5" id="m6d-lf-2QT"/>
                     <constraint firstItem="D0e-a4-gT5" firstAttribute="top" secondItem="Htc-AS-hC1" secondAttribute="top" constant="1" id="nh7-eY-h22"/>
-                    <constraint firstItem="tT1-CR-9qX" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" id="pOt-c0-ZIz"/>
+                    <constraint firstItem="tT1-CR-9qX" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" constant="-1" id="pOt-c0-ZIz"/>
                     <constraint firstItem="gc3-3S-LOo" firstAttribute="leading" secondItem="GpJ-fX-HcV" secondAttribute="trailing" constant="6" id="pS0-Oi-uXF"/>
                     <constraint firstAttribute="bottom" secondItem="JSx-kI-aUw" secondAttribute="bottom" constant="23" id="qiv-YS-CUA"/>
                     <constraint firstAttribute="trailing" secondItem="D0e-a4-gT5" secondAttribute="trailing" id="rLM-mL-9a5"/>
                     <constraint firstItem="GpJ-fX-HcV" firstAttribute="leading" secondItem="Htc-AS-hC1" secondAttribute="leading" constant="12" id="rfv-jq-K0u"/>
-                    <constraint firstItem="bBL-PG-OUD" firstAttribute="top" secondItem="Htc-AS-hC1" secondAttribute="top" constant="8" id="ukp-tm-ONW"/>
+                    <constraint firstItem="bBL-PG-OUD" firstAttribute="top" secondItem="Htc-AS-hC1" secondAttribute="top" constant="7" id="ukp-tm-ONW"/>
                     <constraint firstItem="exV-TF-3GY" firstAttribute="top" secondItem="O0H-xL-L1L" secondAttribute="bottom" constant="1" id="uvB-hb-w5W"/>
-                    <constraint firstItem="hT0-A0-UxW" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" constant="8" id="vfQ-FN-la3"/>
+                    <constraint firstItem="hT0-A0-UxW" firstAttribute="top" secondItem="bBL-PG-OUD" secondAttribute="bottom" constant="7" id="vfQ-FN-la3"/>
                     <constraint firstItem="hT0-A0-UxW" firstAttribute="centerY" secondItem="D0e-a4-gT5" secondAttribute="centerY" id="y5p-6P-nF0"/>
                     <constraint firstItem="gc3-3S-LOo" firstAttribute="top" secondItem="hT0-A0-UxW" secondAttribute="bottom" constant="4" id="ytc-DN-Dko"/>
                     <constraint firstItem="D0e-a4-gT5" firstAttribute="leading" secondItem="tT1-CR-9qX" secondAttribute="trailing" constant="29" id="zJB-kC-FRw"/>
@@ -175,6 +175,7 @@
                 <outlet property="detailButton" destination="D0e-a4-gT5" id="P0W-be-IJb"/>
                 <outlet property="genreLabel" destination="tT1-CR-9qX" id="Gmw-Ch-Lbg"/>
                 <outlet property="iconView" destination="GpJ-fX-HcV" id="GrY-hJ-ga0"/>
+                <outlet property="iconViewButton" destination="dS7-96-WIu" id="SYU-5D-ntm"/>
                 <outlet property="noRatingsAllVersionsLabel" destination="JSx-kI-aUw" id="G4P-ab-TGd"/>
                 <outlet property="noRatingsLabel" destination="O0H-xL-L1L" id="sZA-Lo-B59"/>
                 <outlet property="positionBadge" destination="hT0-A0-UxW" id="7jV-3b-jat"/>

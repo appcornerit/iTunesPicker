@@ -12,10 +12,11 @@
 
 @property (nonatomic, readonly) NSString *userCountry;
 @property (nonatomic, readonly) tITunesEntityType entityType;
+@property (nonatomic, readonly) tITunesMediaEntityType mediaEntityType;
 @property (nonatomic, readonly) NSUInteger limit;
 
 -(instancetype) init __attribute__((unavailable("init not available")));
--(id) initWithUserCountry:(NSString*)userCountry entityType:(tITunesEntityType)entityType limit:(NSUInteger)limit;
+-(id) initWithUserCountry:(NSString*)userCountry entityType:(tITunesEntityType)entityType mediaEntityType:(tITunesMediaEntityType)mediaEntityType limit:(NSUInteger)limit;
 
 -(NSInteger)addDatasource:(NSArray*)entities foriTunesCountry:(NSString*)country;
 -(void)replaceDatasourceAtIndex:(NSInteger)index entity:(NSArray*)entities foriTunesCountry:(NSString*)country;

@@ -15,15 +15,19 @@
 "menu.selectcountries"="Aggiungi nazioni";
 "menu.changeusercountry"="Modifica la tua nazione";
 
-"type_1"="Musica";
-"type_2"="Film";
-"type_3"="Video musicali";
-"type_4"="Serie TV";
-"type_5"="Audiolibri";
-"type_6"="Libri";
-"type_7"="Podcast";
-"type_8"="Cortometraggi";
-"type_9"="App";
+"type_1_0"="Musica";
+"type_2_0"="Film";
+"type_3_0"="Video musicali";
+"type_4_0"="Serie TV";
+"type_5_0"="Audiolibri";
+"type_6_0"="Libri";
+"type_7_0"="Podcast";
+"type_8_0"="Cortometraggi";
+"type_9_1"="App iOS";
+"type_9_2"="App iPad";
+"type_9_3"="App Mac";
+
+"slidercell.label"="Risultati";
 
 //left menu
 "menu.section.filters"="Classifiche";
@@ -42,12 +46,18 @@
 "button_cancel"="Annulla";
 
 //App
-"topfreeapplications"="Top Gratuite";
-"toppaidapplications"="Top Acquistate";
-"topgrossingapplications"="Top Redditizie";
-"newapplications"="Nuove";
-"newfreeapplications"="Nuove Gratuite";
-"newpaidapplications"="Nuove Acquistate";
+"topfreeapplications"="Top app gratuite";
+"toppaidapplications"="Top app acquistate";
+"topgrossingapplications"="Top app redditizie";
+"newapplications"="Nuove app";
+"newfreeapplications"="Nuove app gratuite";
+"newpaidapplications"="Nuove app a pagamento";
+
+//App iPad
+"topfreeipadapplications"="Top app gratuite per iPad";
+"toppaidipadapplications"="Top app acquistate per iPad";
+"topgrossingipadapplications"="Top app redditizie per iPad";
+
 
 "0"="Tutti i generi";
 "6018"="Libri";
@@ -73,6 +83,37 @@
 "6003"="Viaggi";
 "6002"="Utilità";
 "6001"="Previsioni del tempo";
+
+
+//App Mac
+"topmacapps"="Top app per Mac";
+"topfreemacapps"="Top app gratuite per Mac";
+"toppaidmacapps"="Top app a pagamento per Mac";
+"topgrossingmacapps"="Top app redditizie per Mac";
+
+"00000" = "Tutti i generi";
+"12001" = "Business";
+"12002" = "Sviluppatori";
+"12003" = "Istruzione";
+"12004" = "Intrattenimento";
+"12005" = "Finanza";
+"12006" = "Giochi";
+"12022" = "Grafica e design";
+"12007" = "Salute e benessere";
+"12008" = "Mode e tendenze";
+"12008" = "Medicina";
+"12011" = "Musica";
+"12012" = "News";
+"12013" = "Fotografia";
+"12014" = "Produttività";
+"12015" = "Riferimento";
+"12016" = "Social Network";
+"12017" = "Sport";
+"12018" = "Viaggi";
+"12019" = "Utility";
+"12020" = "Video";
+"12021" = "Meteorologia";
+
 
 "itppicker.tablecell.app.noratings"="Nessun voto per la versione corrente";
 "itppicker.tablecell.app.noratings.allversions"="Nessun voto per tutte le versioni";
@@ -209,3 +250,52 @@
 "9019"="Scienza e natura";
 "9035"="Sport e vita all'aperto";
 "9004"="Viaggi e avventura";
+
+//Music Videos
+"topmusicvideos"="Top videoclip";
+
+"000000"="Tutti i generi";
+"1620"="Alternativa";
+"1629"="Anime";
+"1685"="Big Band";
+"1602"="Blues";
+"1671"="Brasiliana";
+"1604"="Muisca per bambini";
+"1637"="Cinese";
+"1622"="Musica religiosa";
+"1605"="Classica";
+"1603"="Commedia";
+"1606"="Country";
+"1617"="Dance";
+"1631"="Disney";
+"1625"="Easy Listening";
+"1607"="Elettronica";
+"1628"="Enka";
+"1683"="Fitness e workout";
+"1632"="Pop francese";
+"1634"="Folk tedesco";
+"1633"="Pop tedesco";
+"1618"="Hip-Hop/Rap";
+"1608"="Muisca per le feste";
+"1690"="Indiana";
+"1684"="Strumentale";
+"1627"="J-Pop";
+"1611"="Jazz";
+"1686"="K-Pop";
+"1687"="Karaoke";
+"1630"="Kayokyoku";
+"1648"="Coreano";
+"1612"="Latina";
+"1613"="New Age";
+"1609"="Opera";
+"1626"="Podcasts";
+"1614"="Pop";
+"1615"="R&B/Soul";
+"1624"="Reggae";
+"1621"="Rock";
+"1610"="Cantautore";
+"1616"="Colonne sonore";
+"1689"="Parlato";
+"1623"="Musica sinfonico-vocale";
+"1619"="World";
+
