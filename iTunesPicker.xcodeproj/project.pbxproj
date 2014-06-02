@@ -22,6 +22,8 @@
 		FF3383D2193CCD9400718FC0 /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3383D0193CCD9400718FC0 /* ASValueTrackingSlider.m */; };
 		FF3383D7193CCDBF00718FC0 /* ITPSliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3383D4193CCDBF00718FC0 /* ITPSliderCell.xib */; };
 		FF3383D8193CCDBF00718FC0 /* ITPSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3383D6193CCDBF00718FC0 /* ITPSliderCell.m */; };
+		FF3383DD193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3383DA193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.xib */; };
+		FF3383DE193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3383DB193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.m */; };
 		FF3A6481190538F200003669 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3A6480190538F200003669 /* libz.dylib */; };
 		FF3A64831905391600003669 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3A64821905391600003669 /* AdSupport.framework */; };
 		FF3A648519053A1700003669 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3A648419053A1700003669 /* libsqlite3.0.dylib */; };
@@ -91,6 +93,9 @@
 		FF3383D4193CCDBF00718FC0 /* ITPSliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPSliderCell.xib; sourceTree = "<group>"; };
 		FF3383D5193CCDBF00718FC0 /* ITPSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSliderCell.h; sourceTree = "<group>"; };
 		FF3383D6193CCDBF00718FC0 /* ITPSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSliderCell.m; sourceTree = "<group>"; };
+		FF3383DA193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPMusicVideoPickerTableViewCell.xib; sourceTree = "<group>"; };
+		FF3383DB193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPMusicVideoPickerTableViewCell.m; sourceTree = "<group>"; };
+		FF3383DC193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPMusicVideoPickerTableViewCell.h; sourceTree = "<group>"; };
 		FF3A6480190538F200003669 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		FF3A64821905391600003669 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		FF3A648419053A1700003669 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -273,6 +278,16 @@
 			name = cells;
 			sourceTree = "<group>";
 		};
+		FF3383D9193CD55C00718FC0 /* MusicVideo */ = {
+			isa = PBXGroup;
+			children = (
+				FF3383DC193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.h */,
+				FF3383DB193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.m */,
+				FF3383DA193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.xib */,
+			);
+			name = MusicVideo;
+			sourceTree = "<group>";
+		};
 		FF3A64651902DF0100003669 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +361,7 @@
 				FF68CF59190AA7930068A449 /* App */,
 				FF68CF5B190AA7B20068A449 /* Book */,
 				FF68CF5C190AA7BA0068A449 /* Video */,
+				FF3383D9193CD55C00718FC0 /* MusicVideo */,
 				FF68CF5A190AA7A20068A449 /* Audio */,
 			);
 			name = TableViewCells;
@@ -555,6 +571,7 @@
 				FF3A94B818D261D900479E98 /* ITPMenuTableViewController.xib in Resources */,
 				FF68CF321908608A0068A449 /* ITPSideRightMenuViewController.xib in Resources */,
 				FF68CF73190D439B0068A449 /* ITPAudioPickerTableViewCell.xib in Resources */,
+				FF3383DD193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.xib in Resources */,
 				FF3A94CA18DBA52E00479E98 /* Localizable.strings in Resources */,
 				FF2E269E18B2AA4000270C57 /* InfoPlist.strings in Resources */,
 				FFEE4D7D18B40D61001C7D54 /* ITPViewController.xib in Resources */,
@@ -573,6 +590,7 @@
 				FFD2E6821916A04C00F9672D /* ITPVideoPickerTableViewCell.m in Sources */,
 				FF68CF60190AA85B0068A449 /* ITPAppPickerDetailViewController.m in Sources */,
 				FF68CF311908608A0068A449 /* ITPSideRightMenuViewController.m in Sources */,
+				FF3383DE193CD56F00718FC0 /* ITPMusicVideoPickerTableViewCell.m in Sources */,
 				FF3383D1193CCD9400718FC0 /* ASValuePopUpView.m in Sources */,
 				FFDE6AEC1932015B00F317B2 /* LKBadgeView.m in Sources */,
 				FF28866C19324EEA0099DA00 /* SwipeView.m in Sources */,
