@@ -3,8 +3,11 @@ iTunesPicker
 
 A complete App to discover, search and compare rankings for apps, books, movies and music **from iTunes in any available country**.
 
+Charts supported by the current version:
+iOS Apps, iPad Apps, Mac Apps, Music (Song and Albums), Music Videos, Ebooks, Movies.
+
 #### Why another picker?
-- iTunes charts are available only for your country, with iTunesPicker you can discover apps (and others items) in the world rankings and compare the position (top 200 is the iTunes API limit) for an app (book,movie,music) in the world rankings.
+- iTunes charts are available only for your country, with iTunesPicker you can discover apps (and others items) in the world rankings and compare the position for an app (book,movie,music) in the world rankings.
 
 - you can include iTunesPicker in your app to encourage the download of your others apps (without breaking the approval rule 2.25), you can show your others apps in the App Store with a few lines of code. 
 
@@ -44,7 +47,6 @@ iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communicati
 
 
 #### Project Status
-iTunesPicker works with **apps**, songs, albums, movies and ebooks.
 I'm developing the missing iTunes items, open an issue for other types you need to support.
 In the next step I will add rankings's trends (up/down arrows) for each item and "best deal" function to see "price drop" list (thanks to Nam for your suggestion).
 
