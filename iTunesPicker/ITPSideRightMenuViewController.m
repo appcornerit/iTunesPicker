@@ -127,6 +127,10 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
                 {
                     index = indexPath.row - 2;
                 }
+                else
+                {
+                    index = indexPath.row;
+                }
             }
             
             NSString* key = [NSString stringWithFormat:@"type_%d_%d",[[self getAvailableTypes][index] intValue],selectedMediaType];
@@ -185,6 +189,10 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
                 else if(indexPath.row > index+2)
                 {
                     index = indexPath.row - 2;
+                }
+                else
+                {
+                    index = indexPath.row;
                 }
             }
             

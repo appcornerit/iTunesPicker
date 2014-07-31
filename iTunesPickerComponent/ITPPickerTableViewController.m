@@ -31,7 +31,7 @@
         self.indexSelected = NSNotFound;
         self.highlightCells = YES;
         self.query = [[ACKITunesQuery alloc]init];
-        self.query.cachePolicyChart = NSURLRequestUseProtocolCachePolicy;
+        self.query.cachePolicyChart = NSURLRequestReloadIgnoringCacheData;
         self.query.cachePolicyLoadEntity = NSURLRequestUseProtocolCachePolicy;
         self.mustScrollContent = YES;
     }
