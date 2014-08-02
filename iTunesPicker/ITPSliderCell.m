@@ -18,9 +18,9 @@
 -(void) initSlider
 {
     self.slider.delegate = self;
-    self.slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_ACK_CHART_ITEMS_KEY];
     self.slider.minimumValue = 10;
     self.slider.maximumValue = 200.0;
+    self.slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_ACK_CHART_ITEMS_KEY];    
     self.slider.popUpViewCornerRadius = 12.0;
     [self.slider setMaxFractionDigitsDisplayed:0];
     self.slider.popUpViewColor = [UIColor colorWithHue:0.55 saturation:0.8 brightness:0.9 alpha:0.7];
