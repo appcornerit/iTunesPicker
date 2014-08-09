@@ -274,11 +274,11 @@
     else if (iTunesEntity.iTunesEntityType == kITunesEntityTypeMusicVideo) {
         NSString *CellIdentifier = @"ITPMusicVideoPickerTableViewCell";
         cell = (ITPMusicVideoPickerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        ((ITPMusicVideoPickerTableViewCell*)cell).coverImageView.delegate = self;
         if (!cell)
         {
             cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil]objectAtIndex:0];
         }
+        ((ITPMusicVideoPickerTableViewCell*)cell).coverImageView.delegate = self;        
     }
     else
     {
