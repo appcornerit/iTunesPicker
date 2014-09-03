@@ -73,6 +73,7 @@ typedef NS_ENUM(NSUInteger, SwipeViewAlignment)
 @property (nonatomic, assign) NSInteger currentPage;
 @property (nonatomic, assign) SwipeViewAlignment alignment;
 @property (nonatomic, assign) CGFloat scrollOffset;
+@property (nonatomic, readonly) CGPoint contentOffset;
 @property (nonatomic, assign, getter = isPagingEnabled) BOOL pagingEnabled;
 @property (nonatomic, assign, getter = isScrollEnabled) BOOL scrollEnabled;
 @property (nonatomic, assign, getter = isWrapEnabled) BOOL wrapEnabled;

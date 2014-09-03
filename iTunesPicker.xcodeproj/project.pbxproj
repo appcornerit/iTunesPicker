@@ -92,7 +92,6 @@
 		FFEE4DC818B6CB2D001C7D54 /* DCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEE4DBD18B6CB2D001C7D54 /* DCTextView.m */; };
 		FFEE4DCA18B6CB2D001C7D54 /* UIView+DCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEE4DBF18B6CB2D001C7D54 /* UIView+DCAdditions.m */; };
 		FFEE4DCD18B6CB4E001C7D54 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEE4DCC18B6CB4E001C7D54 /* QuartzCore.framework */; };
-		FFEE4E1818BFF1E9001C7D54 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEE4E1718BFF1E9001C7D54 /* SwipeView.m */; };
 		FFF6CF211981AF3600059E98 /* ITPGraphic.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF6CF201981AF3600059E98 /* ITPGraphic.m */; };
 		FFF6CF5A19883D6700059E98 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF6CF4F19883D6700059E98 /* NSMutableArray+SWUtilityButtons.m */; };
 		FFF6CF5B19883D6700059E98 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF6CF5119883D6700059E98 /* SWCellScrollView.m */; };
@@ -102,6 +101,7 @@
 		FFF6CF5F19883D6800059E98 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF6CF5919883D6700059E98 /* SWUtilityButtonView.m */; };
 		FFF6CF6319883D9500059E98 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF6CF6219883D9500059E98 /* UIScrollView+EmptyDataSet.m */; };
 		FFF6CF67198D72F000059E98 /* TTUITableViewZoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF6CF66198D72F000059E98 /* TTUITableViewZoomController.m */; };
+		FFF6F62B19B7CCE300B5DD64 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF6F62A19B7CCE300B5DD64 /* SwipeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -250,8 +250,6 @@
 		FFEE4DBE18B6CB2D001C7D54 /* UIView+DCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DCAdditions.h"; sourceTree = "<group>"; };
 		FFEE4DBF18B6CB2D001C7D54 /* UIView+DCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DCAdditions.m"; sourceTree = "<group>"; };
 		FFEE4DCC18B6CB4E001C7D54 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FFEE4E1618BFF1E9001C7D54 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
-		FFEE4E1718BFF1E9001C7D54 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
 		FFF6CF1F1981AF3600059E98 /* ITPGraphic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPGraphic.h; sourceTree = "<group>"; };
 		FFF6CF201981AF3600059E98 /* ITPGraphic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPGraphic.m; sourceTree = "<group>"; };
 		FFF6CF4E19883D6700059E98 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
@@ -270,6 +268,8 @@
 		FFF6CF6219883D9500059E98 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		FFF6CF65198D72F000059E98 /* TTUITableViewZoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTUITableViewZoomController.h; sourceTree = "<group>"; };
 		FFF6CF66198D72F000059E98 /* TTUITableViewZoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUITableViewZoomController.m; sourceTree = "<group>"; };
+		FFF6F62919B7CCE300B5DD64 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeView.h; path = External/SwipeView/SwipeView.h; sourceTree = SOURCE_ROOT; };
+		FFF6F62A19B7CCE300B5DD64 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwipeView.m; path = External/SwipeView/SwipeView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -752,8 +752,8 @@
 		FFEE4E1518BFF1E9001C7D54 /* SwipeView */ = {
 			isa = PBXGroup;
 			children = (
-				FFEE4E1618BFF1E9001C7D54 /* SwipeView.h */,
-				FFEE4E1718BFF1E9001C7D54 /* SwipeView.m */,
+				FFF6F62919B7CCE300B5DD64 /* SwipeView.h */,
+				FFF6F62A19B7CCE300B5DD64 /* SwipeView.m */,
 			);
 			name = SwipeView;
 			path = "../../../../../Downloads/SwipeView-master/SwipeView";
@@ -947,7 +947,6 @@
 				FFEE4DC018B6CB2D001C7D54 /* DCCrossHairView.m in Sources */,
 				FFF6CF5E19883D6800059E98 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				FFF6CF5C19883D6700059E98 /* SWLongPressGestureRecognizer.m in Sources */,
-				FFEE4E1818BFF1E9001C7D54 /* SwipeView.m in Sources */,
 				FF2E26A418B2AA4000270C57 /* ITPAppDelegate.m in Sources */,
 				FF3383C4193CB9D100718FC0 /* ASValuePopUpView.m in Sources */,
 				FFF6CF6319883D9500059E98 /* UIScrollView+EmptyDataSet.m in Sources */,
@@ -958,6 +957,7 @@
 				FF8B094F19747CDB007E391F /* UIImage+ImageEffects.m in Sources */,
 				FF3A94AE18CFC03D00479E98 /* ITPCountryItemChartsViewController.m in Sources */,
 				FF2E26A018B2AA4000270C57 /* main.m in Sources */,
+				FFF6F62B19B7CCE300B5DD64 /* SwipeView.m in Sources */,
 				FF8B095019747CDB007E391F /* UIImageView+LBBlurredImage.m in Sources */,
 				FF68CF6E190B1FF00068A449 /* ITPPickerTableViewCell.m in Sources */,
 			);

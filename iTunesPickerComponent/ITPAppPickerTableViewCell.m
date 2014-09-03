@@ -40,7 +40,6 @@
     self.ratingsLabel.text = [NSString stringWithFormat:@"%.1lf/5.0 (%@)",[appObject.averageUserRatingForCurrentVersion doubleValue] , [formatter stringFromNumber:appObject.userRatingCountForCurrentVersion]];
     self.ratingsLabel.hidden = appObject.userRatingCountForCurrentVersion == 0;
     self.noRatingsLabel.hidden = [appObject.userRatingCountForCurrentVersion doubleValue] > 0;
-    self.starImageView.hidden = [appObject.userRatingCountForCurrentVersion doubleValue] == 0;
     
     NSNumber* userRatingCountAllVersions = appObject.userRatingCount;
     if(appObject.userRatingCount < appObject.userRatingCountForCurrentVersion)
@@ -51,7 +50,6 @@
     self.ratingsAllVersionsLabel.text = [NSString stringWithFormat:@"%.1lf/5.0 (%@ %@)",[appObject.averageUserRating doubleValue], [formatter stringFromNumber:userRatingCountAllVersions],NSLocalizedString(@"itppicker.tablecell.app.label.allVersions",nil)];
     self.ratingsAllVersionsLabel.hidden = [userRatingCountAllVersions doubleValue]== 0;
     self.noRatingsAllVersionsLabel.hidden = [userRatingCountAllVersions doubleValue]> 0;
-    self.starAllVersionsImageView.hidden = [userRatingCountAllVersions doubleValue]== 0;
     
     self.priceLabel.text = appObject.formattedPrice;
     if(!appObject.existInUserCountry)

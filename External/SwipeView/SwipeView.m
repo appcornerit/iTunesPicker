@@ -1208,4 +1208,11 @@
     [_delegate swipeViewDidEndDecelerating:self];
 }
 
+#pragma mark - aggiunti per gestione menu
+
+-(CGPoint)contentOffset
+{
+    return _scrollView.contentOffset;
+}
+
 @end
