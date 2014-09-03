@@ -7,17 +7,14 @@
 //
 
 #import "ITPPickerTableViewCell.h"
-#import "LKBadgeView.h"
 
 @interface ITPAppPickerTableViewCell : ITPPickerTableViewCell
 
 @property (nonatomic, weak) IBOutlet ACKAppIconImageView *iconView;
 @property (nonatomic, weak) IBOutlet UILabel *appNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *genreLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *starImageView;
 @property (nonatomic, weak) IBOutlet UILabel *noRatingsLabel;
 @property (nonatomic, weak) IBOutlet UILabel *ratingsLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *starAllVersionsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *ratingsAllVersionsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noRatingsAllVersionsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *iconViewButton;

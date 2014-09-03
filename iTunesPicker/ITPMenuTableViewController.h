@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 appcorner.it. All rights reserved.
 //
 
+#import "MGSpotyViewController.h"
+
 typedef enum {
     kPAPMenuPickerTypeRanking = 0,
     kPAPMenuPickerTypeGenre,
@@ -25,15 +27,15 @@ static CGFloat menuItemHeight = 44.0f;
 
 @end
 
-@interface ITPMenuTableViewController : UIViewController
+@interface ITPMenuTableViewController : MGSpotyViewController
 {
     CGRect closeFrame;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet UIView *backgroundView;
+//@property (strong, nonatomic) IBOutlet UITableView *tableView;
+//@property (strong, nonatomic) IBOutlet UIView *backgroundView;
 
-@property (assign, nonatomic) CGRect backgroundAreaDismissRect;
+//@property (assign, nonatomic) CGRect backgroundAreaDismissRect;
 @property (assign, nonatomic) CGFloat closeOffset;
 @property (assign, nonatomic) tPAPMenuPickerType type;
 @property (assign, nonatomic) kPAPMenuOpenDirection openDirection;
@@ -42,7 +44,9 @@ static CGFloat menuItemHeight = 44.0f;
 @property (weak, nonatomic) id<ITPMenuTableViewDelegate> delegate;
 @property (readonly) BOOL isOpen;
 
+- (instancetype)initWithMainImage:(UIImage *)image type:(tPAPMenuPickerType)type;
 -(void) togglePanel;
 -(void) togglePanelWithCompletionBlock:(void (^)(BOOL isOpen))completion;
++(NSString*) getImageFromType:(tITunesEntityType)iTunesEntityType;
 
 @end

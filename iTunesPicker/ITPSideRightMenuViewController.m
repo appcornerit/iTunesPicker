@@ -7,12 +7,14 @@
 //
 
 #import "ITPSideRightMenuViewController.h"
-#import "JASidePanelController.h"
-#import "UIViewController+JASidePanel.h"
+//#import "JASidePanelController.h"
+//#import "UIViewController+JASidePanel.h"
 #import "ITPSliderCell.h"
+#import "ITPMorphingTableViewCell.h"
+#import "ITPGraphic.h"
 
 static NSString *CellIdentifierSlider = @"ITPSliderCell";
-static NSString *CellIdentifierMenu = @"SideMenuItemCell";
+static NSString *CellIdentifierMenu = @"ITPMorphingTableViewCell";
 
 @interface ITPSideRightMenuViewController ()
 
@@ -20,13 +22,26 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
 
 @implementation ITPSideRightMenuViewController
 
-//-(void) viewDidLoad
-//{
-//    [super viewDidLoad];
-//    
-//    [self.tableView registerClass:[ITPSliderCell class] forCellReuseIdentifier:CellIdentifierSlider];
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifierMenu];
-//}
+-(void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:CellIdentifierSlider bundle:nil] forCellReuseIdentifier:CellIdentifierSlider];
+    [self.tableView registerNib:[UINib nibWithNibName:CellIdentifierMenu bundle:nil] forCellReuseIdentifier:CellIdentifierMenu];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadingChange:) name:NOTIFICATION_LOADING_CHANGE object:nil];    
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)loadingChange:(NSNotification*) notification
+{
+    _pickerLoading = [notification.userInfo[ @"loading"]boolValue];
+    [self.tableView reloadData];
+}
 
 -(NSArray*)getAvailableTypes
 {
@@ -58,9 +73,9 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return NSLocalizedString(@"menu.section.types", nil);
+            return [NSLocalizedString(@"menu.section.types", nil) uppercaseString];
         default:
-            return NSLocalizedString(@"menu.section.settings", nil);
+            return [NSLocalizedString(@"menu.section.settings", nil) uppercaseString];
     }
 }
 
@@ -68,7 +83,9 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
 {
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
         UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
+        tableViewHeaderFooterView.textLabel.font = [UIFont systemFontOfSize:20];
         tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentCenter;
+        tableViewHeaderFooterView.backgroundView.backgroundColor = [UIColor clearColor]; //[[ITPGraphic sharedInstance] commonColor];
     }
 }
 
@@ -87,16 +104,22 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
     else
     {
 //        NSString *CellIdentifier = @"SideMenuItemCell";
-        cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierMenu];
+        cell = (ITPMorphingTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierMenu];
         if (!cell)
         {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierMenu];
+            cell = [[ITPMorphingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierMenu];
         }
     }
     
-    cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.textAlignment = NSTextAlignmentRight;
+    cell.backgroundColor = [UIColor clearColor];
+    if([cell isKindOfClass:[ITPMorphingTableViewCell class]])
+    {
+        ((ITPMorphingTableViewCell*)cell).morphLabel.textAlignment = NSTextAlignmentRight;
+        ((ITPMorphingTableViewCell*)cell).typeView.backgroundColor = [UIColor clearColor];
+        ((ITPMorphingTableViewCell*)cell).morphLabel.textColor = [UIColor whiteColor];
+    }
     cell.imageView.image = nil;
+    NSString* textForCell = @"";
     
     switch (indexPath.section) {
         case 0:
@@ -134,24 +157,49 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
             }
             
             NSString* key = [NSString stringWithFormat:@"type_%d_%d",[[self getAvailableTypes][index] intValue],selectedMediaType];
-            cell.textLabel.text = NSLocalizedString(key, nil);
+            textForCell = NSLocalizedString(key, nil);
+            ((ITPMorphingTableViewCell*)cell).typeView.backgroundColor = [[ITPGraphic sharedInstance] commonColorForEntity:[[self getAvailableTypes][index]intValue]];
             break;
         }
         case 1:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = NSLocalizedString(@"menu.selectcountries", nil);
+                    if(_pickerLoading)
+                    {
+                        ((ITPMorphingTableViewCell*)cell).morphLabel.textColor = [UIColor grayColor];
+                    }
+                    textForCell = NSLocalizedString(@"menu.selectcountries", nil);
                     break;
                 case 1:
-                    cell.textLabel.text = NSLocalizedString(@"menu.changeusercountry", nil);
-                    cell.imageView.image = [UIImage imageNamed:[self.delegate getUserCountry]];
+                {
+                    if(_pickerLoading)
+                    {
+                        ((ITPMorphingTableViewCell*)cell).morphLabel.textColor = [UIColor grayColor];
+                    }
+                    textForCell = NSLocalizedString(@"menu.changeusercountry", nil);
+                    ((ITPMorphingTableViewCell*)cell).countryImage.image = [UIImage imageNamed:[self.delegate getUserCountry]];
+                    CAShapeLayer *circle = [CAShapeLayer layer];
+                    UIBezierPath *circularPath=[UIBezierPath bezierPathWithRoundedRect:CGRectMake(4, 4, 28,28) cornerRadius:14.0]; //image 36*36
+                    circle.path = circularPath.CGPath;
+                    ((ITPMorphingTableViewCell*)cell).countryImage.layer.mask=circle;
                     break;
+                }
                 case 2:
                     break;
             }
             break;
     }
     
+    if([cell isKindOfClass:[ITPMorphingTableViewCell class]])
+    {
+        ((ITPMorphingTableViewCell*)cell).morphLabel.text = textForCell;
+    }
+    
+//    else
+//    {
+//        ((ITPSliderCell*)cell).labelResults.textColor = [UIColor whiteColor];
+//        ((ITPSliderCell*)cell).labelResults.text = textForCell;
+//    }
     return cell;
 }
 
@@ -217,5 +265,10 @@ static NSString *CellIdentifierMenu = @"SideMenuItemCell";
     [self.delegate iTunesEntityTypeDidSelected:selectedType withMediaType:selectedMediaType];
 }
 
+//Eliminate Extra separators below UITableView
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [UIView new];
+}
 
 @end

@@ -9,6 +9,7 @@
 #import "ITPAppPickerDetailViewController.h"
 #import "ITPPickerTableViewControllerDelegate.h"
 #import "ITPPickerTableViewController.h"
+#import "ITPGraphic.h"
 #import "SVProgressHUD.h"
 
 @interface ITPAppPickerDetailViewController ()<SwipeViewDataSource, UITableViewDataSource, UITableViewDelegate, ITPPickerTableViewControllerDelegate>
@@ -262,11 +263,19 @@
 
 #pragma mark - ITPViewControllerDelegate
 
+-(NSOperationQueuePriority)getLoadingPriority:(id)sender
+{
+   return [self.delegate getLoadingPriority:sender];
+}
+
 -(void)showLoadingHUD:(BOOL)loading
 {
     if(loading)
     {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+        [SVProgressHUD setForegroundColor:[[ITPGraphic sharedInstance]commonContrastColor]];
+        [SVProgressHUD setBackgroundColor:[[ITPGraphic sharedInstance]commonColor]];
+        [SVProgressHUD setRingThickness:2.0];
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     }
     else
     {
@@ -279,9 +288,9 @@
     [self.delegate selectEntity:entity];
 }
 
--(void)openITunesEntityDetail:(ACKITunesEntity*)entity
-{
-    [self.delegate openITunesEntityDetail:entity];
-}
+//-(void)openITunesEntityDetail:(ACKITunesEntity*)entity
+//{
+//    [self.delegate openITunesEntityDetail:entity];
+//}
 
 @end

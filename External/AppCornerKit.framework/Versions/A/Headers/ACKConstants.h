@@ -140,9 +140,10 @@ typedef enum {
 //Music
 
 typedef enum {
-    kITunesMusicChartTypeTopAlbums = 0,
+    kITunesMusicChartTypeTopSongs = 0,
+    kITunesMusicChartTypeTopAlbums
 //    kITunesMusicChartTypeTopiMixes,
-    kITunesMusicChartTypeTopSongs
+
 } tITunesMusicChartType;
 
 typedef enum {

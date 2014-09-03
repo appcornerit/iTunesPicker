@@ -63,7 +63,12 @@
     }
     else
     {
-        self.priceLabel.text = @"";
+        self.priceLabel.text = @"  ";
+    }
+    
+    if(!movieObject.existInUserCountry)
+    {
+        self.priceLabel.text = @"  ";
     }
     
     //movie is DRM protected video file, I can't show the preview in app.

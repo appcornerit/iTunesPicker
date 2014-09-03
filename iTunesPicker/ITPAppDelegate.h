@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ITPSidePanelController.h"
 
 @interface ITPAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) ITPSidePanelController* panelController;
+@property (assign, nonatomic) BOOL allowOrientation;
 
 @end

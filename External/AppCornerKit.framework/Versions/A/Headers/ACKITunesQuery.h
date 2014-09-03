@@ -17,6 +17,7 @@
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicyExistsEntity;
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicySearchTerms;
 @property(nonatomic, assign) NSURLRequestCachePolicy cachePolicyChart;
+@property(nonatomic, assign) NSOperationQueuePriority priority;
 @property(nonatomic, assign) NSTimeInterval memoryCacheExpiration; //entities cache time (default 1h) to reduce bandwidth request, 0 not use cache
 
 +(NSArray*) getITunesStoreCountries;
@@ -76,5 +77,8 @@
 
 //In memory cache clean
 +(void)cleanCacheExceptTypes:(NSArray*)iTunesEntityTypes;
+
+//remove all pending query request
++(void)cancellAllQuery;
 
 @end

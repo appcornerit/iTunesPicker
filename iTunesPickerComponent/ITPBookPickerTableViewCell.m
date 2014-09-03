@@ -19,10 +19,20 @@
     ACKBook* bookObject = (ACKBook*)ent;
     self.bookNameLabel.text = bookObject.trackName;
     self.artistLabel.text = bookObject.artistName;
-    self.genreLabel.text = [bookObject.genres componentsJoinedByString:@", "];
+    self.genreLabel.text = [NSString stringWithFormat:@"%@\n\n",[bookObject.genres componentsJoinedByString:@", "]];
     self.priceLabel.text = bookObject.formattedPrice;
+    if(!bookObject.existInUserCountry)
+    {
+        self.priceLabel.text = @"  ";
+    }
     self.coverImageView.showActivityIndicator = YES;
     self.coverImageView.entity = bookObject;
 }
+
+//-(void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    [self.genreLabel sizeToFit];
+//}
 
 @end

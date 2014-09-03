@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ASValueTrackingSlider.h"
+#import "TOMSMorphingLabel.h"
 
 @interface ITPSliderCell : UITableViewCell <ASValueTrackingSliderDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *labelResults;
+@property (weak, nonatomic) IBOutlet TOMSMorphingLabel *labelResults;
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *slider;
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "ITPPickerTableViewControllerDelegate.h"
+#import "UIScrollView+EmptyDataSet.h"
+#import "TTUITableViewZoomController.h"
 
 typedef enum {
     kITPLoadStateRanking = 0,
@@ -15,7 +17,7 @@ typedef enum {
     kITPLoadStateExternalEntities,
 } tITPLoadState;
 
-@interface ITPPickerTableViewController : UIViewController
+@interface ITPPickerTableViewController : TTUITableViewZoomController  <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic, weak) id <ITPPickerTableViewControllerDelegate> delegate;
 
@@ -24,19 +26,20 @@ typedef enum {
 @property (nonatomic, readonly) tITPLoadState loadState;
 @property (nonatomic, readonly) BOOL loading;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet UIImageView *countryImageView;
-@property (weak, nonatomic) IBOutlet UIButton *countryButton;
-@property (weak, nonatomic) IBOutlet UILabel *countryLabel;
-@property (weak, nonatomic) IBOutlet UIButton *previousButton;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightLayoutConstraint;
+//@property (weak, nonatomic) IBOutlet UIView *bottomView;
+//@property (weak, nonatomic) IBOutlet UIImageView *countryImageView;
+//@property (weak, nonatomic) IBOutlet UIButton *countryButton;
+//@property (weak, nonatomic) IBOutlet UILabel *countryLabel;
+//@property (weak, nonatomic) IBOutlet UIButton *previousButton;
+//@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightLayoutConstraint;
 
-- (IBAction)previousAction:(id)sender;
-- (IBAction)nextAction:(id)sender;
-- (IBAction)countryAction:(id)sender;
+//- (IBAction)previousAction:(id)sender;
+//- (IBAction)nextAction:(id)sender;
+//- (IBAction)countryAction:(id)sender;
+-(void) closeAllCells;
 
 -(void) loadChartInITunesStoreCountry:(NSString*)country withType:(NSUInteger)type withGenre:(NSUInteger)genre completionBlock:(ACKArrayResultBlock)completion;
 -(void) loadEntitiesForArtistId:(NSString *)artistId inITunesCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion;

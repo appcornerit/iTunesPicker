@@ -9,12 +9,17 @@
 #import "ITPAppDelegate.h"
 #import "ITPViewController.h"
 #import "ITPSideRightMenuViewController.h"
+#import "ITPSideLeftMenuViewController.h"
 
-#import "JASidePanelController.h"
-//#import "DCIntrospect.h"
+#import "MSDynamicsDrawerViewController.h"
+#import "MSDynamicsDrawerStyler.h"
+//#import "JASidePanelController.h"
+#import "DCIntrospect.h"
+#import "ACPReminder.h"
+#import "ITPGraphic.h"
 
 @interface ITPAppDelegate()
-
+    @property (nonatomic, strong) UIImageView *windowBackground;
 @end
 
 
@@ -25,9 +30,7 @@
 {
     // Override point for customization after application launch.
     
-//#if TARGET_IPHONE_SIMULATOR
-//    [[DCIntrospect sharedIntrospector] start];
-//#endif
+    [[ITPGraphic sharedInstance] initCommonUXAppearance];
     
     NSArray *types = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_ACK_TYPES_KEY];
     if(!types || !REMOTE_CONFIGURATION_ENABLE)
@@ -36,6 +39,18 @@
         [[NSUserDefaults standardUserDefaults] setObject:types forKey:DEFAULT_ACK_TYPES_KEY];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    self.panelController = [[ITPSidePanelController alloc]initWithRootController:(MSDynamicsDrawerViewController*)self.window.rootViewController];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = self.panelController.dynamicsDrawerViewController;
+    [self.window makeKeyAndVisible];
+    [self.window addSubview:self.windowBackground];
+    [self.window sendSubviewToBack:self.windowBackground];
+//    self.window.tintColor = [[ITPGraphic sharedInstance] commonColor];
+    
+#if TARGET_IPHONE_SIMULATOR
+    [[DCIntrospect sharedIntrospector] start];
+#endif
     
     return YES;
 }
@@ -50,6 +65,18 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    ACPReminder * localNotifications = [ACPReminder sharedManager];
+    
+    //Settings
+    localNotifications.messages = @[NSLocalizedString(@"localNotificationsMessage", nil),NSLocalizedString(@"localNotificationsMessage", nil)];
+    localNotifications.timePeriods = @[@(3),@(7)]; //days
+    localNotifications.appDomain = @"it.appcorner";
+    localNotifications.randomMessage = NO; //By default is NO (optional)
+    localNotifications.testFlagInSeconds = NO; //By default is NO (optional) --> For testing purpose only!
+    localNotifications.circularTimePeriod = YES; // By default is NO (optional)
+    
+    [localNotifications createLocalNotification];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -66,6 +93,9 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES object:nil];
         } failure:nil];
     }
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[ACPReminder sharedManager] checkIfLocalNotificationHasBeenTriggered];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -75,9 +105,25 @@
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     
-    if ([[self.window.rootViewController presentedViewController] isKindOfClass:[MPMoviePlayerViewController class]]) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    }    
+    if(self.allowOrientation){
+//    if ([[self.window.rootViewController presentedViewController] isKindOfClass:[MPMoviePlayerViewController class]]) {
+//        MPMoviePlayerViewController* movPlayer = (MPMoviePlayerViewController*)[self.window.rootViewController presentedViewController];
+//        if(movPlayer.moviePlayer.playbackState != MPMoviePlaybackStatePaused)
+//        {
+            return UIInterfaceOrientationMaskAllButUpsideDown;
+//        }
+    }
     return UIInterfaceOrientationMaskPortrait;
 }
+
+#pragma mark - menu background
+
+- (UIImageView *)windowBackground
+{
+    if (!_windowBackground) {
+        _windowBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Window Background"]];
+    }
+    return _windowBackground;
+}
+
 @end

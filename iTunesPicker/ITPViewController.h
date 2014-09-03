@@ -9,7 +9,7 @@
 #import "ITPPickerTableViewControllerDelegate.h"
 #import "ITPMenuTableViewController.h"
 #import "SwipeView.h"
-
+#import "XHPaggingNavbar.h"
 #import <iAd/iAd.h>
 
 typedef enum {
@@ -29,6 +29,7 @@ typedef enum {
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *swipeViewVerticalSpaceLayoutConstraint;
 @property (nonatomic, strong) ITPMenuTableViewController *leftPanel;
 @property (nonatomic, strong) ITPMenuTableViewController *rightPanel;
+@property (readonly) BOOL pickersLoading;
 
 - (void)refreshAllPickers;
 - (void)openUserCountryPicker;

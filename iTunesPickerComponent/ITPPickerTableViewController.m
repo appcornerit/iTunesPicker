@@ -12,9 +12,14 @@
 #import "ITPVideoPickerTableViewCell.h"
 #import "ITPBookPickerTableViewCell.h"
 #import "ITPMusicVideoPickerTableViewCell.h"
+#import "ITPGraphic.h"
+#import "ITPViewController.h"
+#import "Chameleon.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "ITPAppDelegate.h"
+#import "ITPYouTubeViewController.h"
 
-@interface ITPPickerTableViewController() <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, ACKTrackMusicVideoPlayerDelegate>
+@interface ITPPickerTableViewController() <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, ACKTrackMusicVideoPlayerDelegate, SWTableViewCellDelegate, UIActionSheetDelegate>
     @property (nonatomic,readonly) NSArray* ds;
     @property (nonatomic,assign) NSInteger indexSelected;
     @property (nonatomic,strong) ACKITunesQuery* query;
@@ -22,6 +27,7 @@
     @property (nonatomic,assign) NSUInteger chartType;
     @property (nonatomic,assign) NSUInteger genreType;
     @property (nonatomic,assign) BOOL mustScrollContent;
+    @property (nonatomic,strong) MPMoviePlayerViewController* moviePlayerController;
 @end
 
 @implementation ITPPickerTableViewController
@@ -38,6 +44,22 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    
+    self.cellZoomInitialAlpha = [NSNumber numberWithFloat:0.5];
+    self.cellZoomAnimationDuration = [NSNumber numberWithFloat:0.3];
+    self.cellZoomXScaleFactor = [NSNumber numberWithFloat:0.9];
+    self.cellZoomYScaleFactor = [NSNumber numberWithFloat:0.9];
+    
+    // A little trick for removing the cell separators
+//    self.tableView.tableFooterView = [UIView new];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -49,38 +71,50 @@
     }
 }
 
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    if(![self.delegate respondsToSelector:@selector(showLoadingHUD:sender:)])
+//    {
+//        return;
+//    }
+//    [self.delegate showLoadingHUD:self.loading sender:self];
+//}
+
 - (void)dealloc
 {
     self.delegate = nil;
+    self.tableView.emptyDataSetSource = nil;
+    self.tableView.emptyDataSetDelegate = nil;
 }
 
-#pragma mark Action
-
-- (IBAction)previousAction:(id)sender {
-    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
-    {
-        return;
-    }
-    [self.delegate showPickerAtIndex:[self pickerIndex]-1];
-}
-
-- (IBAction)nextAction:(id)sender {
-    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
-    {
-        return;
-    }
-    
-    [self.delegate showPickerAtIndex:[self pickerIndex]+1];
-}
-
-- (IBAction)countryAction:(id)sender {
-    if([self.country isEqual:[self.delegate entitiesDatasources].userCountry])
-    {
-       return;
-    }
-    self.highlightCells = !self.highlightCells;
-    [self.tableView reloadData];
-}
+//#pragma mark Action
+//
+//- (IBAction)previousAction:(id)sender {
+//    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
+//    {
+//        return;
+//    }
+//    [self.delegate showPickerAtIndex:[self pickerIndex]-1];
+//}
+//
+//- (IBAction)nextAction:(id)sender {
+//    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
+//    {
+//        return;
+//    }
+//    
+//    [self.delegate showPickerAtIndex:[self pickerIndex]+1];
+//}
+//
+//- (IBAction)countryAction:(id)sender {
+//    if([self.country isEqual:[self.delegate entitiesDatasources].userCountry])
+//    {
+//       return;
+//    }
+//    self.highlightCells = !self.highlightCells;
+//    [self.tableView reloadData];
+//}
 
 #pragma mark public
 
@@ -122,6 +156,7 @@
     };
     
     self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
+    self.query.priority = [self.delegate getLoadingPriority:self];
     
     if(self.delegate.entitiesDatasources.entityType == kITunesEntityTypeSoftware)
     {
@@ -167,6 +202,7 @@
     
     _loadState = kITPLoadStateArtist;
     self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
+    self.query.priority = [self.delegate getLoadingPriority:self];
     
     [self.query loadEntitiesForArtistId:artistId inITunesCountry:country withType:type completionBlock:^(NSArray *array, NSError *err) {
         if(!err)
@@ -189,6 +225,8 @@
     
     _loadState = kITPLoadStateExternalEntities;
     self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
+    self.query.priority = [self.delegate getLoadingPriority:self];
+    
     [self.query loadEntities:array inITunesStoreCountry:self.delegate.entitiesDatasources.userCountry keepEntitiesNotInCountry:keepEntitiesNotInCountry completionBlock:^(NSArray *array, NSError *err) {
         if(!err)
         {
@@ -285,24 +323,35 @@
         return cell;
     }
  
+//    cell.leftUtilityButtons = [self cellButtons];
+    [cell setLeftUtilityButtons:[self cellButtons:iTunesEntity] WithButtonWidth:62.0];
+    cell.delegate = self;
+    
     cell.iTunesEntity = iTunesEntity;
     cell.userCountry = [self.delegate entitiesDatasources].userCountry;
-    if(_loadState == kITPLoadStateRanking)
-    {
-        cell.positionBadge.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
-    }
-    else{
-        cell.positionBadge.text = @"";
-    }
+    cell.positionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];    
+//    if(_loadState == kITPLoadStateRanking)
+//    {
+//        cell.iconImageView.hidden = YES;
+//    }
+//    else{
+////        cell.positionLabel.text = @"";
+//        cell.iconImageView.hidden = NO;
+//    }
     cell.detailButton.hidden = ![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)];
     
     return cell;
 }
 
 #pragma mark- Table view delegate methods
+//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [cell setNeedsLayout];
+//}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     ((ITPPickerTableViewCell*)cell).state = kITunesEntityStateNone;
     if(self.highlightCells)
     {
@@ -333,6 +382,7 @@
         if(entity.existInUserCountry && ![self.country isEqual:[self.delegate entitiesDatasources].userCountry])
         {
             self.tableView.userInteractionEnabled = NO;
+            self.query.priority = [self.delegate getLoadingPriority:self];
             [self.query loadEntity:entity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry completionBlock:^(ACKITunesEntity *userCountryEntity, NSError *err) {
                 if(!err)
                 {
@@ -356,17 +406,36 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(![self.delegate respondsToSelector:@selector(selectEntity:)])
-    {
-        return;
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ACKITunesEntity* entity = self.ds[indexPath.row];
-    [self.delegate selectEntity:entity];
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if(![self.delegate respondsToSelector:@selector(selectEntity:)])
+//    {
+//        return;
+//    }
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    ACKITunesEntity* entity = self.ds[indexPath.row];
+//    [self.delegate selectEntity:entity];
+//}
+
+-(void) closeAllCells
+{
+    [self closeAllCellsExceptAtIndexPath:nil];
 }
 
-
+-(void) closeAllCellsExceptAtIndexPath:(NSIndexPath*)indexPath
+{
+    for (ITPPickerTableViewCell* cell in [self.tableView visibleCells]) {
+        NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+        if(!indexPath || ![cellIndexPath isEqual:indexPath])
+        {
+            [cell hideUtilityButtonsAnimated:YES];
+        }
+    }
+    
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self closeAllCells];
+}
 
 #pragma mark UISearchBarDelegate
 
@@ -380,6 +449,7 @@
         tITunesMediaEntityType mediaEntityType = [self.delegate getSearchITunesMediaEntityType];
         NSInteger limit = [self.delegate entitiesDatasources].limit;
         self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
+        self.query.priority = [self.delegate getLoadingPriority:self];
         [self.query searchEntitiesForTerms:text inITunesStoreCountry:self.country withMediaType:mediaEntityType withAttribute:nil limit:limit completionBlock:^(NSArray *array, NSError *err) {
             if(!err)
             {
@@ -417,8 +487,51 @@
 
 -(void)presentVideoPlayer:(MPMoviePlayerViewController*)moviePlayerView
 {
-    [((UIViewController*)self.delegate).navigationController presentMoviePlayerViewControllerAnimated:moviePlayerView];
+    // Remove the movie player view controller from the "playback did finish" notification observers
+    [[NSNotificationCenter defaultCenter] removeObserver:moviePlayerView
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayerView.moviePlayer];
+    
+    // Register this class as an observer instead
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movieFinishedCallback:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayerView.moviePlayer];
+    ((ITPAppDelegate*)[UIApplication sharedApplication].delegate).allowOrientation = YES;
+//    moviePlayerView.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
+    self.moviePlayerController = moviePlayerView;
+    [((UIViewController*)self.delegate).navigationController presentMoviePlayerViewControllerAnimated:self.moviePlayerController];
 }
+
+- (void)movieFinishedCallback:(NSNotification*)aNotification
+{
+    // Obtain the reason why the movie playback finished
+    NSNumber *finishReason = [[aNotification userInfo] objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+    
+    // Dismiss the view controller ONLY when the reason is not "playback ended"
+    if ([finishReason intValue] != MPMovieFinishReasonPlaybackEnded)
+    {
+        MPMoviePlayerController *moviePlayer = [aNotification object];
+        
+        // Remove this class from the observers
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:MPMoviePlayerPlaybackDidFinishNotification
+                                                      object:moviePlayer];
+        ((ITPAppDelegate*)[UIApplication sharedApplication].delegate).allowOrientation = NO;
+//
+//        // Dismiss the view controller
+        [((UIViewController*)self.delegate).navigationController dismissMoviePlayerViewControllerAnimated];
+        self.moviePlayerController = nil;        
+//
+//        dispatch_async(dispatch_get_main_queue(), ^
+//                       {                           
+//                           self.view.transform = CGAffineTransformMakeRotation(0);
+//                           [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
+//                           self.view.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+//                       });
+    }
+}
+
 
 #pragma mark private
 
@@ -450,6 +563,9 @@
 -(void)setLoading:(BOOL)loading
 {
     _loading = loading;
+    
+    self.view.userInteractionEnabled = !loading;
+    self.tableView.userInteractionEnabled = !loading;
     if(![self.delegate respondsToSelector:@selector(showLoadingHUD:sender:)])
     {
         return;
@@ -459,20 +575,20 @@
 
 -(void) updateUI
 {
-    NSLocale* currentLocale = [NSLocale currentLocale];
-    self.countryImageView.image = [UIImage imageNamed:self.country];
-    [self.countryButton setTitle:[currentLocale displayNameForKey:NSLocaleCountryCode value:self.country] forState:UIControlStateNormal];
+//    NSLocale* currentLocale = [NSLocale currentLocale];
+//    self.countryImageView.image = [UIImage imageNamed:self.country];
+//    [self.countryButton setTitle:[currentLocale displayNameForKey:NSLocaleCountryCode value:self.country] forState:UIControlStateNormal];
     
-    NSInteger datasourceIndex = [self pickerIndex];
-    self.previousButton.enabled = !self.loading && datasourceIndex != NSNotFound && datasourceIndex > 0;
-    self.nextButton.enabled = !self.loading && datasourceIndex != NSNotFound && datasourceIndex < [self.delegate entitiesDatasources].datasourcesCount-1;
+//    NSInteger datasourceIndex = [self pickerIndex];
+//    self.previousButton.enabled = !self.loading && datasourceIndex != NSNotFound && datasourceIndex > 0;
+//    self.nextButton.enabled = !self.loading && datasourceIndex != NSNotFound && datasourceIndex < [self.delegate entitiesDatasources].datasourcesCount-1;
     [self.tableView reloadData];
     
-    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
-    {
-        self.previousButton.hidden = YES;
-        self.nextButton.hidden = YES;
-    }
+//    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
+//    {
+//        self.previousButton.hidden = YES;
+//        self.nextButton.hidden = YES;
+//    }
     
     self.searchBar.hidden = ![self.delegate respondsToSelector:@selector(getSearchITunesMediaEntityType)];
     
@@ -492,11 +608,203 @@
     }
     if(_loadState == kITPLoadStateExternalEntities)
     {
-        self.bottomViewHeightLayoutConstraint.constant = 0;
+//        self.bottomViewHeightLayoutConstraint.constant = 0;
         self.tableView.tableHeaderView = nil;
         [self.view setNeedsUpdateConstraints];
     }
 }
 
+#pragma mark - cell menu
+- (NSArray *)cellButtons:(ACKITunesEntity*) iTunesEntity
+{
+    NSMutableArray *cellUtilityButtons = [NSMutableArray new];
+
+    if([iTunesEntity isKindOfClass:[ACKBook class]])
+    {
+        [cellUtilityButtons sw_addUtilityButtonWithColor: [[ITPGraphic sharedInstance] commonColor] title:@"iBooks"];
+    }
+    else if([iTunesEntity isKindOfClass:[ACKApp class]])
+    {
+        if(iTunesEntity.existInUserCountry)
+        {
+            [cellUtilityButtons sw_addUtilityButtonWithColor:[[ITPGraphic sharedInstance] commonColor] normalIcon:[UIImage imageNamed:@"appstore"] selectedIcon:[UIImage imageNamed:@"appstore"]];
+        }
+    }
+    else
+    {
+        [cellUtilityButtons sw_addUtilityButtonWithColor: [[ITPGraphic sharedInstance] commonColor] title:@"iTunes"];
+    }
+    [cellUtilityButtons sw_addUtilityButtonWithColor:FlatGreenDark normalIcon:[UIImage imageNamed:@"share"] selectedIcon:[UIImage imageNamed:@"share"]];
+    [cellUtilityButtons sw_addUtilityButtonWithColor:FlatYellowDark normalIcon:[UIImage imageNamed:@"world"] selectedIcon:[UIImage imageNamed:@"world"]];
+    
+    if(![iTunesEntity isKindOfClass:[ACKBook class]])
+    {
+        if(![iTunesEntity isKindOfClass:[ACKApp class]] || [self.delegate respondsToSelector:@selector(openITunesEntityDetail:)])
+        {
+            [cellUtilityButtons sw_addUtilityButtonWithColor: FlatOrangeDark normalIcon:[UIImage imageNamed:@"search"] selectedIcon:[UIImage imageNamed:@"search"]];
+        }
+    }
+    
+    return cellUtilityButtons;
+}
+
+#pragma mark - SWTableViewDelegate
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+    switch (index) {
+        case 0:
+        {
+//            [((ITPPickerTableViewCell*)cell) openiTunesStore:nil];
+            ACKITunesQuery* query = [[ACKITunesQuery alloc]init];
+            query.cachePolicyChart = NSURLRequestUseProtocolCachePolicy;
+            query.cachePolicyLoadEntity = NSURLRequestUseProtocolCachePolicy;
+            NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+            ACKITunesEntity* iTunesEntity = [self.ds objectAtIndex:cellIndexPath.row];
+            [query openEntity:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry isGift:NO completionBlock:^(BOOL succeeded, NSError *err) {
+                if(!succeeded || err)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error_title_item_not_in_user_country",nil) message:NSLocalizedString(@"error_message_item_not_in_user_country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"button_cancel",nil), nil];
+                    [alert show];
+                }
+            }];
+            break;
+        }
+        case 1:
+        {
+            NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+            ACKITunesEntity* iTunesEntity = [self.ds objectAtIndex:cellIndexPath.row];
+            [ACKShareITunesEntity presentShareInUIViewController:(ITPViewController*)self.delegate forITunesEntity:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry withString:iTunesEntity.description completion:^{
+                
+            }];
+//            NSString* appId = [iTunesEntity valueForKey:@"trackId"];
+//            [self shareOnAppConer:appId];
+            break;
+        }
+        case 2:
+        {
+            if(![self.delegate respondsToSelector:@selector(selectEntity:)])
+            {
+                return;
+            }
+            NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+            ACKITunesEntity* iTunesEntity = [self.ds objectAtIndex:cellIndexPath.row];
+            [self.delegate selectEntity:iTunesEntity];
+            break;
+        }
+        case 3:
+        {
+            NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+            ACKITunesEntity* iTunesEntity = [self.ds objectAtIndex:cellIndexPath.row];
+            
+            if([iTunesEntity isKindOfClass:[ACKApp class]])
+            {
+                if(![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)])
+                {
+                    return;
+                }
+                if(iTunesEntity.existInUserCountry && ![self.country isEqual:[self.delegate entitiesDatasources].userCountry])
+                {
+                    self.tableView.userInteractionEnabled = NO;
+                    self.query.priority = [self.delegate getLoadingPriority:self];
+                    [self.query loadEntity:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry completionBlock:^(ACKITunesEntity *userCountryEntity, NSError *err) {
+                        if(!err)
+                        {
+                            userCountryEntity.userData = self;
+                            [self.delegate openITunesEntityDetail:userCountryEntity];
+                        }
+                        else
+                        {
+                            iTunesEntity.userData = self;
+                            [self.delegate openITunesEntityDetail:iTunesEntity];
+                        }
+                        self.tableView.userInteractionEnabled = YES;
+                    }];
+                }
+                else
+                {
+                    iTunesEntity.userData = self;
+                    [self.delegate openITunesEntityDetail:iTunesEntity];
+                }
+                return;
+            }
+            
+            [[ACKYouTube sharedInstance]performVideoSearchForITunesEntity:iTunesEntity limit:MAX_YOUTUBE_SEARCH_LIMIT country:iTunesEntity.country APIKey:YOUTUBE_API_KEY completion:^(NSError *error, NSArray *result) {
+//                NSLog(@"error:%@ result:%@",error,result);
+//                if(!error && result.count > 0)
+//                {
+                    if(!result)
+                    {
+                        result = [[NSArray alloc]init];
+                    }
+                    ITPYouTubeViewController* youTubeContoller = [[ITPYouTubeViewController alloc]initWithNibName:nil bundle:nil];
+                    youTubeContoller.videosArray = result;
+                    [((UIViewController*)self.delegate).navigationController pushViewController:youTubeContoller animated:YES];
+//                }
+//                else
+//                {
+//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error_title_yo",nil) message:NSLocalizedString(@"error_message_item_not_in_user_country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"button_cancel",nil), nil];
+//                    [alert show];
+//
+//                }
+            }];
+//            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                                     delegate:self
+//                                                            cancelButtonTitle:@"Cancel"
+//                                                       destructiveButtonTitle:nil
+//                                                            otherButtonTitles:@"Search on YouTube",@"Search on Wikipedia",@"Search on Google",@"Search on your iTunes Country",nil];
+//            [actionSheet showInView:self.view];
+        }
+        default:
+            break;
+    }
+}
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell scrollingToState:(SWCellState)state
+{
+    if(state != kCellStateCenter)
+    {
+        NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+        [self closeAllCellsExceptAtIndexPath:cellIndexPath];
+    }
+}
+
+#pragma mark - DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+
+//- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+//    
+//    return [[ITPGraphic sharedInstance] commonColor];
+//}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    NSString *text = NSLocalizedString(@"error_nodata", nil);
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [[ITPGraphic sharedInstance] commonColor]};
+                                // NSForegroundColorAttributeName: [[ITPGraphic sharedInstance] commonContrastColor]};
+                                 
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return [UIImage imageNamed:@"logo"];
+}
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    
+    return !self.loading;
+}
+
+- (CGPoint)offsetForEmptyDataSet:(UIScrollView *)scrollView {
+    
+    return CGPointMake(0, self.tableView.tableHeaderView.frame.size.height);
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"The %@ button was tapped.", [actionSheet buttonTitleAtIndex:buttonIndex]);
+}
 
 @end

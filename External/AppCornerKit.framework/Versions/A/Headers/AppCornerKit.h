@@ -27,3 +27,5 @@
 #import "ACKITunesPreviewScrollView.h"
 #import "ACKMusicPlayerView.h"
 #import "ACKTrackMusicVideoPlayerView.h"
+#import "ACKShareITunesEntity.h"
+#import "ACKYouTube.h"

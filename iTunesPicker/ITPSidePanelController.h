@@ -9,14 +9,21 @@
 #import "ITPSideRightMenuViewController.h"
 #import "ITPSideLeftMenuViewController.h"
 
-#import "JASidePanelController.h"
-#import "UIViewController+JASidePanel.h"
+#import "MSDynamicsDrawerViewController.h"
 
-@interface ITPSidePanelController : JASidePanelController <ITPSideRightMenuViewControllerDelegate,ITPSideLeftMenuViewControllerDelegate>
+typedef NS_ENUM(NSUInteger, MSPaneViewControllerType) {
+    MSPaneViewControllerTypeMain
+};
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuBarButtonItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *filterBarButtonItem;
 
-- (IBAction)menuAction:(id)sender;
-- (IBAction)filterAction:(id)sender;
+@interface ITPSidePanelController : NSObject <ITPSideRightMenuViewControllerDelegate,ITPSideLeftMenuViewControllerDelegate>
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *filterBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *menuBarButtonItem;
+
+@property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
+@property (nonatomic, assign) MSPaneViewControllerType paneViewControllerType;
+
+- (instancetype)initWithRootController:(MSDynamicsDrawerViewController *)rootViewController;
+
 @end

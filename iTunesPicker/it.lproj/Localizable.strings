@@ -6,11 +6,17 @@
   Copyright (c) 2014 appcorner.it. All rights reserved.
 */
 
+//notification
+"localNotificationsMessage"="Guarda le nuove classifiche iTunes nel mondo.";
+
+"error_title_waiting_load"="Attendere.. ";
+"error_message_waiting_load"="Caricamento della classifica globale in corso, attendere per proseguire";
+
 //preview fullscreen
 "viewer.button.close"="Chiudi";
 
 //right menu
-"menu.section.types"="Tipi";
+"menu.section.types"="";
 "menu.section.settings"="Impostazioni";
 "menu.selectcountries"="Aggiungi nazioni";
 "menu.changeusercountry"="Modifica la tua nazione";
@@ -31,16 +37,22 @@
 
 //left menu
 "menu.section.filters"="Classifiche";
-"menu.section.views"="Viste di sintesi";
+"menu.section.views"="Viste globali";
 "menu.discoverview" = "Scopri";
 "menu.globalrankingview" = "Classifica globale";
 
+//filter
+"filter.title.chart"="Seleziona la classifica";
+"filter.title.genre"="Seleziona il genere";
+
+
 //countries picker
-"countries.picker.title" = "Seleziona la tua nazione di iTunes";
+"countries.picker.title" = "Seleziona la tua nazione";
 
 //errors
 "error_title_item_not_in_user_country"="Errore in apertura iTunes Store";
 "error_message_item_not_in_user_country"="L'articolo selezionato non è disponibile nella tua nazione.";
+"error_nodata"="Nessun dato caricato";
 
 //buttons
 "button_cancel"="Annulla";

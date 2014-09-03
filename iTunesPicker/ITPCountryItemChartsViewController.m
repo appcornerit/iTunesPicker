@@ -11,6 +11,8 @@
 
 
 #import "ITPCountryItemChartsViewController.h"
+#import "ITPGraphic.h"
+#import "Chameleon.h"
 
 static NSString *CellIdentifier = @"CountryCell";
 @interface ITPCountryItemChartsViewController ()<UISearchDisplayDelegate, UISearchBarDelegate>
@@ -31,6 +33,7 @@ static NSString *CellIdentifier = @"CountryCell";
     BOOL multiSelect;
     BOOL isModal;
     ACKITunesEntity* item;
+    NSIndexPath* userLocaleIndexPath;
 }
 
 
@@ -44,6 +47,7 @@ static NSString *CellIdentifier = @"CountryCell";
         chartMode = NO;
         multiSelect = mSelect;
         isModal = modal;
+        userLocaleIndexPath = nil;
     }
     return self;
 }
@@ -58,6 +62,7 @@ static NSString *CellIdentifier = @"CountryCell";
         userCountry = uCountry;
         self.tableView.allowsSelection = NO;
         isModal = NO;
+        userLocaleIndexPath = nil;
     }
     return self;
 }
@@ -140,7 +145,9 @@ static NSString *CellIdentifier = @"CountryCell";
         }
         i++;
     }
+    
     _sections = [self partitionObjects:countriesUnsorted collationStringSelector:@selector(self)];
+
     
     [self.tableView reloadData];
     
@@ -149,10 +156,40 @@ static NSString *CellIdentifier = @"CountryCell";
      selector:@selector(preferredContentSizeChanged:)
      name:UIContentSizeCategoryDidChangeNotification
      object:nil];
+    
+    
+    self.tableView.sectionIndexColor = [[ITPGraphic sharedInstance] commonContrastColor];
+    self.tableView.sectionIndexBackgroundColor = [[ITPGraphic sharedInstance] commonColor];
+    self.tableView.separatorColor = [[ITPGraphic sharedInstance] commonColor];
 }
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(!multiSelect && !chartMode)
+    {
+        NSLocale *currentLocale = [NSLocale currentLocale];
+        NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+        for (int i =0; i<_sections.count; i++) {
+            for (int x =0; x< ((NSArray*)_sections[i]).count; x++) {
+                if([countryCode isEqualToString:_sections[i][x][@"code"]])
+                {
+                    userLocaleIndexPath = [NSIndexPath indexPathForRow:x inSection:i];
+                    [self.tableView scrollToRowAtIndexPath:userLocaleIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+                    return;
+                }
+            }
+        }
+        
+
+    }
+    
+}
+
 - (void)preferredContentSizeChanged:(NSNotification *)notification {
     [self.tableView reloadData];
 }
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
@@ -254,9 +291,18 @@ static NSString *CellIdentifier = @"CountryCell";
         cell.textLabel.text = cd[@"name"];
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     }
+
+//    cell.imageView.layer.cornerRadius = 24.0;
+//    cell.imageView.clipsToBounds = YES;
     
     cell.imageView.image = [UIImage imageNamed:cd[@"code"]];
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = FlatWhite;
+    cell.textLabel.textColor = FlatBlack;
+    
+    CAShapeLayer *circle = [CAShapeLayer layer];
+    UIBezierPath *circularPath=[UIBezierPath bezierPathWithRoundedRect:CGRectMake(4, 4, 28,28) cornerRadius:14.0]; //image 36*36
+    circle.path = circularPath.CGPath;
+    cell.imageView.layer.mask=circle;
     
     if(!chartMode)
     {
@@ -265,12 +311,18 @@ static NSString *CellIdentifier = @"CountryCell";
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
+        if(!multiSelect && [userLocaleIndexPath isEqual:indexPath])
+        {
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
+            cell.textLabel.textColor = FlatGreenDark;
+        }
     }
     else
     {
         if([cd[@"code"]isEqualToString:userCountry])
         {
-            cell.backgroundColor = [UIColor colorWithRed:76.0/255.0 green:217.0/255.0 blue:100.0/255.0 alpha:0.5];
+//            cell.backgroundColor = FlatGreen;
+            cell.textLabel.textColor = FlatGreenDark;
         }
     }
     return cell;
@@ -386,4 +438,44 @@ static NSString *CellIdentifier = @"CountryCell";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *)view;
+    tableViewHeaderFooterView.textLabel.textColor = [[ITPGraphic sharedInstance] commonContrastColor];
+    tableViewHeaderFooterView.textLabel.font = [UIFont systemFontOfSize:20];
+    tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentCenter;
+    tableViewHeaderFooterView.backgroundView.backgroundColor = [[ITPGraphic sharedInstance] commonColor];
+}
+
+//Eliminate Extra separators below UITableView
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [UIView new];
+//}
+
+/*
+#pragma mark - UITableViewDelegate selection
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Add your Colour.
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self setCellColor:[[ITPGraphic sharedInstance] commonColor] ForCell:cell];  //highlight colour
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Reset Colour.
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self setCellColor:[UIColor clearColor] ForCell:cell]; //normal color
+    
+}
+
+- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
+    cell.contentView.backgroundColor = color;
+    cell.backgroundColor = color;
+}
+*/
 @end

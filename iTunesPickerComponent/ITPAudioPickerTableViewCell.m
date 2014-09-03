@@ -7,6 +7,7 @@
 //
 
 #import "ITPAudioPickerTableViewCell.h"
+#import "ITPGraphic.h"
 @implementation ITPAudioPickerTableViewCell
 
 @synthesize iTunesEntity=_iTunesEntity;
@@ -44,6 +45,8 @@
         self.musicPlayerView.hidden = NO;
         self.musicPlayerView.layer.masksToBounds = YES;
         self.musicPlayerView.layer.cornerRadius = self.musicPlayerView.frame.size.width/2.0;
+        self.musicPlayerView.playerIndicatorColor = [[ITPGraphic sharedInstance] commonColor];
+        self.musicPlayerView.playerBarIndicatorColor  = [[ITPGraphic sharedInstance] commonContrastColor];
         self.coverImageView.hidden = YES;
     }
     else if([ent isKindOfClass:[ACKAlbum class]])
@@ -80,6 +83,17 @@
         self.coverImageView.hidden = NO;
         self.musicPlayerView.hidden = YES;
     }
+    
+    if(!ent.existInUserCountry)
+    {
+        self.priceLabel.text = @"  ";
+    }
+}
+
+-(void)prepareForReuse
+{
+    self.musicPlayerView.playerIndicatorColor = [[ITPGraphic sharedInstance] commonColor];
+    self.musicPlayerView.playerBarIndicatorColor  = [[ITPGraphic sharedInstance] commonContrastColor];
 }
 
 @end

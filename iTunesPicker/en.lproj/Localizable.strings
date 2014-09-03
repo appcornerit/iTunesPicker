@@ -6,11 +6,16 @@
   Copyright (c) 2014 appcorner.it. All rights reserved.
 */
 
+"localNotificationsMessage"="Check out the new iTunes charts in the world.";
+
+"error_title_waiting_load"="Loading.. ";
+"error_message_waiting_load"="The global ranking is loading, wait before continue";
+
 //preview fullscreen
 "viewer.button.close"="Close";
 
 //right menu
-"menu.section.types"="Types";
+"menu.section.types"="";
 "menu.section.settings"="Settings";
 "menu.selectcountries"="Add countries";
 "menu.changeusercountry"="Change your country";
@@ -31,16 +36,21 @@
 
 //left menu
 "menu.section.filters"="Charts";
-"menu.section.views"="Summary views";
+"menu.section.views"="Global views";
 "menu.discoverview" = "Discover";
 "menu.globalrankingview" = "Global ranking";
 
+//filter
+"filter.title.chart"="Select chart";
+"filter.title.genre"="Select genre";
+
 //countries picker
-"countries.picker.title" = "Select your iTunes country";
+"countries.picker.title" = "Select your country";
 
 //errors
 "error_title_item_not_in_user_country"="Error open iTunes Store";
 "error_message_item_not_in_user_country"="The selected item is not available in your country.";
+"error_nodata"="No data found";
 
 //buttons
 "button_cancel"="Cancel";
@@ -111,7 +121,6 @@
 "12019" = "Utilities";
 "12020" = "Video";
 "12021" = "Weather";
-
 
 "itppicker.tablecell.app.noratings"="No ratings for current version";
 "itppicker.tablecell.app.noratings.allversions"="No ratings for all versions";

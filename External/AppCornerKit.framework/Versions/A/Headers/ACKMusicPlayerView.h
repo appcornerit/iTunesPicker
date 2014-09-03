@@ -11,6 +11,8 @@
 
 @interface ACKMusicPlayerView : UIView
 
+@property (nonatomic, strong) UIColor* playerIndicatorColor;
+@property (nonatomic, strong) UIColor* playerBarIndicatorColor;
 @property (nonatomic, assign) BOOL showActivityIndicator;
 @property (nonatomic, strong) UIImage* customPlaceholderImage;
 @property (nonatomic,strong) ACKTrackSong* song;

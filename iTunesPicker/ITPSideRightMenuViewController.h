@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,assign) id<ITPSideRightMenuViewControllerDelegate> delegate;
+@property (nonatomic,assign) BOOL pickerLoading;
 
 @end

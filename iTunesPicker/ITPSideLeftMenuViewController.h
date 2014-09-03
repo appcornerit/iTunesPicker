@@ -13,5 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,assign) id<ITPSideLeftMenuViewControllerDelegate> delegate;
+@property (nonatomic, strong) UIImageView *logoView;
+@property (nonatomic,assign) BOOL pickerLoading;
 
 @end

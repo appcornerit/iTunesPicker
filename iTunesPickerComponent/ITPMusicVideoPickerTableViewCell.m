@@ -45,8 +45,13 @@
     }
     else
     {
-        self.priceLabel.text = @"";
+        self.priceLabel.text = @"  ";
     }
+    if(!musicVideoObject.existInUserCountry)
+    {
+        self.priceLabel.text = @"  ";
+    }
+    
     self.coverImageView.showActivityIndicator = YES;
     self.coverImageView.musicVideo = musicVideoObject;
 }

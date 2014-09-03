@@ -7,6 +7,8 @@
 //
 
 #import "ITPSliderCell.h"
+#import "ITPGraphic.h"
+#import "Chameleon.h"
 
 @implementation ITPSliderCell
 
@@ -20,14 +22,16 @@
     self.slider.delegate = self;
     self.slider.minimumValue = 10;
     self.slider.maximumValue = 200.0;
-    self.slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_ACK_CHART_ITEMS_KEY];    
+    self.slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_ACK_CHART_ITEMS_KEY];
     self.slider.popUpViewCornerRadius = 12.0;
     [self.slider setMaxFractionDigitsDisplayed:0];
-    self.slider.popUpViewColor = [UIColor colorWithHue:0.55 saturation:0.8 brightness:0.9 alpha:0.7];
+    self.slider.popUpViewColor = FlatBlue;
+    self.slider.textColor = FlatWhite;
     self.slider.font = [UIFont fontWithName:@"GillSans-Bold" size:22];
-    self.slider.textColor = [UIColor colorWithHue:0.55 saturation:1.0 brightness:0.5 alpha:1];
+
     
     self.labelResults.text = NSLocalizedString(@"slidercell.label", nil);
+    self.labelResults.textColor = [UIColor whiteColor];
 }
 
 - (void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider;
