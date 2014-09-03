@@ -74,7 +74,7 @@ To enable remote configuration set on iTunesPicker-Prefix.pch
 #define DEFAULT_ACK_TYPES @[@(kITunesEntityTypeSoftware),@(kITunesEntityTypeMusic),@(kITunesEntityTypeEBook),@(kITunesEntityTypeMovie)]; //change types loaded by default on first time (offline) 
 ```
 
-To enable YouTube search add your api key iTunesPicker-Prefix.pch
+To enable YouTube search add your api key in iTunesPicker-Prefix.pch
 ```objc
 #define YOUTUBE_API_KEY @""
 ```
