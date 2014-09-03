@@ -60,7 +60,7 @@ I'd love to have your contribution to iTunesPicker. There are several ways to co
 Work in progress, stay tuned!
 
 ####Publish on AppStore
-iTunesPicker is not published on the AppStore by appcorner.it, you're free to publish this version "as is" on App Store (please customize icon and graphics and quote this repository in the app description) or with your changes.
+iTunesPicker is not published on the AppStore by appcorner.it, you're free to publish this version "as is" on App Store (please quote this repository in the app description) or with your changes.
 
 The app "as is" could not pass the approval rules of AppStore:
 - rule 8.1 cannot contain "iTunes" in the app name
