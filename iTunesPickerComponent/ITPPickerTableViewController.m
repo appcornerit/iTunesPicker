@@ -55,9 +55,6 @@
     self.cellZoomAnimationDuration = [NSNumber numberWithFloat:0.3];
     self.cellZoomXScaleFactor = [NSNumber numberWithFloat:0.9];
     self.cellZoomYScaleFactor = [NSNumber numberWithFloat:0.9];
-    
-    // A little trick for removing the cell separators
-//    self.tableView.tableFooterView = [UIView new];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -70,51 +67,12 @@
         self.tableView.contentOffset = CGPointMake(0, self.searchBar.frame.size.height);
     }
 }
-
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    if(![self.delegate respondsToSelector:@selector(showLoadingHUD:sender:)])
-//    {
-//        return;
-//    }
-//    [self.delegate showLoadingHUD:self.loading sender:self];
-//}
-
 - (void)dealloc
 {
     self.delegate = nil;
     self.tableView.emptyDataSetSource = nil;
     self.tableView.emptyDataSetDelegate = nil;
 }
-
-//#pragma mark Action
-//
-//- (IBAction)previousAction:(id)sender {
-//    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
-//    {
-//        return;
-//    }
-//    [self.delegate showPickerAtIndex:[self pickerIndex]-1];
-//}
-//
-//- (IBAction)nextAction:(id)sender {
-//    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
-//    {
-//        return;
-//    }
-//    
-//    [self.delegate showPickerAtIndex:[self pickerIndex]+1];
-//}
-//
-//- (IBAction)countryAction:(id)sender {
-//    if([self.country isEqual:[self.delegate entitiesDatasources].userCountry])
-//    {
-//       return;
-//    }
-//    self.highlightCells = !self.highlightCells;
-//    [self.tableView reloadData];
-//}
 
 #pragma mark public
 
@@ -128,7 +86,6 @@
     _loadState = kITPLoadStateRanking;
     
     _itemsArray = nil;
-    //NSInteger limit = [self.delegate entitiesDatasources].limit;
     NSInteger limit = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_ACK_CHART_ITEMS_KEY];
     _country = country;
     
@@ -323,31 +280,19 @@
         return cell;
     }
  
-//    cell.leftUtilityButtons = [self cellButtons];
     [cell setLeftUtilityButtons:[self cellButtons:iTunesEntity] WithButtonWidth:62.0];
     cell.delegate = self;
     
     cell.iTunesEntity = iTunesEntity;
     cell.userCountry = [self.delegate entitiesDatasources].userCountry;
     cell.positionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];    
-//    if(_loadState == kITPLoadStateRanking)
-//    {
-//        cell.iconImageView.hidden = YES;
-//    }
-//    else{
-////        cell.positionLabel.text = @"";
-//        cell.iconImageView.hidden = NO;
-//    }
+
     cell.detailButton.hidden = ![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)];
     
     return cell;
 }
 
 #pragma mark- Table view delegate methods
-//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [cell setNeedsLayout];
-//}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -370,51 +315,6 @@
         }
     }
 }
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    if(![self.delegate respondsToSelector:@selector(openITunesEntityDetail:)])
-    {
-        return;
-    }
-    if (indexPath.row < self.ds.count) {
-        ACKITunesEntity* entity = self.ds[indexPath.row];
-        if(entity.existInUserCountry && ![self.country isEqual:[self.delegate entitiesDatasources].userCountry])
-        {
-            self.tableView.userInteractionEnabled = NO;
-            self.query.priority = [self.delegate getLoadingPriority:self];
-            [self.query loadEntity:entity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry completionBlock:^(ACKITunesEntity *userCountryEntity, NSError *err) {
-                if(!err)
-                {
-                    userCountryEntity.userData = self;
-                    [self.delegate openITunesEntityDetail:userCountryEntity];
-                }
-                else
-                {
-                    entity.userData = self;
-                    [self.delegate openITunesEntityDetail:entity];
-                }
-                self.tableView.userInteractionEnabled = YES;
-            }];
-        }
-        else
-        {
-            entity.userData = self;
-            [self.delegate openITunesEntityDetail:entity];
-        }
-    }
-}
-
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if(![self.delegate respondsToSelector:@selector(selectEntity:)])
-//    {
-//        return;
-//    }
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    ACKITunesEntity* entity = self.ds[indexPath.row];
-//    [self.delegate selectEntity:entity];
-//}
 
 -(void) closeAllCells
 {
@@ -498,7 +398,6 @@
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:moviePlayerView.moviePlayer];
     ((ITPAppDelegate*)[UIApplication sharedApplication].delegate).allowOrientation = YES;
-//    moviePlayerView.moviePlayer.controlStyle = MPMovieControlStyleEmbedded;
     self.moviePlayerController = moviePlayerView;
     [((UIViewController*)self.delegate).navigationController presentMoviePlayerViewControllerAnimated:self.moviePlayerController];
 }
@@ -518,17 +417,9 @@
                                                         name:MPMoviePlayerPlaybackDidFinishNotification
                                                       object:moviePlayer];
         ((ITPAppDelegate*)[UIApplication sharedApplication].delegate).allowOrientation = NO;
-//
-//        // Dismiss the view controller
+
         [((UIViewController*)self.delegate).navigationController dismissMoviePlayerViewControllerAnimated];
-        self.moviePlayerController = nil;        
-//
-//        dispatch_async(dispatch_get_main_queue(), ^
-//                       {                           
-//                           self.view.transform = CGAffineTransformMakeRotation(0);
-//                           [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
-//                           self.view.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-//                       });
+        self.moviePlayerController = nil;
     }
 }
 
@@ -575,21 +466,8 @@
 
 -(void) updateUI
 {
-//    NSLocale* currentLocale = [NSLocale currentLocale];
-//    self.countryImageView.image = [UIImage imageNamed:self.country];
-//    [self.countryButton setTitle:[currentLocale displayNameForKey:NSLocaleCountryCode value:self.country] forState:UIControlStateNormal];
-    
-//    NSInteger datasourceIndex = [self pickerIndex];
-//    self.previousButton.enabled = !self.loading && datasourceIndex != NSNotFound && datasourceIndex > 0;
-//    self.nextButton.enabled = !self.loading && datasourceIndex != NSNotFound && datasourceIndex < [self.delegate entitiesDatasources].datasourcesCount-1;
     [self.tableView reloadData];
-    
-//    if(![self.delegate respondsToSelector:@selector(showPickerAtIndex:)])
-//    {
-//        self.previousButton.hidden = YES;
-//        self.nextButton.hidden = YES;
-//    }
-    
+
     self.searchBar.hidden = ![self.delegate respondsToSelector:@selector(getSearchITunesMediaEntityType)];
     
     if(_loadState == kITPLoadStateArtist)
@@ -608,7 +486,6 @@
     }
     if(_loadState == kITPLoadStateExternalEntities)
     {
-//        self.bottomViewHeightLayoutConstraint.constant = 0;
         self.tableView.tableHeaderView = nil;
         [self.view setNeedsUpdateConstraints];
     }
@@ -654,7 +531,6 @@
     switch (index) {
         case 0:
         {
-//            [((ITPPickerTableViewCell*)cell) openiTunesStore:nil];
             ACKITunesQuery* query = [[ACKITunesQuery alloc]init];
             query.cachePolicyChart = NSURLRequestUseProtocolCachePolicy;
             query.cachePolicyLoadEntity = NSURLRequestUseProtocolCachePolicy;
@@ -676,8 +552,6 @@
             [ACKShareITunesEntity presentShareInUIViewController:(ITPViewController*)self.delegate forITunesEntity:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry withString:iTunesEntity.description completion:^{
                 
             }];
-//            NSString* appId = [iTunesEntity valueForKey:@"trackId"];
-//            [self shareOnAppConer:appId];
             break;
         }
         case 2:
@@ -729,9 +603,6 @@
             }
             
             [[ACKYouTube sharedInstance]performVideoSearchForITunesEntity:iTunesEntity limit:MAX_YOUTUBE_SEARCH_LIMIT country:iTunesEntity.country APIKey:YOUTUBE_API_KEY completion:^(NSError *error, NSArray *result) {
-//                NSLog(@"error:%@ result:%@",error,result);
-//                if(!error && result.count > 0)
-//                {
                     if(!result)
                     {
                         result = [[NSArray alloc]init];
@@ -739,20 +610,8 @@
                     ITPYouTubeViewController* youTubeContoller = [[ITPYouTubeViewController alloc]initWithNibName:nil bundle:nil];
                     youTubeContoller.videosArray = result;
                     [((UIViewController*)self.delegate).navigationController pushViewController:youTubeContoller animated:YES];
-//                }
-//                else
-//                {
-//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error_title_yo",nil) message:NSLocalizedString(@"error_message_item_not_in_user_country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"button_cancel",nil), nil];
-//                    [alert show];
-//
-//                }
             }];
-//            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-//                                                                     delegate:self
-//                                                            cancelButtonTitle:@"Cancel"
-//                                                       destructiveButtonTitle:nil
-//                                                            otherButtonTitles:@"Search on YouTube",@"Search on Wikipedia",@"Search on Google",@"Search on your iTunes Country",nil];
-//            [actionSheet showInView:self.view];
+
         }
         default:
             break;
@@ -770,18 +629,12 @@
 
 #pragma mark - DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 
-//- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-//    
-//    return [[ITPGraphic sharedInstance] commonColor];
-//}
-
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     
     NSString *text = NSLocalizedString(@"error_nodata", nil);
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
                                  NSForegroundColorAttributeName: [[ITPGraphic sharedInstance] commonColor]};
-                                // NSForegroundColorAttributeName: [[ITPGraphic sharedInstance] commonContrastColor]};
                                  
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
@@ -800,11 +653,6 @@
 - (CGPoint)offsetForEmptyDataSet:(UIScrollView *)scrollView {
     
     return CGPointMake(0, self.tableView.tableHeaderView.frame.size.height);
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSLog(@"The %@ button was tapped.", [actionSheet buttonTitleAtIndex:buttonIndex]);
 }
 
 @end

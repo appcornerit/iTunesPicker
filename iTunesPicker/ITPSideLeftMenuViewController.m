@@ -75,17 +75,6 @@
     [self.tableView reloadData];
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    [self startSpin];
-//}
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewDidDisappear:animated];
-//    [self stopSpin];
-//}
-
 #pragma mark - MSLogoViewController
 
 - (UIImageView *)logoView
@@ -170,9 +159,6 @@
                 case 1:
                     cell.morphLabel.text = NSLocalizedString(@"menu.globalrankingview", nil);
                     break;
-//                case :
-//                    cell.textLabel.text = NSLocalizedString(@"menu.pricedrop", nil);
-//                    break;
             }
             break;            
     }
@@ -203,8 +189,6 @@
                 case 1:
                     [self.delegate openGlobalRankingView];
                     break;
-//                case :
-//                    break;
             }
             break;
     }
@@ -214,39 +198,6 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     return [UIView new];
-}
-
-- (void) spinWithOptions: (UIViewAnimationOptions) options {
-    // this spin completes 360 degrees every 2 seconds
-    [UIView animateWithDuration: 20.0f
-                          delay: 0.0f
-                        options: options
-                     animations: ^{
-                         self.logoView.transform = CGAffineTransformRotate(self.logoView.transform, M_PI / 2);
-                     }
-                     completion: ^(BOOL finished) {
-                         if (finished) {
-                             if (animating) {
-                                 // if flag still set, keep spinning with constant speed
-                                 [self spinWithOptions: UIViewAnimationOptionCurveLinear];
-                             } else if (options != UIViewAnimationOptionCurveEaseOut) {
-                                 // one last spin, with deceleration
-                                 [self spinWithOptions: UIViewAnimationOptionCurveEaseOut];
-                             }
-                         }
-                     }];
-}
-
-- (void) startSpin {
-    if (!animating) {
-        animating = YES;
-        [self spinWithOptions: UIViewAnimationOptionCurveEaseIn];
-    }
-}
-
-- (void) stopSpin {
-    // set the flag to stop spinning after one last 90 degree increment
-    animating = NO;
 }
 
 

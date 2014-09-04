@@ -56,23 +56,8 @@
     
     // Transition to the first view controller
     [self transitionToViewController:MSPaneViewControllerTypeMain];
-
-    
-//    UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    titleButton.frame = CGRectMake(0, 0, 200, 40);
-//    titleButton.backgroundColor = [UIColor clearColor];
-//    [titleButton setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-//    [titleButton addTarget:self action:@selector(didTapTitleViewAction:) forControlEvents:UIControlEventTouchUpInside];
-//    titleButton.hidden = YES;
     
     [self centerViewController].navigationItem.titleView = self.paggingNavbar;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateACKTypes:) name:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:nil];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Action
@@ -87,12 +72,8 @@
 
 -(void)iTunesEntityTypeDidSelected:(tITunesEntityType)entityType withMediaType:(tITunesMediaEntityType)mediaEntityType
 {
-    [self updateTitleBarForEntityType:entityType withMediaType:mediaEntityType];
-    
     [self transitionToViewController:MSPaneViewControllerTypeMain];
     [((ITPViewController*)[self centerViewController]) reloadWithEntityType:entityType withMediaType:mediaEntityType];
-    
-//    [[ITPGraphic sharedInstance]setBarCommonColorToNavigationController:((ITPViewController*)[self centerViewController]).navigationController];
 }
 
 -(void)openCountriesPicker
@@ -180,29 +161,7 @@
     }
 }
 
-#pragma mark - Notifications
-
--(void)updateACKTypes:(NSNotification*)notification
-{
-  NSNumber* entityType = [notification.userInfo objectForKey:NOTIFICATION_PARAM_ENTITY_TYPE];
-  NSNumber* mediaType = [notification.userInfo objectForKey:NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE];
-  [self updateTitleBarForEntityType:[entityType integerValue] withMediaType:[mediaType integerValue]];
-}
-
 #pragma mark - private
-
--(void) updateTitleBarForEntityType:(tITunesEntityType) entityType withMediaType:(tITunesMediaEntityType)mediaEntityType
-{
-//    if(entityType == kITunesEntityTypeSoftware && mediaEntityType == kITunesMediaEntityTypeDefaultForEntity)
-//    {
-//        mediaEntityType = kITunesMediaEntityTypeSoftware;
-//    }
-//    NSString* typeKey = [NSString stringWithFormat:@"type_%d_%d",entityType,mediaEntityType];
-//    
-//    UIButton* titleButton = ((UIButton*)[self centerViewController].navigationItem.titleView);
-//    [titleButton setTitle:NSLocalizedString(typeKey,nil) forState:UIControlStateNormal];
-//    titleButton.hidden = NO;
-}
 
 -(UIViewController*) centerViewController
 {
@@ -223,11 +182,6 @@
     
     UIViewController *paneViewController = [self.dynamicsDrawerViewController.storyboard instantiateViewControllerWithIdentifier:self.paneViewControllerIdentifiers[@(paneViewControllerType)]];
     
-    //    paneViewController.navigationItem.title = self.paneViewControllerTitles[@(paneViewControllerType)];
-    
-    //    self.paneRevealLeftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Left Reveal Icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(dynamicsDrawerRevealLeftBarButtonItemTapped:)];
-//    self.filterBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(dynamicsDrawerRevealLeftBarButtonItemTapped:)];
-    
     self.leftButton = [[FRDLivelyButton alloc] initWithFrame:CGRectMake(0,0,40,22)];
     [self.leftButton setStyle:kFRDLivelyButtonStyleCaretLeft animated:NO];
     [self.leftButton addTarget:self action:@selector(dynamicsDrawerRevealLeftBarButtonItemTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -238,9 +192,6 @@
     self.filterBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
     
     paneViewController.navigationItem.leftBarButtonItem = self.filterBarButtonItem;
-    
-    //    self.paneRevealRightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Right Reveal Icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(dynamicsDrawerRevealRightBarButtonItemTapped:)];
-//    self.menuBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(dynamicsDrawerRevealRightBarButtonItemTapped:)];
     
     self.rightButton = [[FRDLivelyButton alloc] initWithFrame:CGRectMake(0,0,40,22)];
     [self.rightButton setStyle:kFRDLivelyButtonStyleCaretRight animated:NO];
@@ -273,15 +224,8 @@
 
 #pragma mark - MSDynamicsDrawerViewControllerDelegate
 
-- (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
-{
-//    NSLog(@"Drawer view controller may update to state `%@` for direction `%@`", [self descriptionForPaneState:paneState], [self descriptionForDirection:direction]);
-}
-
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {
-//    NSLog(@"Drawer view controller did update to state `%@` for direction `%@`", [self descriptionForPaneState:paneState], [self descriptionForDirection:direction]);
-    
     if(paneState == MSDynamicsDrawerPaneStateOpen)
     {
         if(direction == MSDynamicsDrawerDirectionLeft || direction == MSDynamicsDrawerDirectionRight)
@@ -303,40 +247,8 @@
     else
     {
         [self.leftButton setStyle:kFRDLivelyButtonStyleCaretLeft animated:YES];
-//        [self.leftButton showUnHighlight];
         [self.rightButton setStyle:kFRDLivelyButtonStyleCaretRight animated:YES];
-//        [self.rightButton showUnHighlight];
         [self.dynamicsDrawerViewController setPaneDragRevealEnabled:NO forDirection:MSDynamicsDrawerDirectionLeft|MSDynamicsDrawerDirectionRight];
-    }
-}
-
-- (NSString *)descriptionForPaneState:(MSDynamicsDrawerPaneState)paneState
-{
-    switch (paneState) {
-        case MSDynamicsDrawerPaneStateOpen:
-            return @"MSDynamicsDrawerPaneStateOpen";
-        case MSDynamicsDrawerPaneStateClosed:
-            return @"MSDynamicsDrawerPaneStateClosed";
-        case MSDynamicsDrawerPaneStateOpenWide:
-            return @"MSDynamicsDrawerPaneStateOpenWide";
-        default:
-            return nil;
-    }
-}
-
-- (NSString *)descriptionForDirection:(MSDynamicsDrawerDirection)direction
-{
-    switch (direction) {
-        case MSDynamicsDrawerDirectionTop:
-            return @"MSDynamicsDrawerDirectionTop";
-        case MSDynamicsDrawerDirectionLeft:
-            return @"MSDynamicsDrawerDirectionLeft";
-        case MSDynamicsDrawerDirectionBottom:
-            return @"MSDynamicsDrawerDirectionBottom";
-        case MSDynamicsDrawerDirectionRight:
-            return @"MSDynamicsDrawerDirectionRight";
-        default:
-            return nil;
     }
 }
 

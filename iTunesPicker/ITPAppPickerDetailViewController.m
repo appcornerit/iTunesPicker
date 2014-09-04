@@ -288,9 +288,4 @@
     [self.delegate selectEntity:entity];
 }
 
-//-(void)openITunesEntityDetail:(ACKITunesEntity*)entity
-//{
-//    [self.delegate openITunesEntityDetail:entity];
-//}
-
 @end

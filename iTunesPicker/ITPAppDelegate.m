@@ -13,8 +13,6 @@
 
 #import "MSDynamicsDrawerViewController.h"
 #import "MSDynamicsDrawerStyler.h"
-//#import "JASidePanelController.h"
-#import "DCIntrospect.h"
 #import "ACPReminder.h"
 #import "ITPGraphic.h"
 
@@ -46,11 +44,6 @@
     [self.window makeKeyAndVisible];
     [self.window addSubview:self.windowBackground];
     [self.window sendSubviewToBack:self.windowBackground];
-//    self.window.tintColor = [[ITPGraphic sharedInstance] commonColor];
-    
-#if TARGET_IPHONE_SIMULATOR
-    [[DCIntrospect sharedIntrospector] start];
-#endif
     
     return YES;
 }
@@ -72,9 +65,9 @@
     localNotifications.messages = @[NSLocalizedString(@"localNotificationsMessage", nil),NSLocalizedString(@"localNotificationsMessage", nil)];
     localNotifications.timePeriods = @[@(3),@(7)]; //days
     localNotifications.appDomain = @"it.appcorner";
-    localNotifications.randomMessage = NO; //By default is NO (optional)
-    localNotifications.testFlagInSeconds = NO; //By default is NO (optional) --> For testing purpose only!
-    localNotifications.circularTimePeriod = YES; // By default is NO (optional)
+    localNotifications.randomMessage = NO;
+    localNotifications.testFlagInSeconds = NO;
+    localNotifications.circularTimePeriod = YES;
     
     [localNotifications createLocalNotification];
 }
@@ -106,12 +99,7 @@
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     
     if(self.allowOrientation){
-//    if ([[self.window.rootViewController presentedViewController] isKindOfClass:[MPMoviePlayerViewController class]]) {
-//        MPMoviePlayerViewController* movPlayer = (MPMoviePlayerViewController*)[self.window.rootViewController presentedViewController];
-//        if(movPlayer.moviePlayer.playbackState != MPMoviePlaybackStatePaused)
-//        {
-            return UIInterfaceOrientationMaskAllButUpsideDown;
-//        }
+        return UIInterfaceOrientationMaskAllButUpsideDown;
     }
     return UIInterfaceOrientationMaskPortrait;
 }

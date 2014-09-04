@@ -29,10 +29,4 @@
     self.coverImageView.entity = bookObject;
 }
 
-//-(void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//    [self.genreLabel sizeToFit];
-//}
-
 @end

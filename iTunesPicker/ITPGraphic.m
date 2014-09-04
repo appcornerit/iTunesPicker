@@ -28,17 +28,11 @@
 - (void) initCommonUXAppearance
 {
     [[UIToolbar appearance]setTintColor:[self commonContrastColor]];
-//    [[UIToolbar appearance]setBarTintColor:[self commonColor]];
-//    [[UIToolbar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setTintColor:[self commonContrastColor]];
-//    [[UINavigationBar appearance] setBarTintColor:[self commonColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [self commonContrastColor]}];
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[self commonContrastColor]];
-    
-//    [[UINavigationBar appearance] setTranslucent:NO]; //Illegal property type, c for appearance setter, _installAppearanceSwizzlesForSetter:
-     [[UISearchBar appearance] setTintColor:[self commonContrastColor]];
-     [[UISearchBar appearance] setBarTintColor:[self commonColor]];
-//     [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[self commonColor]];
+    [[UISearchBar appearance] setTintColor:[self commonContrastColor]];
+    [[UISearchBar appearance] setBarTintColor:[self commonColor]];
     [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:[self commonContrastColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
@@ -83,27 +77,6 @@
 
 - (UIColor*) commonContrastColor
 {
-//    switch (self.iTunesEntityType) {
-//        case kITunesEntityTypeMusic:
-//            return [UIColor redColor];
-//            break;
-//        case kITunesEntityTypeMovie:
-//            return [UIColor blackColor];
-//            break;
-//        case kITunesEntityTypeMusicVideo:
-//            return [UIColor purpleColor];
-//            break;
-//        case kITunesEntityTypeEBook:
-//            return [UIColor brownColor];
-//            break;
-//        case kITunesEntityTypeSoftware:
-//            return [UIColor blueColor];
-//            break;
-//        default:
-//            return [UIColor blueColor];
-//            break;
-//    }
-    //return [UIColor whiteColor];
     return [[UIColor colorWithContrastingBlackOrWhiteColorOn:[self commonColor]] copy];
 }
 

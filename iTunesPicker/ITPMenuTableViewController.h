@@ -32,10 +32,6 @@ static CGFloat menuItemHeight = 44.0f;
     CGRect closeFrame;
 }
 
-//@property (strong, nonatomic) IBOutlet UITableView *tableView;
-//@property (strong, nonatomic) IBOutlet UIView *backgroundView;
-
-//@property (assign, nonatomic) CGRect backgroundAreaDismissRect;
 @property (assign, nonatomic) CGFloat closeOffset;
 @property (assign, nonatomic) tPAPMenuPickerType type;
 @property (assign, nonatomic) kPAPMenuOpenDirection openDirection;

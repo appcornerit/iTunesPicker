@@ -47,7 +47,6 @@
     
     _pickersLoading = NO;
     firstLoad = YES;
-//    _swipeView.pagingEnabled = YES;
     _swipeView.bounces = YES;
     
     self.pickerViews = [[NSMutableArray alloc]init];
@@ -239,19 +238,15 @@
         tITunesMediaEntityType mediaType = self.entitiesDatasources?self.entitiesDatasources.mediaEntityType:kITunesMediaEntityTypeDefaultForEntity;
         self.entitiesDatasources = [[ACKEntitiesContainer alloc]initWithUserCountry:countries[0] entityType:entityType mediaEntityType:mediaType limit:maxRecordToLoadForCountry];
         [self setupMenuPanels];
-//        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeRanking refreshPickers:NO];
-//        [self valueSelectedAtIndex:0 forType:kPAPMenuPickerTypeGenre refreshPickers:NO];
         
         [self addPickerTableViewForCountry:countries[0]];
-//        if(firstLoad)
-//        {
-            for (NSString* firstLoadCountry in DEFAULT_COUNTRIES) {
-                if(![firstLoadCountry isEqualToString:countries[0]] && [[ACKITunesQuery getITunesStoreCountries] containsObject:firstLoadCountry])
-                {
-                    [self addPickerTableViewForCountry:firstLoadCountry];
-                }
+
+        for (NSString* firstLoadCountry in DEFAULT_COUNTRIES) {
+            if(![firstLoadCountry isEqualToString:countries[0]] && [[ACKITunesQuery getITunesStoreCountries] containsObject:firstLoadCountry])
+            {
+                [self addPickerTableViewForCountry:firstLoadCountry];
             }
-//        }
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHECK_ACK_TYPES_UPDATED object:self userInfo:@{NOTIFICATION_PARAM_ENTITY_TYPE:[NSNumber numberWithInt:entityType],NOTIFICATION_PARAM_ENTITY_MEDIA_TYPE:[NSNumber numberWithInt:mediaType]}];
         [self saveStatePickerApps];
         [self reloadNavBarTitles];
@@ -397,71 +392,64 @@
 
 -(void)showLoadingHUD:(BOOL)loading sender:(id)sender
 {
-//    if(pickersLoading == loading)
-//    {
-//        return;
-//    }
-//
-@synchronized(self)
-{
-    NSInteger index = -1;
-    BOOL tmpPickersLoading = NO;
-    BOOL modal = YES;
-    if(sender && [self.pickerViews containsObject:sender])
+    @synchronized(self)
     {
-        modal = NO;
-        index = [self.pickerViews indexOfObject:sender];
-//        NSLog(@"----------------------");        
-        for (ITPPickerTableViewController* pickerTableView in self.pickerViews) {
-//            NSLog(@"%@ %@",pickerTableView.country,pickerTableView.loading?@"yes":@"no");
-            tmpPickersLoading = tmpPickersLoading || pickerTableView.loading;
-        }
-    }
-    else
-    {
-        tmpPickersLoading = loading;
-    }
-    
-    if(tmpPickersLoading != _pickersLoading)
-    {
-        _pickersLoading = tmpPickersLoading;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOADING_CHANGE object:nil userInfo:@{@"loading":@(_pickersLoading)}];
-    }
-    
-    if(!_pickersLoading)
-    {
-        if([SVProgressHUD isVisible])
+        NSInteger index = -1;
+        BOOL tmpPickersLoading = NO;
+        BOOL modal = YES;
+        if(sender && [self.pickerViews containsObject:sender])
         {
-            #if DEBUG
-                NSLog(@"Loading time %f",[[NSDate date] timeIntervalSinceDate:startLoadingDate]);
-            #endif
-            [SVProgressHUD dismiss];
-        }
-        return;
-    }
-    
-    if(!modal && (index < 0 || index != self.swipeView.currentItemIndex))
-    {
-        return;
-    }
-    
-    if(loading)
-    {
-        if(fixAnimationLoading)
-        {
-            fixAnimationLoading = NO;
-            [self performSelector:@selector(showHUD) withObject:nil afterDelay:0.5];
+            modal = NO;
+            index = [self.pickerViews indexOfObject:sender];
+            for (ITPPickerTableViewController* pickerTableView in self.pickerViews) {
+                tmpPickersLoading = tmpPickersLoading || pickerTableView.loading;
+            }
         }
         else
         {
-            [self showHUD];
+            tmpPickersLoading = loading;
+        }
+        
+        if(tmpPickersLoading != _pickersLoading)
+        {
+            _pickersLoading = tmpPickersLoading;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOADING_CHANGE object:nil userInfo:@{@"loading":@(_pickersLoading)}];
+        }
+        
+        if(!_pickersLoading)
+        {
+            if([SVProgressHUD isVisible])
+            {
+                #if DEBUG
+                    NSLog(@"Loading time %f",[[NSDate date] timeIntervalSinceDate:startLoadingDate]);
+                #endif
+                [SVProgressHUD dismiss];
+            }
+            return;
+        }
+        
+        if(!modal && (index < 0 || index != self.swipeView.currentItemIndex))
+        {
+            return;
+        }
+        
+        if(loading)
+        {
+            if(fixAnimationLoading)
+            {
+                fixAnimationLoading = NO;
+                [self performSelector:@selector(showHUD) withObject:nil afterDelay:0.5];
+            }
+            else
+            {
+                [self showHUD];
+            }
+        }
+        else
+        {
+            [SVProgressHUD dismiss];
         }
     }
-    else
-    {
-        [SVProgressHUD dismiss];
-    }
-}
 }
 
 -(void) showHUD
@@ -469,8 +457,6 @@
     startLoadingDate = [NSDate date];
     [SVProgressHUD setForegroundColor:[[ITPGraphic sharedInstance]commonContrastColor]];
     [SVProgressHUD setBackgroundColor:[[ITPGraphic sharedInstance]commonColor]];
-    //        [SVProgressHUD setForegroundColor:[[ITPGraphic sharedInstance]commonContrastColor]];
-    //        [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
     [SVProgressHUD setRingThickness:2.0];
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeNone];
 }
@@ -564,32 +550,21 @@
 {
     self.leftPanel.delegate = nil;
     self.leftPanel = nil;
-//    if(!self.leftPanel){
-//        self.leftPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
-        self.leftPanel = [[ITPMenuTableViewController alloc] initWithMainImage:[UIImage imageNamed:[ITPMenuTableViewController getImageFromType: self.entitiesDatasources.entityType]] type:kPAPMenuPickerTypeRanking];
-//    }
-//    self.leftPanel.openDirection = kPAPMenuOpenDirectionRight;
+    self.leftPanel = [[ITPMenuTableViewController alloc] initWithMainImage:[UIImage imageNamed:[ITPMenuTableViewController getImageFromType: self.entitiesDatasources.entityType]] type:kPAPMenuPickerTypeRanking];
     self.leftPanel.delegate = self;
     
     self.rightPanel.delegate = nil;
     self.rightPanel = nil;
-//    if(!self.rightPanel){
-//        self.rightPanel = [[ITPMenuTableViewController alloc]initWithNibName:nil bundle:nil];
     self.rightPanel = [[ITPMenuTableViewController alloc] initWithMainImage:[UIImage imageNamed:[ITPMenuTableViewController getImageFromType: self.entitiesDatasources.entityType]] type:kPAPMenuPickerTypeGenre];
-//    }
-//    self.rightPanel.openDirection = kPAPMenuOpenDirectionRight;
     self.rightPanel.delegate = self;
     
     [self updateEntityMunuPanels];
     
     [self.view addSubview:self.leftPanel.view];
     self.leftPanel.openFrame = self.swipeView.frame;
-//    self.leftPanel.backgroundAreaDismissRect = self.swipeView.frame;
     
     [self.view addSubview:self.rightPanel.view];
     self.rightPanel.openFrame = self.swipeView.frame;
-//    self.rightPanel.backgroundAreaDismissRect = self.swipeView.frame;
-    
 }
 
 -(void) updateEntityMunuPanels
@@ -767,7 +742,6 @@
 {
     NSArray* countries = [self.entitiesDatasources getAllCountries];
     NSLocale* currentLocale = [NSLocale currentLocale];
-//    [UIImage imageNamed:self.country];
     NSMutableArray* titleCountries = [[NSMutableArray alloc]init];
     for (NSString* country in countries) {
         [titleCountries addObject:[currentLocale displayNameForKey:NSLocaleCountryCode value:country]];

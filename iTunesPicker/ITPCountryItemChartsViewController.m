@@ -2,12 +2,9 @@
 //  ITPCountryItemChartsViewController.m
 //  iTunesPicker
 //
-//  Modified by Denis Berton on 17/02/14.
+//  Created by Denis Berton on 17/02/14.
+//  Copyright (c) 2014 appcorner.it. All rights reserved.
 //
-//  Original Version:
-//  Created by Dmitry Shmidt on 5/11/13.
-//  Copyright (c) 2013 Shmidt Lab. All rights reserved.
-//  mail@shmidtlab.com
 
 
 #import "ITPCountryItemChartsViewController.h"
@@ -180,10 +177,7 @@ static NSString *CellIdentifier = @"CountryCell";
                 }
             }
         }
-        
-
     }
-    
 }
 
 - (void)preferredContentSizeChanged:(NSNotification *)notification {
@@ -291,9 +285,6 @@ static NSString *CellIdentifier = @"CountryCell";
         cell.textLabel.text = cd[@"name"];
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     }
-
-//    cell.imageView.layer.cornerRadius = 24.0;
-//    cell.imageView.clipsToBounds = YES;
     
     cell.imageView.image = [UIImage imageNamed:cd[@"code"]];
     cell.backgroundColor = FlatWhite;
@@ -321,7 +312,6 @@ static NSString *CellIdentifier = @"CountryCell";
     {
         if([cd[@"code"]isEqualToString:userCountry])
         {
-//            cell.backgroundColor = FlatGreen;
             cell.textLabel.textColor = FlatGreenDark;
         }
     }
@@ -447,35 +437,4 @@ static NSString *CellIdentifier = @"CountryCell";
     tableViewHeaderFooterView.backgroundView.backgroundColor = [[ITPGraphic sharedInstance] commonColor];
 }
 
-//Eliminate Extra separators below UITableView
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [UIView new];
-//}
-
-/*
-#pragma mark - UITableViewDelegate selection
-
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Add your Colour.
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [self setCellColor:[[ITPGraphic sharedInstance] commonColor] ForCell:cell];  //highlight colour
-}
-
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Reset Colour.
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [self setCellColor:[UIColor clearColor] ForCell:cell]; //normal color
-    
-}
-
-- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
-    cell.contentView.backgroundColor = color;
-    cell.backgroundColor = color;
-}
-*/
 @end

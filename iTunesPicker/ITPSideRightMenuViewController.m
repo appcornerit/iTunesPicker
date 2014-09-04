@@ -7,8 +7,6 @@
 //
 
 #import "ITPSideRightMenuViewController.h"
-//#import "JASidePanelController.h"
-//#import "UIViewController+JASidePanel.h"
 #import "ITPSliderCell.h"
 #import "ITPMorphingTableViewCell.h"
 #import "ITPGraphic.h"
@@ -85,7 +83,7 @@ static NSString *CellIdentifierMenu = @"ITPMorphingTableViewCell";
         UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
         tableViewHeaderFooterView.textLabel.font = [UIFont systemFontOfSize:20];
         tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentCenter;
-        tableViewHeaderFooterView.backgroundView.backgroundColor = [UIColor clearColor]; //[[ITPGraphic sharedInstance] commonColor];
+        tableViewHeaderFooterView.backgroundView.backgroundColor = [UIColor clearColor];
     }
 }
 
@@ -94,7 +92,6 @@ static NSString *CellIdentifierMenu = @"ITPMorphingTableViewCell";
     UITableViewCell *cell = nil;
     if(indexPath.section == 1 && indexPath.row == 2)
     {
-//        NSString *CellIdentifier = @"SliderCell";
         cell = (ITPSliderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierSlider];
         if (!cell)
         {
@@ -103,7 +100,6 @@ static NSString *CellIdentifierMenu = @"ITPMorphingTableViewCell";
     }
     else
     {
-//        NSString *CellIdentifier = @"SideMenuItemCell";
         cell = (ITPMorphingTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierMenu];
         if (!cell)
         {
@@ -194,12 +190,7 @@ static NSString *CellIdentifierMenu = @"ITPMorphingTableViewCell";
     {
         ((ITPMorphingTableViewCell*)cell).morphLabel.text = textForCell;
     }
-    
-//    else
-//    {
-//        ((ITPSliderCell*)cell).labelResults.textColor = [UIColor whiteColor];
-//        ((ITPSliderCell*)cell).labelResults.text = textForCell;
-//    }
+
     return cell;
 }
 

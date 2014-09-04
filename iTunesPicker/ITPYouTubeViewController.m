@@ -30,10 +30,7 @@
     [super viewDidLoad];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
-    
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    // Do any additional setup after loading the view from its nib.
+
     [self.tableView registerNib:[UINib nibWithNibName:@"ITPYouTubeVideoCell" bundle:nil] forCellReuseIdentifier:@"videoCell"];
 }
 
@@ -98,11 +95,6 @@
     }
 }
 
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    return  UIInterfaceOrientationPortrait | UIInterfaceOrientationLandscapeLeft |UIInterfaceOrientationLandscapeRight;
-//}
-
 -(void)presentVideoPlayer:(MPMoviePlayerViewController*)moviePlayerView
 {
     // Remove the movie player view controller from the "playback did finish" notification observers
@@ -118,9 +110,6 @@
     ((ITPAppDelegate*)[UIApplication sharedApplication].delegate).allowOrientation = YES;
     
     [self presentMoviePlayerViewControllerAnimated:moviePlayerView];
-    
-    //    ITPYouTubeVideoCell *cell = (ITPYouTubeVideoCell *)[tableView cellForRowAtIndexPath:indexPath];
-    //    [cell playVideoWithId:videoId];
 }
 
 - (void)movieFinishedCallback:(NSNotification*)aNotification
@@ -141,24 +130,11 @@
         //
         //        // Dismiss the view controller
         [self dismissMoviePlayerViewControllerAnimated];
-//        self.moviePlayerController = nil;
-        //
-        //        dispatch_async(dispatch_get_main_queue(), ^
-        //                       {
-        //                           self.view.transform = CGAffineTransformMakeRotation(0);
-        //                           [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
-        //                           self.view.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-        //                       });
     }
 }
 
 
 #pragma mark - DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
-
-//- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-//
-//    return [[ITPGraphic sharedInstance] commonColor];
-//}
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     
@@ -166,8 +142,6 @@
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
                                  NSForegroundColorAttributeName: [UIColor whiteColor]};
-    // NSForegroundColorAttributeName: [[ITPGraphic sharedInstance] commonContrastColor]};
-    
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
@@ -181,13 +155,5 @@
     
     return !loading;
 }
-
-//- (CGPoint)offsetForEmptyDataSet:(UIScrollView *)scrollView {
-//    
-//    return CGPointMake(0, self.tableView.tableHeaderView.frame.size.height);
-//}
-
-
-
 
 @end

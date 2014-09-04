@@ -1,13 +1,11 @@
 //
-//  ITPCountryItemChartsViewController.m
+//  ITPCountryItemChartsViewController.h
 //  iTunesPicker
 //
-//  Modified by Denis Berton on 17/02/14.
+//  Created by Denis Berton on 17/02/14.
+//  Copyright (c) 2014 appcorner.it. All rights reserved.
 //
-//  Original Version:
-//  Created by Dmitry Shmidt on 5/11/13.
-//  Copyright (c) 2013 Shmidt Lab. All rights reserved.
-//  mail@shmidtlab.com
+
 
 #import <UIKit/UIKit.h>
 

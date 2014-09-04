@@ -31,25 +31,7 @@
     [super prepareForReuse];
     [[ACKYouTube sharedInstance] stopLoadingYoutubePreview:self.previewImageView];
     self.lblTitle.text = nil;
-    self.playerView.hidden = YES;
 }
-
-//-(void) playVideoWithId:(NSString*)videoId
-//{
-//    // For a full list of player parameters, see the documentation for the HTML5 player
-//    // at: https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
-//    NSDictionary *playerVars = @{
-//                                 @"controls" : @0,
-//                                 @"playsinline" : @1,
-//                                 @"autohide" : @1,
-//                                 @"showinfo" : @0,
-//                                 @"modestbranding" : @1
-//                                 };
-////    self.playerView.delegate = self;
-////    self.playerView.alpha = 1.0;
-//    self.playerView.hidden = NO;
-//    [self.playerView loadWithVideoId:videoId playerVars:playerVars];
-//}
 
 - (void)cellOnTableView:(UITableView *)tableView didScrollOnView:(UIView *)view
 {

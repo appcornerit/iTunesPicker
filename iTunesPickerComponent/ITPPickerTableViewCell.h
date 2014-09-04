@@ -33,7 +33,6 @@ typedef enum {
 @property (nonatomic, weak) IBOutlet UILabel *priceLabel;
 @property (nonatomic, strong) IBOutletCollection(UILabel) NSArray *labelViews;
 
-//-(IBAction)openiTunesStore:(id)sender;
 -(IBAction)slideCellButtons:(id)sender;
 
 -(void)initCell;
