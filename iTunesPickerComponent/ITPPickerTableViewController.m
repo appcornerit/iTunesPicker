@@ -513,7 +513,8 @@
     
     if(![iTunesEntity isKindOfClass:[ACKBook class]])
     {
-        if(![iTunesEntity isKindOfClass:[ACKApp class]] || [self.delegate respondsToSelector:@selector(openITunesEntityDetail:)])
+        if((![iTunesEntity isKindOfClass:[ACKApp class]] && YOUTUBE_API_KEY.length > 0)||
+           ([iTunesEntity isKindOfClass:[ACKApp class]] && [self.delegate respondsToSelector:@selector(openITunesEntityDetail:)]))
         {
             [cellUtilityButtons sw_addUtilityButtonWithColor: FlatOrangeDark normalIcon:[UIImage imageNamed:@"search"] selectedIcon:[UIImage imageNamed:@"search"]];
         }
