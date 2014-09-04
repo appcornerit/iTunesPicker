@@ -14,7 +14,7 @@ iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communicati
 
 ![Alt text](preview/1.png "Preview songs") 
 
-[![Demo iTunesPicker 1.0.0](Old video for version 1.0.0 with missing features and graphics)](https://www.youtube.com/watch?v=rpfFmVLQiGI)
+[Video for the old version 1.0.0 with missing features and graphics](https://www.youtube.com/watch?v=rpfFmVLQiGI)
 
 #### Why another picker?
 - iTunes charts are available only for your country, with iTunesPicker you can discover apps (and others items) and compare the position for an app (book,movie,music) in the world rankings.
