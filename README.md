@@ -8,7 +8,7 @@ iOS Apps, iPad Apps, Mac Apps, Music (Song and Albums), Music Videos, Ebooks, Mo
 
 Search Music, Movies and Music Videos on YouTube.
 
-iTunesPicker requires iOS 7, ARC, AppCornerKit framework (simplifies communication with iTunes API, included in the external folder, free for unlimited use) and has been tested on iPhone 5S.
+iTunesPicker requires iOS 7, ARC, **AppCornerKit framework** (simplifies communication with iTunes API, included in the external folder, free for unlimited use) and has been tested on iPhone 5S.
 
 **Author**: Denis Berton [@DenisBerton](https://twitter.com/DenisBerton)
 
@@ -59,7 +59,7 @@ I'd love to have your contribution to iTunesPicker. There are several ways to co
 Work in progress, stay tuned!
 
 ####Publish on AppStore
-iTunesPicker is not published on the AppStore by appcorner.it, you're free to publish this version "as is" on App Store (please quote this repository in the app description) or with your changes.
+iTunesPicker is not published on the AppStore by appcorner.it, **you're free to publish this version "as is" on App Store** (please quote this repository in the app description) or with your changes.
 
 The app "as is" could not pass the approval rules of AppStore:
 - rule 8.1 cannot contain "iTunes" in the app name
@@ -78,4 +78,4 @@ To enable YouTube search add your api key in iTunesPicker-Prefix.pch
 #define YOUTUBE_API_KEY @""
 ```
 
-**Let me know if you include the picker in your app.**
+**Let me know if you include or publish iTunesPicker on the App Store**
