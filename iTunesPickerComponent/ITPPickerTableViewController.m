@@ -502,10 +502,7 @@
     }
     else if([iTunesEntity isKindOfClass:[ACKApp class]])
     {
-        if(iTunesEntity.existInUserCountry)
-        {
-            [cellUtilityButtons sw_addUtilityButtonWithColor:[[ITPGraphic sharedInstance] commonColor] normalIcon:[UIImage imageNamed:@"appstore"] selectedIcon:[UIImage imageNamed:@"appstore"]];
-        }
+        [cellUtilityButtons sw_addUtilityButtonWithColor:[[ITPGraphic sharedInstance] commonColor] normalIcon:[UIImage imageNamed:@"appstore"] selectedIcon:[UIImage imageNamed:@"appstore"]];
     }
     else
     {

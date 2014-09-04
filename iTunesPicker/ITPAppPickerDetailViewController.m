@@ -80,7 +80,7 @@
     self.pageControl.currentPage = 0;
     [self.purchaseButton setTitle:NSLocalizedString(@"itppicker.detail.app.button.purchase",nil) forState:UIControlStateNormal];
     self.purchaseButton.plusIconVisible = [self.appObject isUniversal];
-    self.purchaseButton.hidden = self.appObject.iTunesMediaEntityType == kITunesMediaEntityTypeSoftwareMac;
+    self.purchaseButton.hidden = self.appObject.iTunesMediaEntityType == kITunesMediaEntityTypeSoftwareMac || !self.appObject.existInUserCountry;
 
     UIImage *starsImage = [UIImage imageNamed:@"stars.png"];
     UIGraphicsBeginImageContextWithOptions(self.starImageView.frame.size, NO, 0);
@@ -170,7 +170,7 @@
         {
             self.descriptionTextView = [[UITextView alloc]initWithFrame:swipeView.bounds];
         }
-        self.descriptionTextView.text = self.appObject.description;
+        self.descriptionTextView.text = self.appObject.longDescription;
         self.descriptionTextView.editable = NO;
         return self.descriptionTextView;
     }
@@ -268,7 +268,7 @@
    return [self.delegate getLoadingPriority:sender];
 }
 
--(void)showLoadingHUD:(BOOL)loading
+-(void)showLoadingHUD:(BOOL)loading sender:(id)sender
 {
     if(loading)
     {
