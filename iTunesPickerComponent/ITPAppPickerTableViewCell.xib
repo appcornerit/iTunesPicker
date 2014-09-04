@@ -91,10 +91,10 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8O6-MJ-hOf">
-                        <rect key="frame" x="134" y="34" width="124" height="12"/>
+                        <rect key="frame" x="134" y="34" width="174" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="124" id="tjk-8M-1O3"/>
+                            <constraint firstAttribute="width" constant="174" id="tjk-8M-1O3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,7 +108,7 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="348-ug-EPk">
-                        <rect key="frame" x="134" y="46" width="124" height="12"/>
+                        <rect key="frame" x="134" y="46" width="174" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -159,7 +159,7 @@
                     <constraint firstItem="tT1-CR-9qX" firstAttribute="top" secondItem="Htc-AS-hC1" secondAttribute="top" constant="23" id="Wzy-Su-RWV"/>
                     <constraint firstItem="348-ug-EPk" firstAttribute="leading" secondItem="O0H-xL-L1L" secondAttribute="leading" id="ZCg-tl-8z1"/>
                     <constraint firstItem="JSx-kI-aUw" firstAttribute="top" secondItem="O0H-xL-L1L" secondAttribute="bottom" id="ZSj-gj-TRE"/>
-                    <constraint firstAttribute="trailing" secondItem="8O6-MJ-hOf" secondAttribute="trailing" constant="62" id="bI0-xe-1x0"/>
+                    <constraint firstAttribute="trailing" secondItem="8O6-MJ-hOf" secondAttribute="trailing" constant="12" id="bI0-xe-1x0"/>
                     <constraint firstAttribute="bottom" secondItem="2ss-46-Atj" secondAttribute="bottom" id="bla-l8-ogM"/>
                     <constraint firstItem="2ss-46-Atj" firstAttribute="leading" secondItem="Htc-AS-hC1" secondAttribute="leading" id="cOc-MG-JYL"/>
                     <constraint firstItem="dS7-96-WIu" firstAttribute="leading" secondItem="GpJ-fX-HcV" secondAttribute="leading" id="dT5-M7-TTQ"/>
