@@ -12,7 +12,7 @@ iTunesPicker is for iPhone only, requires iOS 7 and use **AppCornerKit framework
 
 **Author**: Denis Berton [@DenisBerton](https://twitter.com/DenisBerton)
 
-![Alt text](preview/1.png "Preview songs") 
+![Alt text](preview/4.0/1.png "Preview songs") 
 
 [Video for the old version 1.0.0 with missing features and graphics](https://www.youtube.com/watch?v=rpfFmVLQiGI)
 
