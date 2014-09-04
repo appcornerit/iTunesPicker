@@ -4,7 +4,7 @@ iTunesPicker 2.0.0
 A complete App to discover, search and compare rankings for apps, books, movies and music **from iTunes in any available country**.
 
 Charts supported by the current version:
-iOS Apps, iPad Apps, Mac Apps, Music (Song and Albums), Music Videos, Ebooks, Movies.
+iOS Apps, iPad Apps, Mac Apps, Music (Song and Albums), Music Videos, iBooks, Movies.
 
 Search Music, Movies and Music Videos on YouTube.
 
