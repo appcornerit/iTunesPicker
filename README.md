@@ -1,4 +1,4 @@
-iTunesPicker 2.0.0
+iTunesPicker 2.0.1
 ============
 
 A complete App to discover, search and compare world rankings for apps, ibooks, movies and music **from iTunes in any available country**.
@@ -8,7 +8,7 @@ iOS Apps, iPad Apps, Mac Apps, Music (Song and Albums), Music Videos, iBooks, Mo
 
 Search Music, Movies and Music Videos on YouTube.
 
-iTunesPicker is for iPhone only, requires iOS 7 and use **AppCornerKit framework** that simplifies communication with iTunes API, the framework is included in the external folder and is free for unlimited use.
+iTunesPicker is for iPhone only, requires iOS 7 or above and use **AppCornerKit framework** that simplifies communication with iTunes API, the framework is included in the external folder and is free for unlimited use.
 
 **Author**: Denis Berton [@DenisBerton](https://twitter.com/DenisBerton)
 
