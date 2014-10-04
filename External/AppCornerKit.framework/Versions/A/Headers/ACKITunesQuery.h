@@ -8,6 +8,7 @@
 
 #import "ACKConstants.h"
 #import "ACKITunesEntity.h"
+#import <UIKit/UIKit.h>
 
 @interface ACKITunesQuery : NSObject
 
@@ -55,6 +56,7 @@
 -(void) loadEntities:(NSArray*)entities inITunesStoreCountry:(NSString*)country keepEntitiesNotInCountry:(BOOL)keepEntitiesNotInCountry completionBlock:(ACKArrayResultBlock)completion;
 
 -(void) openEntity:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country isGift:(BOOL)gift completionBlock:(ACKBooleanResultBlock)completion;
+-(void) presentStoreProduct:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country inUIViewController:(UIViewController*)viewController  completionBlock:(ACKBooleanResultBlock)completion; //iOS8
 
 -(void) loadEntitiesForArtistId:(NSString *)artistId inITunesCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion;
 

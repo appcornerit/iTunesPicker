@@ -18,6 +18,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "ITPAppDelegate.h"
 #import "ITPYouTubeViewController.h"
+#import <StoreKit/StoreKit.h>
 
 @interface ITPPickerTableViewController() <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, ACKTrackMusicVideoPlayerDelegate, SWTableViewCellDelegate, UIActionSheetDelegate>
     @property (nonatomic,readonly) NSArray* ds;
@@ -514,7 +515,8 @@
     if(![iTunesEntity isKindOfClass:[ACKBook class]])
     {
         if((![iTunesEntity isKindOfClass:[ACKApp class]] && YOUTUBE_API_KEY.length > 0)||
-           ([iTunesEntity isKindOfClass:[ACKApp class]] && [self.delegate respondsToSelector:@selector(openITunesEntityDetail:)]))
+           ([iTunesEntity isKindOfClass:[ACKApp class]] && [self.delegate respondsToSelector:@selector(openITunesEntityDetail:)] &&
+            ((floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 || !iTunesEntity.existInUserCountry) )))
         {
             [cellUtilityButtons sw_addUtilityButtonWithColor: FlatOrangeDark normalIcon:[UIImage imageNamed:@"search"] selectedIcon:[UIImage imageNamed:@"search"]];
         }
@@ -534,21 +536,32 @@
             query.cachePolicyLoadEntity = NSURLRequestUseProtocolCachePolicy;
             NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
             ACKITunesEntity* iTunesEntity = [self.ds objectAtIndex:cellIndexPath.row];
-            [query openEntity:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry isGift:NO completionBlock:^(BOOL succeeded, NSError *err) {
-                if(!succeeded || err)
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error_title_item_not_in_user_country",nil) message:NSLocalizedString(@"error_message_item_not_in_user_country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"button_cancel",nil), nil];
-                    [alert show];
-                }
-            }];
+            if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 || !iTunesEntity.existInUserCountry) {
+                [query openEntity:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry isGift:NO completionBlock:^(BOOL succeeded, NSError *err) {
+                    if(!succeeded || err)
+                    {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error_title_item_not_in_user_country",nil) message:NSLocalizedString(@"error_message_item_not_in_user_country",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"button_cancel",nil), nil];
+                        [alert show];
+                    }
+                }];
+            }
+            else
+            {
+                self.loading = YES;
+                [[ITPGraphic sharedInstance] changeNavBar];
+                [query presentStoreProduct:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry inUIViewController:(UIViewController<SKStoreProductViewControllerDelegate>*)self.delegate completionBlock:^(BOOL succeeded, NSError *err) {
+                    self.loading = NO;
+                }];
+            }
             break;
         }
         case 1:
         {
+            [[ITPGraphic sharedInstance] changeNavBar];
             NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
             ACKITunesEntity* iTunesEntity = [self.ds objectAtIndex:cellIndexPath.row];
             [ACKShareITunesEntity presentShareInUIViewController:(ITPViewController*)self.delegate forITunesEntity:iTunesEntity inITunesStoreCountry:[self.delegate entitiesDatasources].userCountry withString:iTunesEntity.description completion:^{
-                
+                [[ITPGraphic sharedInstance] initCommonUXAppearance];
             }];
             break;
         }
@@ -652,5 +665,6 @@
     
     return CGPointMake(0, self.tableView.tableHeaderView.frame.size.height);
 }
+
 
 @end

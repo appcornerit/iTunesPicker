@@ -50,6 +50,7 @@
 		FF6CB493191E78570015661E /* ITPSideLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6CB491191E78570015661E /* ITPSideLeftMenuViewController.xib */; };
 		FF6CB495191E86B40015661E /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6CB494191E86B40015661E /* iAd.framework */; };
 		FF6CB49C19200FA20015661E /* YHRoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6CB49B19200FA20015661E /* YHRoundBorderedButton.m */; };
+		FF76441919E0851300AF09B7 /* AppCornerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF76441819E0851300AF09B7 /* AppCornerKit.framework */; };
 		FF8B09361971C50F007E391F /* MSDynamicsDrawerStyler.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8B09321971C50F007E391F /* MSDynamicsDrawerStyler.m */; };
 		FF8B09371971C50F007E391F /* MSDynamicsDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8B09351971C50F007E391F /* MSDynamicsDrawerViewController.m */; };
 		FF8B093D1972D640007E391F /* XHPaggingNavbar.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8B093A1972D640007E391F /* XHPaggingNavbar.m */; };
@@ -71,7 +72,6 @@
 		FFC57775199FD90E00D5B27F /* ITPYouTubeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC57773199FD90E00D5B27F /* ITPYouTubeViewController.xib */; };
 		FFC9A28E19A88F8B007C896A /* ITPYouTubeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC9A28C19A88F8B007C896A /* ITPYouTubeVideoCell.m */; };
 		FFC9A28F19A88F8B007C896A /* ITPYouTubeVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC9A28D19A88F8B007C896A /* ITPYouTubeVideoCell.xib */; };
-		FFC9A2AD19AA47C7007C896A /* AppCornerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC9A2AB19AA47C7007C896A /* AppCornerKit.framework */; };
 		FFC9A2AE19AA47C7007C896A /* AppCornerKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FFC9A2AC19AA47C7007C896A /* AppCornerKitResources.bundle */; };
 		FFD2E6821916A04C00F9672D /* ITPVideoPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD2E67F1916A04C00F9672D /* ITPVideoPickerTableViewCell.m */; };
 		FFD2E6831916A04C00F9672D /* ITPVideoPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD2E6801916A04C00F9672D /* ITPVideoPickerTableViewCell.xib */; };
@@ -166,6 +166,7 @@
 		FF6CB494191E86B40015661E /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		FF6CB49A19200FA20015661E /* YHRoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHRoundBorderedButton.h; sourceTree = "<group>"; };
 		FF6CB49B19200FA20015661E /* YHRoundBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHRoundBorderedButton.m; sourceTree = "<group>"; };
+		FF76441819E0851300AF09B7 /* AppCornerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCornerKit.framework; path = External/AppCornerKit.framework; sourceTree = "<group>"; };
 		FF8B09311971C50F007E391F /* MSDynamicsDrawerStyler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDynamicsDrawerStyler.h; sourceTree = "<group>"; };
 		FF8B09321971C50F007E391F /* MSDynamicsDrawerStyler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDynamicsDrawerStyler.m; sourceTree = "<group>"; };
 		FF8B09331971C50F007E391F /* MSDynamicsDrawerViewController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSDynamicsDrawerViewController-Prefix.pch"; sourceTree = "<group>"; };
@@ -208,7 +209,6 @@
 		FFC9A28B19A88F8B007C896A /* ITPYouTubeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPYouTubeVideoCell.h; sourceTree = "<group>"; };
 		FFC9A28C19A88F8B007C896A /* ITPYouTubeVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPYouTubeVideoCell.m; sourceTree = "<group>"; };
 		FFC9A28D19A88F8B007C896A /* ITPYouTubeVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPYouTubeVideoCell.xib; sourceTree = "<group>"; };
-		FFC9A2AB19AA47C7007C896A /* AppCornerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCornerKit.framework; path = External/AppCornerKit.framework; sourceTree = "<group>"; };
 		FFC9A2AC19AA47C7007C896A /* AppCornerKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AppCornerKitResources.bundle; path = External/AppCornerKitResources.bundle; sourceTree = "<group>"; };
 		FFD2E67F1916A04C00F9672D /* ITPVideoPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPVideoPickerTableViewCell.m; sourceTree = "<group>"; };
 		FFD2E6801916A04C00F9672D /* ITPVideoPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPVideoPickerTableViewCell.xib; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				FFEE4D8018B41BBE001C7D54 /* CoreData.framework in Frameworks */,
 				FF2E269618B2AA4000270C57 /* CoreGraphics.framework in Frameworks */,
 				FF2E269818B2AA4000270C57 /* UIKit.framework in Frameworks */,
-				FFC9A2AD19AA47C7007C896A /* AppCornerKit.framework in Frameworks */,
+				FF76441919E0851300AF09B7 /* AppCornerKit.framework in Frameworks */,
 				FF2E269418B2AA4000270C57 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +288,7 @@
 		FF2E269218B2AA4000270C57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FFC9A2AB19AA47C7007C896A /* AppCornerKit.framework */,
+				FF76441819E0851300AF09B7 /* AppCornerKit.framework */,
 				FFC9A2AC19AA47C7007C896A /* AppCornerKitResources.bundle */,
 				FF6CB494191E86B40015661E /* iAd.framework */,
 				FF3A648419053A1700003669 /* libsqlite3.0.dylib */,

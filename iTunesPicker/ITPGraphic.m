@@ -35,7 +35,12 @@
     [[UISearchBar appearance] setBarTintColor:[self commonColor]];
     [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:[self commonContrastColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
 
+-(void) changeNavBar
+{
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blueColor]}];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor: [UIColor blueColor]];
 }
 
 -(void) setITunesEntityType:(tITunesEntityType)iTunesEntityType

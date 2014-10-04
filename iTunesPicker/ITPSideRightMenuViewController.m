@@ -262,4 +262,9 @@ static NSString *CellIdentifierMenu = @"ITPMorphingTableViewCell";
     return [UIView new];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.0;
+}
+
 @end

@@ -15,6 +15,7 @@
 + (ITPGraphic*)sharedInstance;
 
 - (void) initCommonUXAppearance;
+- (void) changeNavBar;
 - (UIColor*) commonColor;
 - (UIColor*) commonColorForEntity:(tITunesEntityType) iTunesEntityType;
 - (UIColor*) commonContrastColor;

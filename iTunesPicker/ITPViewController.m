@@ -13,8 +13,9 @@
 #import "ITPSideRightMenuViewController.h"
 #import "ITPGraphic.h"
 #import "SVProgressHUD.h"
+#import <StoreKit/StoreKit.h>
 
-@interface ITPViewController () <SwipeViewDataSource, SwipeViewDelegate, ITPMenuTableViewDelegate, ADBannerViewDelegate>
+@interface ITPViewController () <SwipeViewDataSource, SwipeViewDelegate, ITPMenuTableViewDelegate, ADBannerViewDelegate,SKStoreProductViewControllerDelegate>
 {
     CGRect filterCloseFrame,filterOpenFrame;
     BOOL fixAnimationLoading;
@@ -783,6 +784,16 @@
         }];
         bannerIsVisible = NO;
     }
+}
+
+#pragma mark - SKStoreProductViewControllerDelegate
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+{
+    [self showLoadingHUD:YES sender:nil];
+    [[ITPGraphic sharedInstance] initCommonUXAppearance];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self showLoadingHUD:NO sender:nil];
+    }];
 }
 
 @end

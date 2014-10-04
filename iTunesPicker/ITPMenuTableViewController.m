@@ -42,6 +42,7 @@
     
     self.view.backgroundColor = [[ITPGraphic sharedInstance] commonContrastColor];
     self.tableView.rowHeight = menuItemHeight;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;    
 }
 
 +(NSString*) getImageFromType:(tITunesEntityType)iTunesEntityType
@@ -203,11 +204,11 @@
     [self.tableView reloadData];
 }
 
-//Eliminate Extra separators below UITableView
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [UIView new];
-}
+////Eliminate Extra separators below UITableView
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [UIView new];
+//}
 
 @end
 
