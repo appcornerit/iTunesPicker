@@ -49,4 +49,4 @@ To enable YouTube search, add your api key in iTunesPicker-Prefix.pch
 
 **Let me know if you include or publish iTunesPicker on the App Store**
 
-You can share your favorites apps (or build your AppCornerKit framework from scratch), take a look to [AppCorner Social](https://github.com/appcornerit/AppCorner-Social), iTunesPicker can share apps on AppCorner Social.
+You can share your favorite apps (or build your AppCornerKit framework from scratch), take a look to [AppCorner Social](https://github.com/appcornerit/AppCorner-Social), iTunesPicker can share apps on AppCorner Social.
