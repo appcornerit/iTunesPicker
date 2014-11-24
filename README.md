@@ -23,7 +23,7 @@ I'd love to have your contribution to iTunesPicker. There are several ways to co
 - Build an interface for iPad 
 - Suggest new features
 
-Work in progress, stay tuned!
+Work in progress, **apps discounts will soon be available for App Store worldwide**, stay tuned!
 
 ####Publish on App Store
 iTunesPicker is not published on the App Store by appcorner.it, **you're free to publish this version "as is" on App Store** or with your changes (please quote this repository in the app description).
