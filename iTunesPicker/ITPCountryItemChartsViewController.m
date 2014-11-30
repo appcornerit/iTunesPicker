@@ -109,7 +109,13 @@ static NSString *CellIdentifier = @"CountryCell";
         self.navigationItem.leftBarButtonItem = cancelButton;
     }
     
+#if TARGET_IPHONE_SIMULATOR
+    //workaround, this is a known Apple issue for iOS 8.1 simulator only, not reproducible on 8.1 devices.
+    NSLocale *locale = [NSLocale systemLocale];    
+#else
     NSLocale *locale = [NSLocale currentLocale];
+#endif
+
     NSArray *countryCodes = [NSLocale ISOCountryCodes];
     if(allCountries)
     {
