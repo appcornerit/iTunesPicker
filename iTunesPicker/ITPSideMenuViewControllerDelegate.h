@@ -25,5 +25,7 @@
 -(NSInteger)getFilterCountLabels:(tITPMenuFilterPanel)menuFilterPanel;
 -(void)openDiscoverView;
 -(void)openGlobalRankingView;
+-(BOOL)canShowPriceDrops;
+-(void)openPriceDrops;
 
 @end

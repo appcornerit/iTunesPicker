@@ -94,7 +94,7 @@
         case 0:
             return 2;
         default:
-            return 2;
+            return 2 + ([self.delegate canShowPriceDrops]?1:0);
     }
 }
 
@@ -159,6 +159,9 @@
                 case 1:
                     cell.morphLabel.text = NSLocalizedString(@"menu.globalrankingview", nil);
                     break;
+                case 2:
+                    cell.morphLabel.text = NSLocalizedString(@"menu.pricedrops", nil);
+                    break;
             }
             break;            
     }
@@ -188,6 +191,9 @@
                     break;
                 case 1:
                     [self.delegate openGlobalRankingView];
+                    break;
+                case 2:
+                    [self.delegate openPriceDrops];
                     break;
             }
             break;

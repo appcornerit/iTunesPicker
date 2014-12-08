@@ -33,6 +33,7 @@ typedef enum {
 -(void) loadChartInITunesStoreCountry:(NSString*)country withType:(NSUInteger)type withGenre:(NSUInteger)genre completionBlock:(ACKArrayResultBlock)completion;
 -(void) loadEntitiesForArtistId:(NSString *)artistId inITunesCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion;
 -(void) showEntities:(NSArray*)array keepEntitiesNotInCountry:(BOOL)keepEntitiesNotInCountry highlightCells:(BOOL)highlightCells completionBlock:(ACKArrayResultBlock)completion;
+-(void)showAppsPriceDropsWithCompletionBlock:(ACKArrayResultBlock)completion;
 -(void) selectEnityAtIndex:(NSInteger)index;
 
 @end

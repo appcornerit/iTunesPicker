@@ -11,6 +11,7 @@
 #import "ACKITunesEntity.h"
 
 //types
+#import "ACKPriceDrop.h"
 #import "ACKApp.h"
 #import "ACKAlbum.h"
 #import "ACKTrackSong.h"

@@ -39,6 +39,7 @@
 "menu.section.views"="Global views";
 "menu.discoverview" = "Discover";
 "menu.globalrankingview" = "Global ranking";
+"menu.pricedrops" = "Price drops";
 
 //filter
 "filter.title.chart"="Select chart";
@@ -126,6 +127,7 @@
 "itppicker.tablecell.app.noratings.allversions"="No ratings for all versions";
 "itppicker.tablecell.app.label.allVersions"="all versions";
 "itppicker.tablecell.app.button.detail"=">";
+"itppicker.tablecell.app.pricedrop"="from %@ to %@";
 
 "itppicker.detail.app.button.purchase"="App Store";
 "itppicker.detail.app.label.developer"="Developer";

@@ -56,7 +56,7 @@
 -(void) loadEntities:(NSArray*)entities inITunesStoreCountry:(NSString*)country keepEntitiesNotInCountry:(BOOL)keepEntitiesNotInCountry completionBlock:(ACKArrayResultBlock)completion;
 
 -(void) openEntity:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country isGift:(BOOL)gift completionBlock:(ACKBooleanResultBlock)completion;
--(void) presentStoreProduct:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country inUIViewController:(UIViewController*)viewController  completionBlock:(ACKBooleanResultBlock)completion; //iOS8
+-(void) presentStoreProduct:(ACKITunesEntity*)entity inITunesStoreCountry:(NSString*)country inUIViewController:(UIViewController*)viewController  completionBlock:(ACKBooleanResultBlock)completion; //iOS8+
 
 -(void) loadEntitiesForArtistId:(NSString *)artistId inITunesCountry:(NSString*)country withType:(tITunesEntityType)type completionBlock:(ACKArrayResultBlock)completion;
 
@@ -71,6 +71,15 @@
 //Music Videos
 -(void) loadMusicVideosChartInITunesStoreCountry:(NSString*)country withType:(tITunesMusicVideosChartType)type withGenre:(tITunesMusicVideosGenreType)genre explicit:(BOOL)addExplict limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 
+//Apps Price Drops (from www.appcorner.it)
+//mediaEntityType:
+//kITunesMediaEntityTypeSoftware for iPhone
+//kITunesMediaEntityTypeSoftwareiPad for iPad
+//kITunesMediaEntityTypeSoftwareMac for Mac
+//genre:
+//tITunesAppGenreType for iPhone/iPad
+//tITunesAppMacGenreType for Mac
+-(void) loadAppsPriceDropsInITunesStoreCountry:(NSString*)country withMediaType:(tITunesMediaEntityType)mediaEntityType withGenre:(NSInteger)genre withLanguageCodesISO2A:(NSSet*)languageCodesISO2A freeOnly:(BOOL)free limit:(NSUInteger)limit completionBlock:(ACKArrayResultBlock)completion;
 
 //Load remote configuration from your server like @"http://example.com/defaults.plist"
 - (void)loadRemoteConfigurationFromURL:(NSURL *)url

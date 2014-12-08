@@ -212,6 +212,19 @@
     [self.navigationController pushViewController:pickerTableView animated:YES];
 }
 
+- (BOOL)canShowPriceDrops
+{
+    return self.entitiesDatasources.entityType == kITunesEntityTypeSoftware;
+}
+
+- (void)openPriceDrops
+{
+    [self closeAllPanelsExcept:nil];
+    ITPPickerTableViewController* pickerTableView = [[ITPPickerTableViewController alloc]initWithNibName:nil bundle:nil];
+    pickerTableView.delegate = self;
+    [pickerTableView showAppsPriceDropsWithCompletionBlock:nil];
+    [self.navigationController pushViewController:pickerTableView animated:YES];
+}
 
 - (void)openUserCountryPicker {
     ITPCountryItemChartsViewController *vc = [[ITPCountryItemChartsViewController alloc] initWithStyle:UITableViewStylePlain
@@ -742,10 +755,15 @@
 -(void) reloadNavBarTitles
 {
     NSArray* countries = [self.entitiesDatasources getAllCountries];
-    NSLocale* currentLocale = [NSLocale currentLocale];
+#if TARGET_IPHONE_SIMULATOR
+    //workaround, this is a known Apple issue for iOS 8.1 simulator only, not reproducible on 8.1 devices.
+    NSLocale *locale = [NSLocale systemLocale];
+#else
+    NSLocale *locale = [NSLocale currentLocale];
+#endif
     NSMutableArray* titleCountries = [[NSMutableArray alloc]init];
     for (NSString* country in countries) {
-        [titleCountries addObject:[currentLocale displayNameForKey:NSLocaleCountryCode value:country]];
+        [titleCountries addObject:[locale displayNameForKey:NSLocaleCountryCode value:country]];
     }
     ((XHPaggingNavbar*)self.navigationItem.titleView).titles = titleCountries;
     [((XHPaggingNavbar*)self.navigationItem.titleView)reloadData];

@@ -198,7 +198,35 @@
             completion(array,err);
         }
     }];
+}
 
+-(void)showAppsPriceDropsWithCompletionBlock:(ACKArrayResultBlock)completion
+{
+    self.loading = YES;
+    
+    _loadState = kITPLoadStateExternalEntities;
+    self.query.userCountry = self.delegate.entitiesDatasources.userCountry;
+    self.query.priority = [self.delegate getLoadingPriority:self];
+    NSInteger limit = [[NSUserDefaults standardUserDefaults] integerForKey:DEFAULT_ACK_CHART_ITEMS_KEY];
+    NSSet* languageCodes = [[NSSet alloc] initWithArray:@[@"en",[[NSLocale preferredLanguages]objectAtIndex:0]]];
+    [self.query loadAppsPriceDropsInITunesStoreCountry:self.delegate.entitiesDatasources.userCountry
+                                         withMediaType:self.delegate.entitiesDatasources.mediaEntityType
+                                             withGenre:kITunesAppGenreTypeAll
+                                withLanguageCodesISO2A:languageCodes
+                                              freeOnly:NO limit:limit
+                                       completionBlock:^(NSArray *array, NSError *err) {
+        if(!err)
+        {
+            _itemsArray = [array copy];
+        }
+        self.loading = NO;
+        [self updateUI];
+        [self.tableView reloadData];
+        if(completion)
+        {
+            completion(array,err);
+        }
+    }];
 }
 
 -(void) selectEnityAtIndex:(NSInteger)index

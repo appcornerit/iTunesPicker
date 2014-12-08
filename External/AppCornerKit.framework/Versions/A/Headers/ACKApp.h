@@ -7,6 +7,7 @@
 //
 
 #import "ACKITunesEntity.h"
+#import "ACKPriceDrop.h"
 
 @interface ACKApp : ACKITunesEntity
 
@@ -42,6 +43,9 @@
 @property (nonatomic,strong) NSString* trackContentRating;
 @property (nonatomic,strong) NSNumber* averageUserRating;
 @property (nonatomic,strong) NSNumber* userRatingCount;
+
+@property (nonatomic,strong) ACKPriceDrop* priceDrop;
+
 
 -(BOOL) isUniversal;
 

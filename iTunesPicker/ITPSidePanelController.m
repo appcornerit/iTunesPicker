@@ -161,6 +161,24 @@
     }
 }
 
+-(BOOL)canShowPriceDrops;
+{
+    return [((ITPViewController*)[self centerViewController]) canShowPriceDrops];
+}
+
+-(void)openPriceDrops
+{
+    if(((ITPViewController*)[self centerViewController]).pickersLoading)
+    {
+        [self showWaitForLoadingAlert];
+    }
+    else
+    {
+        [self transitionToViewController:MSPaneViewControllerTypeMain];
+        [((ITPViewController*)[self centerViewController]) openPriceDrops];
+    }
+}
+
 #pragma mark - private
 
 -(UIViewController*) centerViewController

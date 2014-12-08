@@ -40,6 +40,7 @@
 "menu.section.views"="Viste globali";
 "menu.discoverview" = "Scopri";
 "menu.globalrankingview" = "Classifica globale";
+"menu.pricedrops" = "App in sconto";
 
 //filter
 "filter.title.chart"="Seleziona la classifica";
@@ -131,6 +132,7 @@
 "itppicker.tablecell.app.noratings.allversions"="Nessun voto per tutte le versioni";
 "itppicker.tablecell.app.label.allVersions"="tutte le versioni";
 "itppicker.tablecell.app.button.detail"=">";
+"itppicker.tablecell.app.pricedrop"="da %@ a %@";
 
 "itppicker.detail.app.button.purchase"="App Store";
 "itppicker.detail.app.label.developer"="Sviluppatore";

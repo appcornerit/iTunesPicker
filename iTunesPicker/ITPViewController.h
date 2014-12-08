@@ -42,4 +42,6 @@ typedef enum {
 - (NSString*)getSelectedFilterLabel:(tITPMenuFilterPanel)menuFilterPanel;
 - (NSInteger)getFilterCountLabels:(tITPMenuFilterPanel)menuFilterPanel;
 
+- (BOOL)canShowPriceDrops;
+- (void)openPriceDrops;
 @end

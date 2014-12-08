@@ -51,7 +51,24 @@
     self.ratingsAllVersionsLabel.hidden = [userRatingCountAllVersions doubleValue]== 0;
     self.noRatingsAllVersionsLabel.hidden = [userRatingCountAllVersions doubleValue]> 0;
     
-    self.priceLabel.text = appObject.formattedPrice;
+    if(appObject.priceDrop)
+    {
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init]; //create a formatter inside a cell is not good
+        [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [numberFormatter setCurrencyCode:appObject.currency];
+        numberFormatter.locale = [NSLocale currentLocale]; //warning: returns en_US in iOS 8.1 simulator only, works well on 8.1 devices.
+        NSString* toPriceStr = [numberFormatter stringFromNumber:appObject.priceDrop.toPrice];
+        if([appObject.priceDrop.toPrice doubleValue]==0)
+        {
+            toPriceStr = appObject.formattedPrice;
+        }
+        NSString* priceLabel = [NSString stringWithFormat:NSLocalizedString(@"itppicker.tablecell.app.pricedrop",nil),[numberFormatter stringFromNumber:appObject.priceDrop.fromPrice],toPriceStr];
+        self.priceLabel.text = priceLabel;
+    }
+    else
+    {
+        self.priceLabel.text = appObject.formattedPrice;
+    }
     if(!appObject.existInUserCountry)
     {
         self.priceLabel.text = @"  ";
