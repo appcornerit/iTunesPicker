@@ -1,4 +1,4 @@
-iTunesPicker 2.1.0
+iTunesPicker 2.1.1
 ============
 
 A complete App to discover, search and compare world rankings for apps, ibooks, movies and music **from iTunes in any available country**. iTunesPicker show app price drops from [appcorner.it](http://www.appcorner.it/en/), take a look to [AppCorner Social](https://github.com/appcornerit/AppCorner-Social) you can create a website with your favorites apps or price drops.
