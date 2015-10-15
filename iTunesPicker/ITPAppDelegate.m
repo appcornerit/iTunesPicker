@@ -42,8 +42,22 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.panelController.dynamicsDrawerViewController;
     [self.window makeKeyAndVisible];
+    
+    
+    [self.windowBackground setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.window addSubview:self.windowBackground];
     [self.window sendSubviewToBack:self.windowBackground];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_windowBackground);
+    [self.window addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_windowBackground]|"
+                                                                        options:0
+                                                                        metrics:nil
+                                                                          views:views]];
+    [self.window addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_windowBackground]|"
+                                                                        options:0
+                                                                        metrics:nil
+                                                                          views:views]];
+    
     
     return YES;
 }
@@ -96,7 +110,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     
     if(self.allowOrientation){
         return UIInterfaceOrientationMaskAllButUpsideDown;

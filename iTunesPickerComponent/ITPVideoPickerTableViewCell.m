@@ -53,9 +53,13 @@
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     [formatter setCurrencyCode:movieObject.currency];
     [formatter setLocale:[NSLocale currentLocale]];
-    if(movieObject.trackHdPrice)
+    if(movieObject.trackHdPrice && movieObject.trackPrice)
     {
         self.priceLabel.text = [NSString stringWithFormat:@"SD %@ / HD %@", [formatter stringFromNumber:priceSDNumber],[formatter stringFromNumber:priceHDNumber]];
+    }
+    else if(movieObject.trackHdPrice)
+    {
+        self.priceLabel.text = [NSString stringWithFormat:@"HD %@", [formatter stringFromNumber:priceHDNumber]];
     }
     else if(movieObject.trackPrice)
     {

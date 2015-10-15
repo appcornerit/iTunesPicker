@@ -209,7 +209,7 @@ void MSDynamicsDrawerDirectionActionForMaskedValues(NSInteger direction, MSDynam
     return (!self.dynamicAnimator.isRunning && (self.panePanGestureRecognizer.state == UIGestureRecognizerStatePossible));
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     NSUInteger supportedInterfaceOrientations = UIInterfaceOrientationMaskAll;
     if (self.paneViewController) {
