@@ -14,14 +14,6 @@ iTunesPicker is for iPhone only, requires iOS 7 or above and use **AppCornerKit 
 
 ![Alt text](preview/4.0/1.png "Preview songs") 
 
-#### Project Status
-I'd love to have your contribution to iTunesPicker. There are several ways to contribute:
-
-- Translation in other languages
-- Build an interface for iPad 
-- Suggest new features
-
-
 ####Publish on App Store
 iTunesPicker is not published on the App Store by appcorner.it, **you're free to publish this version "as is" on App Store** or with your changes (please quote this repository in the app description).
 
@@ -43,7 +35,5 @@ To enable YouTube search, add your api key in iTunesPicker-Prefix.pch
 ```objc
 #define YOUTUBE_API_KEY @""
 ```
-
-**Let me know if you include or publish iTunesPicker on the App Store**
 
 You can share your favorite apps (or build your AppCornerKit framework from scratch), take a look to [AppCorner Social](https://github.com/appcornerit/AppCorner-Social), iTunesPicker can share apps on AppCorner Social.
